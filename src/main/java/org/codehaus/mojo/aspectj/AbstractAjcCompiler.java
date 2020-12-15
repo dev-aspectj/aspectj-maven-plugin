@@ -613,6 +613,10 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
         addModulesArgument("-aspectpath", ajcOptions, aspectLibraries, getAdditionalAspectPaths(),
                 "an aspect library");
 
+        // Add Java 9+ modules needed for compilation
+        addModulesArgument("--module-path", ajcOptions, javaModules, null,
+                "Java module");
+
         // Add xmlConfigured option and argument
         if (null != xmlConfigured) {
             ajcOptions.add("-xmlConfigured");
