@@ -105,11 +105,16 @@ public class AjcHelper
     public static String createClassPath( MavenProject project, List<Artifact> pluginArtifacts, List<String> outDirs )
     {
         String cp = new String();
-        Set<Artifact> classPathElements = Collections.synchronizedSet( new LinkedHashSet<Artifact>() );
+        Set<Artifact> classPathElements = Collections.synchronizedSet(
+            // LinkedHashSet preserves order by insertion for iteration
+            new LinkedHashSet<Artifact>()
+        );
         Set<Artifact> dependencyArtifacts = project.getDependencyArtifacts();
-        classPathElements.addAll( dependencyArtifacts == null ? Collections.<Artifact>emptySet() : dependencyArtifacts );
+        // Set.addAll only adds if absent, so we want to add the project artifacts first
         classPathElements.addAll( project.getArtifacts() );
-        classPathElements.addAll( pluginArtifacts == null ? Collections.<Artifact>emptySet() : pluginArtifacts );
+        classPathElements.addAll( dependencyArtifacts == null ? Collections.emptySet() : dependencyArtifacts );
+        classPathElements.addAll( pluginArtifacts == null ? Collections.emptySet() : pluginArtifacts );
+
         for ( Artifact classPathElement  : classPathElements )
         {
             File artifact = classPathElement.getFile();
