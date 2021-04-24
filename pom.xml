@@ -21,7 +21,7 @@
   </description>
   <inceptionYear>2018</inceptionYear>
   <properties>
-    <aspectjVersion>1.9.5</aspectjVersion>
+    <aspectjVersion>1.9.7.BUILD-SNAPSHOT</aspectjVersion>
     <mavenVersion>3.0.5</mavenVersion>
     <doxiaVersion>1.8</doxiaVersion>
     <mojo.java.target>1.8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 1.8 minimum -->
@@ -109,6 +109,9 @@
       <name>Nicholas Wong</name>
       <email>nickwongdev@gmail.com</email>
       <timezone>America/LosAngeles</timezone>
+    </contributor>
+    <contributor>
+      <name>Alexander Kriegisch</name>
     </contributor>
   </contributors>
 

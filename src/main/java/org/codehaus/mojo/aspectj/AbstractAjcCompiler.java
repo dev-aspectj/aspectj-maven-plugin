@@ -189,25 +189,25 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
     protected boolean XhasMember;
 
     /**
-     * Specify classfile target setting (1.1 to 1.8) default is 1.2
+     * Specify bytecode target setting (1.3 to 1.9, 10 to 16). See 'complianceLevel' for details. 
      *
+     * @see org.codehaus.mojo.aspectj.AjcHelper#ACCEPTED_COMPLIANCE_LEVEL_VALUES
      */
     @Parameter( defaultValue = "${project.build.java.target}" )
     protected String target;
 
     /**
-     * Toggle assertions (1.3, 1.4, 1.5, 1.6, 1.7 or 1.8 - default is 1.4). When using -source 1.3, an assert()
-     * statement valid under Java 1.4 will result in a compiler error. When using -source 1.4, treat assert
-     * as a keyword and implement assertions according to the 1.4 language spec. When using -source 1.5 or higher, Java
-     * 5 language features are permitted. With --source 1.7 or higher Java 7 features are supported.
+     * Specify source code language level (1.3 to 1.9, 10 to 16). See 'complianceLevel' for details. 
      *
+     * @see org.codehaus.mojo.aspectj.AjcHelper#ACCEPTED_COMPLIANCE_LEVEL_VALUES
      */
     @Parameter( defaultValue = "${mojo.java.target}" )
     protected String source;
 
     /**
-     * Specify compiler compliance setting.
-     * Defaults to 1.4, with permitted values ("1.3", "1.4", "1.5", "1.6" and "1.7", "1.8").
+     * Specify compiler compliance setting (same as setting 'source' and 'target' to the same level).
+     * Permitted values: 1.3, 1.4, 1.5, 5, 5.0, 1.6, 6, 6.0, 1.7, 7, 7.0, 1.8, 8, 8.0,
+     * 1.9, 9, 9.0, 10, 10.0, 11, 11.0, 12, 12.0, 13, 13.0, 14, 14.0, 15, 15.0, 16, 16.0.
      *
      * @see org.codehaus.mojo.aspectj.AjcHelper#ACCEPTED_COMPLIANCE_LEVEL_VALUES
      */
@@ -406,6 +406,18 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      */
     @Parameter( defaultValue = "false" )
     protected boolean forceAjcCompile;
+
+    /**
+     * Activates compiler preview features (e.g. sealed classes in Java 16) when used with a suitable JDK version
+     *
+     * @since 1.12.7
+     */
+    // TODO:
+    //   Create tickets for at least Eclipse IDE and IntelliJ IDEA to recognise this switch and import it as a compiler
+    //   and possibly runtime setting. As for AJDT, maybe we have to implement it ourselves, but actually I found no
+    //   references to the Maven module there, so I guess the import is implemented somewhere else.
+    @Parameter( defaultValue = "false" )
+    protected boolean enablePreview;
 
     /**
      * Holder for ajc compiler options
@@ -873,13 +885,23 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
     }
 
     public void setTarget(String target) {
-        ajcOptions.add("-target");
-        ajcOptions.add(target);
+        if (AjcHelper.isValidComplianceLevel(target)) {
+            ajcOptions.add("-target");
+            ajcOptions.add(target);
+        }
     }
 
     public void setSource(String source) {
-        ajcOptions.add("-source");
-        ajcOptions.add(source);
+        if (AjcHelper.isValidComplianceLevel(source)) {
+            ajcOptions.add("-source");
+            ajcOptions.add(source);
+        }
+    }
+
+    public void setEnablePreview(boolean enablePreview) {
+        if (enablePreview) {
+            ajcOptions.add("--enable-preview");
+        }
     }
 
     public void setVerbose(boolean verbose) {
