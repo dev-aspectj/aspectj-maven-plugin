@@ -24,7 +24,7 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>com.nickwongdev</groupId>
+        <groupId>dev.aspectj</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
         <version>@project.version@</version>
         <executions>
