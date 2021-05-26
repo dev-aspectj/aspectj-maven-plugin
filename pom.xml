@@ -10,7 +10,7 @@
 
   <groupId>dev.aspectj</groupId>
   <artifactId>aspectj-maven-plugin</artifactId>
-  <version>1.12.7-SNAPSHOT</version>
+  <version>1.13.M2</version>
   <packaging>maven-plugin</packaging>
 
   <name>AspectJ Maven Plugin</name>
@@ -21,7 +21,7 @@
   </description>
   <inceptionYear>2018</inceptionYear>
   <properties>
-    <aspectjVersion>1.9.7.BUILD-SNAPSHOT</aspectjVersion>
+    <aspectjVersion>1.9.7.M2</aspectjVersion>
     <mavenVersion>3.0.5</mavenVersion>
     <doxiaVersion>1.8</doxiaVersion>
     <mojo.java.target>1.8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 1.8 minimum -->
