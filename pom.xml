@@ -45,11 +45,11 @@
   </scm>
   <distributionManagement>
       <snapshotRepository>
-          <id>sonatype-snapshot</id>
-          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+          <id>ossrh</id>
+          <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
       </snapshotRepository>
       <repository>
-          <id>sonatype-release</id>
+          <id>ossrh</id>
           <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
       </repository>
   </distributionManagement>
@@ -73,6 +73,11 @@
         <role>Java Developer</role>
       </roles>
       <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>kriegaex</id>
+      <name>Alexander Kriegisch</name>
+      <email>kriegaex@aspectj.dev</email>
     </developer>
   </developers>
   <contributors>
@@ -108,9 +113,6 @@
       <name>Nicholas Wong</name>
       <email>nickwongdev@gmail.com</email>
       <timezone>America/LosAngeles</timezone>
-    </contributor>
-    <contributor>
-      <name>Alexander Kriegisch</name>
     </contributor>
   </contributors>
 
@@ -438,6 +440,24 @@
                 </goals>
               </execution>
             </executions>
+          </plugin>
+          <plugin>
+            <!--
+              Other than Maven Deploy, this plugin cannot just be added to the 'build/plugins' section of the parent POM
+              once and (de-)activated with a simple property like 'maven.deploy.skip' on a per-module basis. See also
+              https://issues.sonatype.org/browse/OSSRH-68966. Consequently, we do not add it to the parent but separately
+              to each module meant to be published.
+            -->
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.8</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+              <!-- Activate in order to directly release to Maven Central after successful staging -->
+              <autoReleaseAfterClose>false</autoReleaseAfterClose>
+            </configuration>
           </plugin>
         </plugins>
       </build>
