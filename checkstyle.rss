@@ -19,15 +19,15 @@ under the License.
 -->
 <rss version="0.91">
   <channel>
-    <title>Mojo's AspectJ Maven Plugin - Checkstyle report</title>
+    <title>AspectJ Maven Plugin - Checkstyle report</title>
     <link>http://www.mojohaus.org/aspectj-maven-plugin/aspectj-maven-plugin</link>
-    <description>Mojo's AspectJ Maven Plugin - Checkstyle report</description>
+    <description>AspectJ Maven Plugin - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2005 - 2018 MojoHaus</copyright>
+    <copyright>&#169;2018 - 2021 MojoHaus</copyright>
     <item>
       <title>File: 15,
-             Errors: 798,
-             Warnings: 86,
+             Errors: 822,
+             Warnings: 82,
              Infos: 4
       </title>
             <link>http://www.mojohaus.org/aspectj-maven-plugin/aspectj-maven-plugin/checkstyle.html</link>
@@ -80,10 +80,10 @@ under the License.
                   0
                 </td>
                 <td>
-                  38
+                  39
                 </td>
                 <td>
-                  609
+                  633
                 </td>
               </tr>
                           <tr>
@@ -139,7 +139,7 @@ under the License.
                   2
                 </td>
                 <td>
-                  14
+                  15
                 </td>
               </tr>
                           <tr>
@@ -158,20 +158,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.mojohaus.org/aspectj-maven-plugin/aspectj-maven-plugin/checkstyle.html#org.codehaus.mojo.aspectj.Module.java">org/codehaus/mojo/aspectj/Module.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://www.mojohaus.org/aspectj-maven-plugin/aspectj-maven-plugin/checkstyle.html#org.codehaus.mojo.aspectj.AbstractAjcMojo.java">org/codehaus/mojo/aspectj/AbstractAjcMojo.java</a>
                 </td>
                 <td>
@@ -179,6 +165,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.mojohaus.org/aspectj-maven-plugin/aspectj-maven-plugin/checkstyle.html#org.codehaus.mojo.aspectj.Module.java">org/codehaus/mojo/aspectj/Module.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   1
@@ -209,7 +209,7 @@ under the License.
                   3
                 </td>
                 <td>
-                  5
+                  6
                 </td>
               </tr>
                           <tr>
@@ -220,10 +220,10 @@ under the License.
                   2
                 </td>
                 <td>
-                  17
+                  12
                 </td>
                 <td>
-                  14
+                  12
                 </td>
               </tr>
                           <tr>
