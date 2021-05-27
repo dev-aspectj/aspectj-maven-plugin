@@ -16,21 +16,9 @@ Typically, aspects are used in one of two ways within your Maven reactors:
 
 ## Documentation
 
-[Legacy plugin documentation on Mojohaus](http://www.mojohaus.org/aspectj-maven-plugin/) (up-to-date version available
-online shortly). The descriptions and sample projects are still mostly accurate, except for
+Plugin documentation for all AspectJ Maven goals and usage examples can be found here:
 
-  * the group ID and plugin version,
-  * supported Java versions (Mojohaus says Java 1.3-1.8, this version also supports 9-16),
-  * new parameters
-      * `<javaModules>` → CLI option `--module-path`
-      * `<enablePreview>` → CLI option `--enable-preview`
-
-If you need more up-to-date information now, just add the plugin to your project and then one of the following from the
-command line:
-
-  * `mvn aspectj:help` - overview
-  * `mvn aspectj:help -Ddetail=true -Dgoal=compile` - details for the 'compile' goal 
-  * Similarly, you can get help for the goals `test-compile`, `aspectj-report` and `EclipseAjcMojo` goals. 
+https://dev-aspectj.github.io/aspectj-maven-plugin/
 
 ## History
 
