@@ -24,6 +24,9 @@
     <aspectjVersion>1.9.7.M2</aspectjVersion>
     <mavenVersion>3.0.5</mavenVersion>
     <doxiaVersion>1.9.1</doxiaVersion>
+    <plantUmlMavenPluginGroupID>com.github.funthomas424242</plantUmlMavenPluginGroupID>
+    <plantUmlMavenVersion>1.5.2</plantUmlMavenVersion>
+    <plantUmlVersion>1.2021.7</plantUmlVersion>
     <mojo.java.target>1.8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 1.8 minimum -->
     <!-- work around until it is correctly fixed at top parent -->
     <scmpublish.content>${project.build.directory}/staging/aspectj-maven-plugin</scmpublish.content>
@@ -286,10 +289,15 @@
          target/site/images/plantuml/multimodule_ajc.png containing an error message will be generated and become part
          of the Maven site.
       -->
+      <!--
+        TODO: Because of https://github.com/Huluvu424242/plantuml-maven-plugin/issues/27, the new plugin fork does not
+          work on JDK 8. This should be an easy fix. For me, simple recompilation with Java 8 target made it work. As
+          soon as there is a new maintenance release, get rid the 3 'plantUml*' properties. 
+      -->
       <plugin>
-        <groupId>com.github.jeluard</groupId>
+        <groupId>${plantUmlMavenPluginGroupID}</groupId>
         <artifactId>plantuml-maven-plugin</artifactId>
-        <version>7954</version>
+        <version>${plantUmlMavenVersion}</version>
         <configuration>
           <sourceFiles>
             <directory>${basedir}</directory>
@@ -312,7 +320,7 @@
           <dependency>
             <groupId>net.sourceforge.plantuml</groupId>
             <artifactId>plantuml</artifactId>
-            <version>7985</version>
+            <version>${plantUmlVersion}</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -361,6 +369,11 @@
           <activation>
               <jdk>1.8</jdk> <!-- activate only on JDK8, as 8 is minimum version to run aspectj on-->
           </activation>
+          <properties>
+            <plantUmlMavenPluginGroupID>com.github.jeluard</plantUmlMavenPluginGroupID>
+            <plantUmlMavenVersion>7954</plantUmlMavenVersion>
+            <plantUmlVersion>7985</plantUmlVersion>
+          </properties>
           <dependencies>
               <dependency>
                   <groupId>com.sun</groupId>
