@@ -253,6 +253,12 @@
 
       <!--
          Provides PlantUML integration into site deployments.
+
+         NOTE: You need a local Graphviz installation (https://graphviz.org/download/), and it must be on the path of
+         the user running the build. Otherwise, UML diagrams like src/site/uml/multimodule_ajc.puml will not be
+         generated correctly. Instead, without any error message, a dummy image
+         target/site/images/plantuml/multimodule_ajc.png containing an error message will be generated and become part
+         of the Maven site.
       -->
       <plugin>
         <groupId>com.github.jeluard</groupId>
