@@ -1,2 +1,14 @@
-.idea
-target
+### Maven ###
+target/
+
+# Eclipse
+.classpath
+.project
+.settings
+
+# IntelliJ IDEA
+*.iml
+.idea/
+
+# AspectJ
+test.lst
