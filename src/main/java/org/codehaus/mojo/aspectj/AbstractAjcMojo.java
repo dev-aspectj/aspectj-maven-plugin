@@ -74,7 +74,7 @@ public abstract class AbstractAjcMojo extends AbstractMojo
      * Java 9+ modules to build the module path from.
      * Corresponds to <code>ajc --module-path</code> option.
      *
-     * @since 1.12.7
+     * @since 1.13
      */
     @Parameter
     protected Module[] javaModules;

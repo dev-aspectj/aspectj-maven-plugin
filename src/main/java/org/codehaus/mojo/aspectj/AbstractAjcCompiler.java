@@ -410,7 +410,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
     /**
      * Activates compiler preview features (e.g. sealed classes in Java 16) when used with a suitable JDK version
      *
-     * @since 1.12.7
+     * @since 1.13
      */
     // TODO:
     //   Create tickets for at least Eclipse IDE and IntelliJ IDEA to recognise this switch and import it as a compiler
