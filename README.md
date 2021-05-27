@@ -24,7 +24,7 @@ This plugin is available [on Maven Central](https://search.maven.org/artifact/de
 <plugin>
   <groupId>dev.aspectj</groupId>
   <artifactId>aspectj-maven-plugin</artifactId>
-  <version>13.M2</version>
+  <version>1.13.M2</version>
 </plugin>
 ```
 
