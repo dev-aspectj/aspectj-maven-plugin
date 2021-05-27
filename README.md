@@ -14,6 +14,21 @@ Typically, aspects are used in one of two ways within your Maven reactors:
     by a common set of aspects. The "Examples: Multi-module AspectJ use" contains a basic walk-through
     of this approach.
 
+## Usage
+
+### Maven
+
+This plugin is available [on Maven Central](https://search.maven.org/artifact/dev.aspectj/aspectj-maven-plugin).
+
+```xml
+<plugin>
+  <groupId>dev.aspectj</groupId>
+  <artifactId>aspectj-maven-plugin</artifactId>
+  <version>13.M2</version>
+</plugin>
+```
+
+
 ## Documentation
 
 Plugin documentation for all AspectJ Maven goals and usage examples can be found here:
