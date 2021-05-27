@@ -45,8 +45,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Base class for the two aspectJ compiletime weaving mojos.
- * <p/>
+ * Base class for the two aspectJ compile-time weaving mojos.
+ * <p>
  * For all available options see <a href="http://www.eclipse.org/aspectj/doc/released/devguide/ajc-ref.html">ajc-ref</a>
  *
  * @author <a href="mailto:kaare.nilsen@gmail.com">Kaare Nilsen</a>
@@ -351,24 +351,23 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      * Emit warnings for any instances of the comma-delimited list of questionable code.
      * Supported values are shown in the list below, with their respective explanations - as copied
      * directly from the AJC reference.
-     * <p/>
      * <dl>
-     * <dt>constructorName</dt>
-     * <dd>method with constructor name</dd>
-     * <dt>packageDefaultMethod</dt>
-     * <dd>attempt to override package-default method</dd>
-     * <dt>deprecation</dt>
-     * <dd>usage of deprecated type or member</dd>
-     * <dt>maskedCatchBlocks</dt>
-     * <dd>hidden catch block</dd>
-     * <dt>unusedLocals</dt>
-     * <dd>local variable never read</dd>
-     * <dt>unusedArguments</dt>
-     * <dd>method argument never read</dd>
-     * <dt>unusedImports</dt>
-     * <dd>import statement not used by code in file</dd>
-     * <dt>none</dt>
-     * <dd>suppress all compiler warnings</dd>
+     *   <dt>constructorName</dt>
+     *   <dd>method with constructor name</dd>
+     *   <dt>packageDefaultMethod</dt>
+     *   <dd>attempt to override package-default method</dd>
+     *   <dt>deprecation</dt>
+     *   <dd>usage of deprecated type or member</dd>
+     *   <dt>maskedCatchBlocks</dt>
+     *   <dd>hidden catch block</dd>
+     *   <dt>unusedLocals</dt>
+     *   <dd>local variable never read</dd>
+     *   <dt>unusedArguments</dt>
+     *   <dd>method argument never read</dd>
+     *   <dt>unusedImports</dt>
+     *   <dd>import statement not used by code in file</dd>
+     *   <dt>none</dt>
+     *   <dd>suppress all compiler warnings</dd>
      * </dl>
      *
      * @see <a href="http://www.eclipse.org/aspectj/doc/released/devguide/ajc-ref.html#ajc">Eclipse AJC reference</a>
@@ -380,11 +379,9 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      * The filename holding AJC build arguments.
      * The file will be placed in the project build output directory, and will contain all the arguments passed to
      * the AJC compiler in the last run, and also all the files included in the AJC build.
-     * <p/>
+     * <p>
      * Sample content shown below to illustrate typical content within the builddef.lst file:
-     * <p/>
-     * <pre>
-     *     <code>
+     * <pre><code>
      * -1.6
      * -encoding
      * UTF-8
@@ -393,9 +390,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      * -d
      * /Users/lj/Development/Projects/Nazgul/nazgul_tools/validation/validation-aspect/target/classes
      * /Users/lj/Development/Projects/Nazgul/nazgul_tools/validation/validation-aspect/src/main/java/se/jguru/nazgul/tools/validation/aspect/ValidationAspect.java
-     *     </code>
-     * </pre>
-     *
+     * </code></pre>
      */
     @Parameter( defaultValue = "builddef.lst" )
     protected String argumentFileName = "builddef.lst";
@@ -474,7 +469,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
     /**
      * Do the AspectJ compiling.
      *
-     * @throws MojoExecutionException
+     * @throws MojoExecutionException if arguments file cannot be written
      */
     @SuppressWarnings("unchecked")
     public void execute() throws MojoExecutionException {
@@ -734,7 +729,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      * Checks modifications that would make us need a build
      *
      * @return <code>true</code> if build is needed, otherwise <code>false</code>
-     * @throws MojoExecutionException
+     * @throws MojoExecutionException if an unexpected error occurs, e.g. weave directories cannot be resolved 
      */
     protected boolean isBuildNeeded()
             throws MojoExecutionException {

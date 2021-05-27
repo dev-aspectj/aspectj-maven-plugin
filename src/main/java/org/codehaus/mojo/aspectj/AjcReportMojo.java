@@ -282,7 +282,7 @@ public class AjcReportMojo
     }
 
     /**
-     * Get the directories containg sources
+     * @return list of source directories
      */
     @SuppressWarnings( "unchecked" )
     protected List<String> getSourceDirectories()
@@ -302,7 +302,7 @@ public class AjcReportMojo
     }
 
     /**
-     * get compileroutput directory.
+     * @return list of classpath directories
      */
     protected List<String> getClasspathDirectories()
     {
@@ -420,10 +420,12 @@ public class AjcReportMojo
         }
     }
 
-    /**
-     * Setters which when called sets compiler arguments
-     */
-    public void setComplianceLevel( String complianceLevel )
+  /**
+   * Set source compliance level
+   * 
+   * @param complianceLevel compliance level
+   */
+  public void setComplianceLevel( String complianceLevel )
     {
         if ( AjcHelper.isValidComplianceLevel( complianceLevel ) )
         {

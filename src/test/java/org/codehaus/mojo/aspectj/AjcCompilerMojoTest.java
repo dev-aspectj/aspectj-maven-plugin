@@ -48,7 +48,7 @@ public class AjcCompilerMojoTest
     }
 
     /**
-     * @throws Exception
+     * @throws Exception on test error
      */
     public void testModificationSet()
         throws Exception

@@ -42,20 +42,14 @@ import org.codehaus.plexus.util.FileUtils;
 public class AjcHelperTest
     extends TestCase
 {
-    /**
-     * 
-     * @throws Exception
-     */
     public void testGetAsCsv()
-        throws Exception
     {
         String[] tests = new String[] { "kaare", "java", "aspectJ" };
         assertEquals( "kaare,java,aspectJ", AjcHelper.getAsCsv( tests ) );
     }
 
     /**
-     * 
-     * @throws Exception
+     * @throws Exception on test error
      */
     public void testGetSourcesEmptyBaseDir()
         throws Exception
@@ -68,10 +62,6 @@ public class AjcHelperTest
         assertTrue( sources.isEmpty() );
     }
 
-    /**
-     * 
-     * @throws Exception
-     */
     public void testBuildConfigFile()
     {
         final File baseDir = new File(".");
