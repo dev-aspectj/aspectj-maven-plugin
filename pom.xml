@@ -464,9 +464,8 @@
             <executions>
               <execution>
                 <id>integration-test</id>
-                <phase>verify</phase>
                 <goals>
-                  <goal>verify</goal>
+                  <goal>install</goal>
                   <goal>run</goal>
                 </goals>
               </execution>
@@ -481,6 +480,7 @@
                 <goal>test</goal>
               </goals>
               <settingsFile>src/it/settings.xml</settingsFile>
+              <!-- Do not deactivate! At least 14 integration assert on debug output. -->
               <debug>true</debug>
             </configuration>
           </plugin>
