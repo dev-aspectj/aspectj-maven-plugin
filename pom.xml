@@ -443,7 +443,17 @@
     <profile>
       <id>integration-test</id>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <!--
+          CAVEAT: 'activeByDefault=true' does not work reliably and immediately deactivates the profile, as soon as
+          other profiles are activated explicitly or via activation conditions, either in this POM or in the Mojohaus
+          parent. See https://stackoverflow.com/a/5309576/1082681, https://issues.apache.org/jira/browse/MNG-4917.
+
+          Therefore, we activate it based on a file which always exists. Thanks, Maven! :-/
+          Note: ${project.basedir} is not supported during profile activation, use ${basedir} instead.
+        -->
+        <file>
+          <exists>${basedir}/pom.xml</exists>
+        </file>
       </activation>
       <build>
         <plugins>
