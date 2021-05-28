@@ -66,8 +66,8 @@
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment"> * @version $Revision$ by $Author$ (at)goal eclipse</em>
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  @Mojo( name=<span class="jxr_string">"EclipseAjcMojo"</span>, requiresDependencyResolution = ResolutionScope.COMPILE )
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../org/codehaus/mojo/aspectj/EclipseAjcMojo.html">EclipseAjcMojo</a>
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>      <strong class="jxr_keyword">extends</strong> <a href="../../../../org/codehaus/mojo/aspectj/AbstractAjcMojo.html">AbstractAjcMojo</a>
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="EclipseAjcMojo" href="../../../../org/codehaus/mojo/aspectj/EclipseAjcMojo.html#EclipseAjcMojo">EclipseAjcMojo</a>
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>      <strong class="jxr_keyword">extends</strong> <a name="AbstractAjcMojo" href="../../../../org/codehaus/mojo/aspectj/AbstractAjcMojo.html#AbstractAjcMojo">AbstractAjcMojo</a>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  {
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String FILE_SEPARATOR = System.getProperty( <span class="jxr_string">"file.separator"</span> );
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
@@ -146,7 +146,7 @@
 <a class="jxr_linenumber" name="L138" href="#L138">138</a>         }
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>     }
 <a class="jxr_linenumber" name="L140" href="#L140">140</a> 
-<a class="jxr_linenumber" name="L141" href="#L141">141</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> writePaths( PrintWriter out, Module[] modules, String[] keys )
+<a class="jxr_linenumber" name="L141" href="#L141">141</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> writePaths( PrintWriter out, <a name="Module" href="../../../../org/codehaus/mojo/aspectj/Module.html#Module">Module</a>[] modules, String[] keys )
 <a class="jxr_linenumber" name="L142" href="#L142">142</a>         <strong class="jxr_keyword">throws</strong> MojoExecutionException
 <a class="jxr_linenumber" name="L143" href="#L143">143</a>     {
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>         <strong class="jxr_keyword">if</strong> ( modules == <strong class="jxr_keyword">null</strong> || modules.length == 0 )
@@ -156,7 +156,7 @@
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>         String[] paths = <strong class="jxr_keyword">new</strong> String[modules.length];
 <a class="jxr_linenumber" name="L149" href="#L149">149</a>         <strong class="jxr_keyword">for</strong> ( <strong class="jxr_keyword">int</strong> i = 0; i &lt; modules.length; i++ )
 <a class="jxr_linenumber" name="L150" href="#L150">150</a>         {
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>             <a href="../../../../org/codehaus/mojo/aspectj/Module.html">Module</a> module = modules[i];
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>             <a name="Module" href="../../../../org/codehaus/mojo/aspectj/Module.html#Module">Module</a> module = modules[i];
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>             <em class="jxr_comment">// String key = ArtifactUtils.versionlessKey( module.getGroupId(), module.getArtifactId() );</em>
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>             <em class="jxr_comment">// Artifact artifact = (Artifact) project.getArtifactMap().get( key );</em>
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>             Artifact artifact = <strong class="jxr_keyword">null</strong>;
@@ -336,6 +336,6 @@
 <a class="jxr_linenumber" name="L328" href="#L328">328</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2018&#x2013;2021 <a href="http://www.mojohaus.org">MojoHaus</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2018&#x2013;2021 <a href="https://www.mojohaus.org">MojoHaus</a>. All rights reserved.</div>
 </body>
 </html>
