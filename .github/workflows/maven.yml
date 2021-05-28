@@ -74,8 +74,7 @@ jobs:
         with:
           path: |
             ~/.m2/repository
-            !~/.m2/repository/org/codehaus/mojo/aspectj
-            !~/.m2/repository/dev/aspectj/
+            !~/.m2/repository/dev/aspectj/aspectj-maven-plugin
           key: maven-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             maven-${{ matrix.os }}-java${{ matrix.java }}-
@@ -88,6 +87,4 @@ jobs:
           distribution: ${{ matrix.java.dist }}
 
       - name: Build with Maven
-        run: mvn --show-version --errors --batch-mode clean install site
-
-
+        run: mvn --show-version --errors --batch-mode -Dinvoker.streamLogsOnFailures=true clean verify site
