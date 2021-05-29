@@ -23,6 +23,7 @@
   <properties>
     <aspectjVersion>1.9.7.M3</aspectjVersion>
     <mavenVersion>3.0.5</mavenVersion>
+    <junitVersion>4.13.2</junitVersion>
     <doxiaVersion>1.9.1</doxiaVersion>
     <plantUmlMavenPluginGroupID>com.github.funthomas424242</plantUmlMavenPluginGroupID>
     <plantUmlMavenVersion>1.5.2</plantUmlMavenVersion>
@@ -133,6 +134,13 @@
         <artifactId>commons-beanutils</artifactId>
         <version>1.9.4</version>
       </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junitVersion}</version>
+        <scope>test</scope>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
