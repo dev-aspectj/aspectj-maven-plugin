@@ -265,10 +265,13 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.5</version>
+        <version>3.6.1</version>
         <configuration>
           <!-- see: https://github.com/apache/maven-plugin-tools/pull/11 -->
-          <mojoDependencies>dev.aspectj:aspectj-maven-plugin</mojoDependencies>
+          <mojoDependencies>
+            <!-- Use sub elements instead of comma separated string for Maven < 3.3.9 compatibility -->
+            <mojoDependency>dev.aspectj:aspectj-maven-plugin</mojoDependency>
+          </mojoDependencies>
         </configuration>
       </plugin>
       <plugin>
