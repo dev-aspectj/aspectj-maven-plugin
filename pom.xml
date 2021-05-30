@@ -22,7 +22,18 @@
   <inceptionYear>2018</inceptionYear>
   <properties>
     <aspectjVersion>1.9.7.M3</aspectjVersion>
-    <mavenVersion>3.0.5</mavenVersion>
+
+    <!--
+      Minimum version required to build this plugin. CAVEAT: Creating a Maven site with the com.github.funthomas424242
+      PlantUML plugin variant on Java 9+ requires Maven 3.6.3, because the plugin declares it as minimum. But you can
+      still build the project completely on JDK8 with Maven 3.1.1 and without the 'site' lifecycle on JDK9+, too.
+    -->
+    <mavenBuildVersion>3.1.1</mavenBuildVersion>
+    <!-- Maven API version used by this plugin (seems to be backward compatible to Maven 3.1.x, maybe even 3.0.x) -->
+    <mavenAPIVersion>3.8.1</mavenAPIVersion>
+    <!-- Minimum version required to run this plugin (not enforced at the moment, see 'prerequisites' section) -->
+    <mavenRuntimeVersion>3.0.5</mavenRuntimeVersion>
+
     <junitVersion>4.13.2</junitVersion>
     <doxiaVersion>1.9.1</doxiaVersion>
     <plantUmlMavenPluginGroupID>com.github.funthomas424242</plantUmlMavenPluginGroupID>
@@ -34,7 +45,16 @@
   </properties>
 
   <prerequisites>
-    <maven>${mavenVersion}</maven>
+    <!--
+      Minimum Maven version required to both build and use plugin. See Maven Enforcer configuration where the build
+      version is further restricted. Actually, despite using API version 3.8.1, a quick test shows that this plugin
+      still works fine on Maven 3.0.5, as long as the plugins from the Maven root POM for that old version are
+        - locally available or
+        - can be downloaded via HTTP instead of HTTPS (e.g. via Nexus, Maven Central deactivated HTTP) or
+        - have been updated in the user's POM to versions locally available or downloadable via HTTP (not HTTPS).
+      Maybe it would work on still older Maven versions, but I (Alexander Kriegisch) did not test.
+    -->
+    <maven>${mavenRuntimeVersion}</maven>
   </prerequisites>
 
   <issueManagement>
@@ -154,13 +174,13 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
-            <version>${mavenVersion}</version>
+            <version>${mavenAPIVersion}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-model</artifactId>
-            <version>${mavenVersion}</version>
+            <version>${mavenAPIVersion}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -171,7 +191,7 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>${mavenVersion}</version>
+            <version>${mavenAPIVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
@@ -183,7 +203,7 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-compat</artifactId>
-            <version>${mavenVersion}</version>
+            <version>${mavenAPIVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.doxia</groupId>
@@ -292,6 +312,9 @@
                     <exclude>com.sun:tools</exclude>
                   </excludes>
                 </enforceBytecodeVersion>
+                <requireMavenVersion>
+                  <version>${mavenBuildVersion}</version>
+                </requireMavenVersion>
               </rules>
             </configuration>
           </execution>
