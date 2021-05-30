@@ -201,7 +201,15 @@
             <exclusions>
                 <exclusion>
                   <groupId>org.apache.struts</groupId>
-                  <artifactId>*</artifactId>
+                  <artifactId>struts-core</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>org.apache.struts</groupId>
+                  <artifactId>struts-taglib</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>org.apache.struts</groupId>
+                  <artifactId>struts-tiles</artifactId>
                 </exclusion>
               </exclusions>
         </dependency>
