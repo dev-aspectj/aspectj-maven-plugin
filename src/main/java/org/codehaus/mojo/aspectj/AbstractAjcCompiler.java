@@ -386,10 +386,10 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      * -encoding
      * UTF-8
      * -classpath
-     * /Users/lj/Development/Projects/Nazgul/nazgul_tools/validation/validation-api/target/nazgul-tools-validation-api-2.0.10-SNAPSHOT.jar:/Users/lj/.m2/repository/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar:/Users/lj/.m2/repository/org/aspectj/aspectjrt/1.7.3/aspectjrt-1.7.3.jar:/Users/lj/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/lj/.m2/repository/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.jar:/Users/lj/.m2/repository/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar:/Users/lj/Development/Projects/Nazgul/nazgul_tools/validation/validation-aspect/target/classes
+     * /my/library/lib.jar:/somewhere/aspectjrt.jar:/my/project/target/classes
      * -d
-     * /Users/lj/Development/Projects/Nazgul/nazgul_tools/validation/validation-aspect/target/classes
-     * /Users/lj/Development/Projects/Nazgul/nazgul_tools/validation/validation-aspect/src/main/java/se/jguru/nazgul/tools/validation/aspect/ValidationAspect.java
+     * /my/project/target/classes
+     * /my/project/src/main/java/org/acme/ValidationAspect.java
      * </code></pre>
      */
     @Parameter( defaultValue = "builddef.lst" )
