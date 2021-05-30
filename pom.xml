@@ -22,7 +22,7 @@
   <inceptionYear>2018</inceptionYear>
   <properties>
     <aspectjVersion>1.9.7.M3</aspectjVersion>
-    <mavenVersion>3.0.5</mavenVersion>
+    <mavenVersion>3.8.1</mavenVersion>
     <junitVersion>4.13.2</junitVersion>
     <doxiaVersion>1.9.1</doxiaVersion>
     <plantUmlMavenPluginGroupID>com.github.funthomas424242</plantUmlMavenPluginGroupID>
