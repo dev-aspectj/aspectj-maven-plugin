@@ -23,22 +23,15 @@
   <properties>
     <aspectjVersion>1.9.7.M3</aspectjVersion>
 
-    <!--
-      Minimum version required to build this plugin. CAVEAT: Creating a Maven site with the com.github.funthomas424242
-      PlantUML plugin variant on Java 9+ requires Maven 3.6.3, because the plugin declares it as minimum. But you can
-      still build the project completely on JDK8 with Maven 3.1.1 and without the 'site' lifecycle on JDK9+, too.
-    -->
+    <!-- Minimum Maven version required to build this plugin -->
     <mavenBuildVersion>3.1.1</mavenBuildVersion>
     <!-- Maven API version used by this plugin (seems to be backward compatible to Maven 3.1.x, maybe even 3.0.x) -->
     <mavenAPIVersion>3.8.1</mavenAPIVersion>
-    <!-- Minimum version required to run this plugin (not enforced at the moment, see 'prerequisites' section) -->
+    <!-- Minimum Maven version required to run this plugin (not enforced at the moment, see 'prerequisites' section) -->
     <mavenRuntimeVersion>3.0.5</mavenRuntimeVersion>
 
     <junitVersion>4.13.2</junitVersion>
     <doxiaVersion>1.9.1</doxiaVersion>
-    <plantUmlMavenPluginGroupID>com.github.funthomas424242</plantUmlMavenPluginGroupID>
-    <plantUmlMavenVersion>1.5.2</plantUmlMavenVersion>
-    <plantUmlVersion>1.2021.7</plantUmlVersion>
     <mojo.java.target>1.8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 1.8 minimum -->
     <!-- work around until it is correctly fixed at top parent -->
     <scmpublish.content>${project.build.directory}/staging/aspectj-maven-plugin</scmpublish.content>
@@ -350,13 +343,17 @@
       -->
       <!--
         TODO: Because of https://github.com/Huluvu424242/plantuml-maven-plugin/issues/27, the new plugin fork does not
-          work on JDK 8. This should be an easy fix. For me, simple recompilation with Java 8 target made it work. As
-          soon as there is a new maintenance release, get rid the 3 'plantUml*' properties. 
+          work on JDK 8. Alexander Kriegisch fixed this in https://github.com/Huluvu424242/plantuml-maven-plugin/pull/31
+          and published a forked plugin with group ID 'dev.aspectj'. As soon as this is merged and a new upstream
+          release is available, switch back to group ID 'com.github.funthomas424242'.
+        TODO: Because of https://github.com/Huluvu424242/plantuml-maven-plugin/issues/28, the plugin does not fail the
+          build if Graphviz is not installed or not on the path. The plugin simply generates dummy PNG files, which go
+          unnoticed unless somebody visually checks them.
       -->
       <plugin>
-        <groupId>${plantUmlMavenPluginGroupID}</groupId>
+        <groupId>dev.aspectj</groupId>
         <artifactId>plantuml-maven-plugin</artifactId>
-        <version>${plantUmlMavenVersion}</version>
+        <version>1.5.2.J8</version>
         <configuration>
           <sourceFiles>
             <directory>${basedir}</directory>
@@ -379,7 +376,7 @@
           <dependency>
             <groupId>net.sourceforge.plantuml</groupId>
             <artifactId>plantuml</artifactId>
-            <version>${plantUmlVersion}</version>
+            <version>1.2021.7</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -428,11 +425,6 @@
           <activation>
               <jdk>1.8</jdk> <!-- activate only on JDK8, as 8 is minimum version to run aspectj on-->
           </activation>
-          <properties>
-            <plantUmlMavenPluginGroupID>com.github.jeluard</plantUmlMavenPluginGroupID>
-            <plantUmlMavenVersion>7954</plantUmlMavenVersion>
-            <plantUmlVersion>7985</plantUmlVersion>
-          </properties>
           <dependencies>
               <dependency>
                   <groupId>com.sun</groupId>
