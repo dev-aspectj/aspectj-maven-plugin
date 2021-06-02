@@ -24,8 +24,9 @@
 name: Java CI
 
 on:
+  workflow_dispatch: {}
   push:
-    branches: 
+    branches:
       - '*'
       - '!gh-pages'
   pull_request:
