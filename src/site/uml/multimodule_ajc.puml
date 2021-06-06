@@ -5,7 +5,6 @@ skinparam component {
   BorderColor<<Using Aspects>> black
 }
 
-
 node poms {
 
     component "rootParentPOM"
