@@ -423,7 +423,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
    * @since 1.13
    */
   @Parameter
-  protected List<String> compilerArgs = new ArrayList<>();
+  protected List<String> additionalCompilerArgs = new ArrayList<>();
 
   /**
      * Activates compiler preview features (e.g. sealed classes in Java 16) when used with a suitable JDK version
@@ -668,8 +668,8 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
         }
         ajcOptions.addAll(resolvedIncludes);
 
-        if (CollectionUtils.isNotEmpty(compilerArgs)) {
-            ajcOptions.addAll(compilerArgs);
+        if (CollectionUtils.isNotEmpty(additionalCompilerArgs)) {
+            ajcOptions.addAll(additionalCompilerArgs);
         }
     }
 
