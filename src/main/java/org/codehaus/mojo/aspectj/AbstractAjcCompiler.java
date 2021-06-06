@@ -440,7 +440,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
     /**
      * Holder for ajc compiler options
      */
-    protected List<String> ajcOptions = new ArrayList<String>();
+    protected List<String> ajcOptions = new ArrayList<>();
 
     /**
      * Holds all files found using the includes, excludes parameters.
@@ -577,7 +577,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
         ajcMain.setHolder(mavenMessageHandler);
 
         synchronized (BIG_ASPECTJ_LOCK) {
-            ajcMain.runMain(ajcOptions.toArray(new String[ajcOptions.size()]), false);
+            ajcMain.runMain(ajcOptions.toArray(new String[0]), false);
         }
 
         IMessage[] errors = mavenMessageHandler.getMessages(IMessage.ERROR, true);
@@ -675,7 +675,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
 
     protected Set<String> getIncludedSources()
             throws MojoExecutionException {
-        Set<String> result = new HashSet<String>();
+        Set<String> result = new HashSet<>();
         if (getJavaSources() == null) {
             result = AjcHelper.getBuildFilesForSourceDirs(getSourceDirectories(), this.includes, this.excludes);
         } else {
@@ -719,8 +719,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
                 arguments.add(argument);
             }
 
-            for (int i = 0; i < modules.length; ++i) {
-                Module module = modules[i];
+            for (Module module : modules) {
                 // String key = ArtifactUtils.versionlessKey( module.getGroupId(), module.getArtifactId() );
                 // Artifact artifact = (Artifact) project.getArtifactMap().get( key );
                 Artifact artifact = null;

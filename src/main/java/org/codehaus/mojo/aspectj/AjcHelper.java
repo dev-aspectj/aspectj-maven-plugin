@@ -104,10 +104,10 @@ public class AjcHelper
     @SuppressWarnings( "unchecked" )
     public static String createClassPath( MavenProject project, List<Artifact> pluginArtifacts, List<String> outDirs )
     {
-        String cp = new String();
+        String cp = "";
         Set<Artifact> classPathElements = Collections.synchronizedSet(
             // LinkedHashSet preserves order by insertion for iteration
-            new LinkedHashSet<Artifact>()
+          new LinkedHashSet<>()
         );
         Set<Artifact> dependencyArtifacts = project.getDependencyArtifacts();
         // Set.addAll only adds if absent, so we want to add the project artifacts first
@@ -156,7 +156,7 @@ public class AjcHelper
     public static Set<String> getBuildFilesForAjdtFile( String ajdtBuildDefFile, File basedir )
         throws MojoExecutionException
     {
-        Set<String> result = new LinkedHashSet<String>();
+        Set<String> result = new LinkedHashSet<>();
 
         Properties ajdtBuildProperties = new Properties();
         try
@@ -191,7 +191,7 @@ public class AjcHelper
     public static Set<String> getBuildFilesForSourceDirs( List<String> sourceDirs, String[] includes, String[] excludes )
         throws MojoExecutionException
     {
-        Set<String> result = new LinkedHashSet<String>();
+        Set<String> result = new LinkedHashSet<>();
 
         for ( String sourceDir : sourceDirs )
         {
@@ -227,7 +227,7 @@ public class AjcHelper
     public static Set<String> getWeaveSourceFiles( String[] weaveDirs )
         throws MojoExecutionException
     {
-        Set<String> result = new HashSet<String>();
+        Set<String> result = new HashSet<>();
 
         for ( int i = 0; i < weaveDirs.length; i++ )
         {
@@ -285,7 +285,7 @@ public class AjcHelper
     public static List<String> readBuildConfigFile( String fileName, File outputDir )
         throws IOException
     {
-        List<String> arguments = new ArrayList<String>();
+        List<String> arguments = new ArrayList<>();
         File argFile = new File( outputDir, fileName );
         if ( FileUtils.fileExists( argFile.getAbsolutePath() ) )
         {
@@ -350,7 +350,7 @@ public class AjcHelper
     protected static Set<String> resolveIncludeExcludeString( String inExcludeString, File basedir )
         throws MojoExecutionException
     {
-        Set<String> inclExlSet = new LinkedHashSet<String>();
+        Set<String> inclExlSet = new LinkedHashSet<>();
         try
         {
             if ( null == inExcludeString || inExcludeString.trim().equals( "" ) )

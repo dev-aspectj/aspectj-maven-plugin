@@ -130,8 +130,7 @@ public class AjcTestCompileMojo
     @Override
     protected List<String> getSourceDirectories()
     {
-        List<String> sourceDirs = new ArrayList<String>();
-        sourceDirs.addAll( project.getTestCompileSourceRoots() );
+        List<String> sourceDirs = new ArrayList<>( project.getTestCompileSourceRoots() );
         if ( weaveMainSourceFolder )
         {
             sourceDirs.addAll( project.getCompileSourceRoots() );
