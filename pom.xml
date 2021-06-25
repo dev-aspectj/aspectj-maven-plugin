@@ -515,7 +515,7 @@
                 <goal>test</goal>
               </goals>
               <settingsFile>src/it/settings.xml</settingsFile>
-              <!-- Do not deactivate! At least 14 integration assert on debug output. -->
+              <!-- Do not deactivate! At least 14 integration tests assert on debug output. -->
               <debug>true</debug>
             </configuration>
           </plugin>
