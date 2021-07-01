@@ -31,7 +31,7 @@
     <mavenRuntimeVersion>3.0.5</mavenRuntimeVersion>
 
     <junitVersion>4.13.2</junitVersion>
-    <doxiaVersion>1.9.1</doxiaVersion>
+    <doxiaVersion>1.10</doxiaVersion>
     <mojo.java.target>1.8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 1.8 minimum -->
     <!-- work around until it is correctly fixed at top parent -->
     <scmpublish.content>${project.build.directory}/staging/aspectj-maven-plugin</scmpublish.content>
@@ -207,24 +207,6 @@
             <groupId>org.apache.maven.doxia</groupId>
             <artifactId>doxia-site-renderer</artifactId>
             <version>${doxiaVersion}</version>
-            <!--
-              CVE report https://sbom.lift.sonatype.com/report/T1-0ff0976f7f21c391f20f-dfa463bcb34dd-1622009500-fb5c1335856646e2ad417879bb4cf6bc
-              According to https://issues.apache.org/jira/browse/DOXIASITETOOLS-229, Struts can safely be excluded.
-            -->
-            <exclusions>
-                <exclusion>
-                  <groupId>org.apache.struts</groupId>
-                  <artifactId>struts-core</artifactId>
-                </exclusion>
-                <exclusion>
-                  <groupId>org.apache.struts</groupId>
-                  <artifactId>struts-taglib</artifactId>
-                </exclusion>
-                <exclusion>
-                  <groupId>org.apache.struts</groupId>
-                  <artifactId>struts-tiles</artifactId>
-                </exclusion>
-              </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.reporting</groupId>
