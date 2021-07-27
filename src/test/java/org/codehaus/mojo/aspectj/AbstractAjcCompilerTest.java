@@ -38,7 +38,7 @@ import org.apache.maven.project.MavenProject;
 
 /**
  * Tests class {@link org.codehaus.mojo.aspectj.AbstractAjcCompiler}
- * 
+ *
  * @author <a href="mailto:tel@objectnet.no">Thor Age Eldby</a>
  */
 public class AbstractAjcCompilerTest
@@ -235,7 +235,7 @@ public class AbstractAjcCompilerTest
         assertTrue( weavePath.indexOf( dir1 ) != -1 );
         assertTrue( weavePath.indexOf( dir2 ) != -1 );
     }
-    
+
     /**
      * Verifies that if not stated no -aspectpath argument should
      * be found in the ajc arguments
@@ -406,9 +406,9 @@ public class AbstractAjcCompilerTest
         module.setGroupId( groupId );
         module.setArtifactId( artifactId );
         module.setClassifier( classifier );
-        
+
         ajcCompMojo.aspectLibraries = new Module[] { module };
-        
+
         Set artifacts = new HashSet();
         artifacts.add( new MockArtifact( groupId, artifactId ) );
         ajcCompMojo.project.setArtifacts( artifacts );
@@ -416,4 +416,39 @@ public class AbstractAjcCompilerTest
         // should not fail
     }
 
+    /**
+     * Verifies that {@link AbstractAjcCompiler#complianceLevel} overrides {@link AbstractAjcCompiler#source} and
+     * {@link AbstractAjcCompiler#target}
+     *
+     * @throws MojoExecutionException if the mojo fails to execute
+     */
+    public void testGetAjcArguments_complianceLevelOverridesSourceTarget() throws MojoExecutionException
+    {
+        ajcCompMojo.source = "11";
+        ajcCompMojo.target = "8";
+        ajcCompMojo.complianceLevel = "10";
+        ajcCompMojo.assembleArguments();
+        assertTrue(ajcCompMojo.ajcOptions.contains("-10"));
+        assertFalse(ajcCompMojo.ajcOptions.contains("-source"));
+        assertFalse(ajcCompMojo.ajcOptions.contains("-target"));
+    }
+
+    /**
+     * Verifies that {@link AbstractAjcCompiler#release} overrides all of {@link AbstractAjcCompiler#complianceLevel},
+     * {@link AbstractAjcCompiler#source} and {@link AbstractAjcCompiler#target}
+     *
+     * @throws MojoExecutionException if the mojo fails to execute
+     */
+    public void testGetAjcArguments_releaseOverridesComplianceLevel() throws MojoExecutionException
+    {
+        ajcCompMojo.source = "11";
+        ajcCompMojo.target = "8";
+        ajcCompMojo.complianceLevel = "10";
+        ajcCompMojo.release = "1.7";
+        ajcCompMojo.assembleArguments();
+        assertTrue(ajcCompMojo.ajcOptions.contains("--release"));
+        assertFalse(ajcCompMojo.ajcOptions.contains("-10"));
+        assertFalse(ajcCompMojo.ajcOptions.contains("-source"));
+        assertFalse(ajcCompMojo.ajcOptions.contains("-target"));
+    }
 }
