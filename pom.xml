@@ -21,7 +21,7 @@
   </description>
   <inceptionYear>2018</inceptionYear>
   <properties>
-    <aspectjVersion>1.9.7</aspectjVersion>
+    <aspectjVersion>1.9.8.M1</aspectjVersion>
 
     <!-- Minimum Maven version required to build this plugin -->
     <mavenBuildVersion>3.1.1</mavenBuildVersion>
