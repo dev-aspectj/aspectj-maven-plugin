@@ -10,7 +10,7 @@
 
   <groupId>dev.aspectj</groupId>
   <artifactId>aspectj-maven-plugin</artifactId>
-  <version>1.13-SNAPSHOT</version>
+  <version>1.13</version>
   <packaging>maven-plugin</packaging>
 
   <name>AspectJ Maven Plugin</name>
