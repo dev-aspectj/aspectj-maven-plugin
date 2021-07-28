@@ -22,8 +22,5 @@ Mojo's AspectJ Maven Plugin
   []
 
   The AspectJ Maven Plugin delegates most of its work to the AspectJ dependencies included within
-  the plugin. (Refer to {{http://www.eclipse.org/aspectj/}} for descriptions and documentation about
+  the plugin. (Refer to {{https://www.eclipse.org/aspectj/}} for descriptions and documentation about
   AspectJ itself).
-
-
-
