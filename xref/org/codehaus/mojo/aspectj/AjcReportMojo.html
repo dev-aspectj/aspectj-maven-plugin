@@ -208,7 +208,7 @@
 <a class="jxr_linenumber" name="L200" href="#L200">200</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L201" href="#L201">201</a> <em class="jxr_javadoccomment">     * Holder for all options passed</em>
 <a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">private</strong> List&lt;String&gt; ajcOptions = <strong class="jxr_keyword">new</strong> ArrayList&lt;String&gt;();
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">private</strong> List&lt;String&gt; ajcOptions = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L204" href="#L204">204</a> 
 <a class="jxr_linenumber" name="L205" href="#L205">205</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">     */</em>
@@ -227,7 +227,7 @@
 <a class="jxr_linenumber" name="L219" href="#L219">219</a>         project.getCompileSourceRoots().add( basedir.getAbsolutePath() + <span class="jxr_string">"/"</span> + aspectDirectory );
 <a class="jxr_linenumber" name="L220" href="#L220">220</a>         project.getTestCompileSourceRoots().add( basedir.getAbsolutePath() + <span class="jxr_string">"/"</span> + testAspectDirectory );
 <a class="jxr_linenumber" name="L221" href="#L221">221</a> 
-<a class="jxr_linenumber" name="L222" href="#L222">222</a>         List&lt;String&gt; arguments = <strong class="jxr_keyword">new</strong> ArrayList&lt;String&gt;();
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>         List&lt;String&gt; arguments = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L223" href="#L223">223</a>         <em class="jxr_comment">// Add classpath</em>
 <a class="jxr_linenumber" name="L224" href="#L224">224</a>         arguments.add( <span class="jxr_string">"-classpath"</span> );
 <a class="jxr_linenumber" name="L225" href="#L225">225</a>         arguments.add( AjcHelper.createClassPath( project, pluginArtifacts, getClasspathDirectories() ) );
@@ -280,7 +280,7 @@
 <a class="jxr_linenumber" name="L272" href="#L272">272</a>             Main.setOutputWorkingDir( buildDirectory.getAbsolutePath() );
 <a class="jxr_linenumber" name="L273" href="#L273">273</a> 
 <a class="jxr_linenumber" name="L274" href="#L274">274</a>             <em class="jxr_comment">// Now produce the JavaDoc.</em>
-<a class="jxr_linenumber" name="L275" href="#L275">275</a>             Main.main( (String[]) arguments.toArray( <strong class="jxr_keyword">new</strong> String[0] ) );
+<a class="jxr_linenumber" name="L275" href="#L275">275</a>             Main.main( arguments.toArray( <strong class="jxr_keyword">new</strong> String[0] ) );
 <a class="jxr_linenumber" name="L276" href="#L276">276</a>         }
 <a class="jxr_linenumber" name="L277" href="#L277">277</a>         <strong class="jxr_keyword">finally</strong>
 <a class="jxr_linenumber" name="L278" href="#L278">278</a>         {
@@ -295,7 +295,7 @@
 <a class="jxr_linenumber" name="L287" href="#L287">287</a>     @SuppressWarnings( <span class="jxr_string">"unchecked"</span> )
 <a class="jxr_linenumber" name="L288" href="#L288">288</a>     <strong class="jxr_keyword">protected</strong> List&lt;String&gt; getSourceDirectories()
 <a class="jxr_linenumber" name="L289" href="#L289">289</a>     {
-<a class="jxr_linenumber" name="L290" href="#L290">290</a>         List&lt;String&gt; sourceDirectories = <strong class="jxr_keyword">new</strong> ArrayList&lt;String&gt;();
+<a class="jxr_linenumber" name="L290" href="#L290">290</a>         List&lt;String&gt; sourceDirectories = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L291" href="#L291">291</a>         sourceDirectories.addAll( project.getCompileSourceRoots() );
 <a class="jxr_linenumber" name="L292" href="#L292">292</a>         sourceDirectories.addAll( project.getTestCompileSourceRoots() );
 <a class="jxr_linenumber" name="L293" href="#L293">293</a>         <strong class="jxr_keyword">return</strong> sourceDirectories;
@@ -428,12 +428,12 @@
 <a class="jxr_linenumber" name="L420" href="#L420">420</a>         }
 <a class="jxr_linenumber" name="L421" href="#L421">421</a>     }
 <a class="jxr_linenumber" name="L422" href="#L422">422</a> 
-<a class="jxr_linenumber" name="L423" href="#L423">423</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L424" href="#L424">424</a> <em class="jxr_javadoccomment">   * Set source compliance level</em>
-<a class="jxr_linenumber" name="L425" href="#L425">425</a> <em class="jxr_javadoccomment">   * </em>
-<a class="jxr_linenumber" name="L426" href="#L426">426</a> <em class="jxr_javadoccomment">   * @param complianceLevel compliance level</em>
-<a class="jxr_linenumber" name="L427" href="#L427">427</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L428" href="#L428">428</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setComplianceLevel( String complianceLevel )
+<a class="jxr_linenumber" name="L423" href="#L423">423</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L424" href="#L424">424</a> <em class="jxr_javadoccomment">     * Set source compliance level</em>
+<a class="jxr_linenumber" name="L425" href="#L425">425</a> <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L426" href="#L426">426</a> <em class="jxr_javadoccomment">     * @param complianceLevel compliance level</em>
+<a class="jxr_linenumber" name="L427" href="#L427">427</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L428" href="#L428">428</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setComplianceLevel( String complianceLevel )
 <a class="jxr_linenumber" name="L429" href="#L429">429</a>     {
 <a class="jxr_linenumber" name="L430" href="#L430">430</a>         <strong class="jxr_keyword">if</strong> ( AjcHelper.isValidComplianceLevel( complianceLevel ) )
 <a class="jxr_linenumber" name="L431" href="#L431">431</a>         {
