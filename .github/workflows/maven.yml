@@ -70,9 +70,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Graphviz
-        uses: ts-graphviz/setup-graphviz@v1
-
       - name: Set up cache for ~./m2/repository
         uses: actions/cache@v2.1.6
         with:
