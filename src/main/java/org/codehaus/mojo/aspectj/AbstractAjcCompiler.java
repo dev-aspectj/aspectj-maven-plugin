@@ -441,11 +441,11 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
   /**
    * Sets additional compiler arguments, e.g.
    * <pre>{@code
-   * <compilerArgs>
+   * <additionalCompilerArgs>
    *   <arg>-Xmaxerrs=1000</arg>
    *   <arg>-Xlint</arg>
    *   <arg>-J-Duser.language=en_us</arg>
-   * </compilerArgs>
+   * </additionalCompilerArgs>
    * }</pre>
    * This option can be used in case you want to use AJC options not (yet) supported by this plugin.
    * <p>
