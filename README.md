@@ -22,7 +22,7 @@ https://dev-aspectj.github.io/aspectj-maven-plugin/
 
 ## Differences to Mojo's AspectJ Maven Plugin by MojoHaus
 
-At the time of writing this, the MojoHaus team is preparing a new release 1.12.0, the first one in ~3.5 years. They
+At the time of writing this, the MojoHaus team is preparing a new release 1.14.0, the first one in ~3.5 years. They
 reactivated the original project, accepting some old pull requests which were long ago contained in a fork (see
 [History](#history)). This would have been good news before I started maintaining the project. Now the situation is,
 that they refused to contribute to the AspectJ.dev fork. When I tried talking about merging back my changes into their
@@ -30,9 +30,9 @@ project instead, my requests for a phone conference or online chat were refused.
 or new features would get lost, so I started creating some pull requests and issues. Some trivial ones were accepted,
 some (to me) more important ones refused. In the end, I closed them, deciding to keep maintaining this project instead,
 because I did not want to lose any prior work by Nick Wong or myself. Please by all means feel free to use the MojoHaus
-version, if you feel better with it. Just don't get tripped up by their versioning, continuing with 1.12 instead of 1.13
+version, if you feel better with it. Just don't get tripped up by their versioning, continuing with 1.14 instead of 1.13
 like me, after Nick had released 1.12.1 and 1.12.6 before already, and I had released 1.13.M2 and 1.13.M3. At first, a
-MojoHaus team agreed with me that it was a good idea to continue with 1.13, but now I see that someone created a 1.12.0.
+MojoHaus team agreed with me that it was a good idea to continue with 1.13, but now I see that someone created a 1.14.0.
 
 ### Feature comparison
 
