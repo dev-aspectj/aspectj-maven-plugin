@@ -67,6 +67,11 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+
+      - name: Set Git options
+        # Check out as-is, commit Unix-style line endings
+        run: git config --global core.autocrlf input
+
       - name: Checkout
         uses: actions/checkout@v2
 
