@@ -26,7 +26,7 @@
     <!-- Minimum Maven version required to build this plugin -->
     <mavenBuildVersion>3.1.1</mavenBuildVersion>
     <!-- Maven API version used by this plugin (seems to be backward compatible to Maven 3.1.x, maybe even 3.0.x) -->
-    <mavenAPIVersion>3.8.1</mavenAPIVersion>
+    <mavenAPIVersion>3.8.2</mavenAPIVersion>
     <!-- Minimum Maven version required to run this plugin (not enforced at the moment, see 'prerequisites' section) -->
     <mavenRuntimeVersion>3.0.5</mavenRuntimeVersion>
 
