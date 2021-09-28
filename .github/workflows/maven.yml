@@ -56,7 +56,8 @@ jobs:
           - version: 16
             dist: zulu
           # OpenJ9, an alternate JVM implementation.
-          - version: 8
+          # TODO: Replace version by '8' again after problems in 8.0.302+8 on Windows are fixed
+          - version: 8.0.292+10
             dist: adopt-openj9
           - version: 11
             dist: adopt-openj9
