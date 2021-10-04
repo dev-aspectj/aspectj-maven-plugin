@@ -35,9 +35,11 @@ import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.FileUtils;
 
+import static org.codehaus.mojo.aspectj.AjcHelper.isValidComplianceLevel;
+
 /**
  * Tests class {@link org.codehaus.mojo.aspectj.AjcHelper}
- * 
+ *
  * @author <a href="mailto:kaare.nilsen@gmail.com">Kaare Nilsen</a>
  */
 public class AjcHelperTest
@@ -68,7 +70,7 @@ public class AjcHelperTest
         final File baseDir = new File(".");
         final String fileName = "test.lst";
         final String fileAbsolutePath = baseDir.getAbsolutePath() + File.separator + fileName;
-        
+
         List args = new ArrayList();
         args.add("-classpath");
         args.add("a:b:c");
@@ -90,7 +92,7 @@ public class AjcHelperTest
             }
         }
     }
-    
+
     public void testEmptyDependencyArtifacts()
     {
         MavenProject project = new MavenProject();
@@ -119,5 +121,32 @@ public class AjcHelperTest
 
     private static DefaultArtifact createFixedArtifact() {
         return new DefaultArtifact("group", "artifact", "1.0-SNAPSHOT", "compile", "type", "classifier", null);
+    }
+
+    public void testValidComplianceLevels() {
+        // Valid 1.x versions
+        assertTrue(isValidComplianceLevel("1.3"));
+        assertTrue(isValidComplianceLevel("1.5"));
+        assertTrue(isValidComplianceLevel("1.9"));
+        // Valid simple numeric versions
+        assertTrue(isValidComplianceLevel("5"));
+        assertTrue(isValidComplianceLevel("8"));
+        assertTrue(isValidComplianceLevel("11"));
+        assertTrue(isValidComplianceLevel("17"));
+        assertTrue(isValidComplianceLevel("333"));  // no upper bound
+        // Valid numeric versions with trailing ".0"
+        assertTrue(isValidComplianceLevel("5.0"));
+        assertTrue(isValidComplianceLevel("8.0"));
+        assertTrue(isValidComplianceLevel("11.0"));
+        assertTrue(isValidComplianceLevel("17.0"));
+        assertTrue(isValidComplianceLevel("333.0"));  // no upper bound
+        // Invalid versions
+        assertFalse(isValidComplianceLevel("1.2"));
+        assertFalse(isValidComplianceLevel("1.10"));
+        assertFalse(isValidComplianceLevel("4"));
+        assertFalse(isValidComplianceLevel("4.0"));
+        assertFalse(isValidComplianceLevel("8.00"));
+        assertFalse(isValidComplianceLevel("8."));
+        assertFalse(isValidComplianceLevel("8.1"));
     }
 }

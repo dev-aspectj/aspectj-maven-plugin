@@ -190,27 +190,24 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
     protected boolean XhasMember;
 
     /**
-     * Specify source code language level (1.3 to 1.9, 10 to 17) by using the {@code -source N} compiler option.
+     * Specify source code language level (1.3 to 1.9 or a number &ge; 5) by using the {@code -source N} compiler
+     * option.
      * <p>
      * If unspecified, the AspectJ compiler's default ({@code 1.4} for AspectJ 1.9.7) is used. Please note, that
      * {@link #target} defaults to the value set here.
-     * <p>
-     * See {@link #complianceLevel} for details about valid version numbers.
      *
-     * @see org.codehaus.mojo.aspectj.AjcHelper#ACCEPTED_COMPLIANCE_LEVEL_VALUES
+     * @see org.codehaus.mojo.aspectj.AjcHelper#isValidComplianceLevel(String)
      */
     @Parameter
     protected String source;
 
     /**
-     * Specify target byte code level (1.3 to 1.9, 10 to 17) by using the {@code -source N} compiler option.
+     * Specify target byte code level (1.3 to 1.9 or a number &ge; 5) by using the {@code -source N} compiler option.
      * <p>
      * If unspecified, this value defaults to {@link #source}. If neither source nor target are specified, the AspectJ
      * compiler's default is used.
-     * <p>
-     * See {@link #complianceLevel} for details about valid version numbers.
      *
-     * @see org.codehaus.mojo.aspectj.AjcHelper#ACCEPTED_COMPLIANCE_LEVEL_VALUES
+     * @see org.codehaus.mojo.aspectj.AjcHelper#isValidComplianceLevel(String)
      */
     @Parameter
     protected String target;
@@ -221,11 +218,8 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      * <p>
      * Using this option overrides {@link #source}, {@link #target}. If you want the latter two to be different, make
      * sure not to use this option.
-     * <p>
-     * Permitted values: 1.3, 1.4, 1.5, 5, 5.0, 1.6, 6, 6.0, 1.7, 7, 7.0, 1.8, 8, 8.0,
-     * 1.9, 9, 9.0, 10, 10.0, 11, 11.0, 12, 12.0, 13, 13.0, 14, 14.0, 15, 15.0, 16, 16.0, 17, 17.0.
      *
-     * @see org.codehaus.mojo.aspectj.AjcHelper#ACCEPTED_COMPLIANCE_LEVEL_VALUES
+     * @see org.codehaus.mojo.aspectj.AjcHelper#isValidComplianceLevel(String)
      */
     @Parameter
     protected String complianceLevel;
@@ -240,11 +234,10 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      * Using this option overrides all of {@link #complianceLevel}, {@link #source}, {@link #target}. Please note that
      * before AspectJ 1.9.8.M1, the {@code --release N} compiler option was not working correctly.
      * <p>
-     * See {@link #complianceLevel} for details about valid version numbers in general, but please note that permitted
-     * version numbers for this option depend on the JDK used for compilation, as more recent JDKs might drop
-     * cross-compilation support for older ones.
+     * See {@link AjcHelper#isValidComplianceLevel(String)} for details about valid version numbers in general, but
+     * please note that permitted version numbers for this option depend on the JDK used for compilation, as more recent
+     * JDKs might drop cross-compilation support for older ones.
      *
-     * @see org.codehaus.mojo.aspectj.AjcHelper#ACCEPTED_COMPLIANCE_LEVEL_VALUES
      * @since 1.13
      */
     @Parameter

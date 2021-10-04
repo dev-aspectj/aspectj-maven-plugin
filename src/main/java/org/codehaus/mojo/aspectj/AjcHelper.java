@@ -33,7 +33,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -60,38 +59,30 @@ public class AjcHelper
     public static final String DEFAULT_EXCLUDES = "";
 
     /**
-     * List holding all accepted values for the {@code complianceLevel} parameter.
-     */
-    public static final List<String> ACCEPTED_COMPLIANCE_LEVEL_VALUES = Arrays.asList(
-      // TODO: update from AJC (AspectJ Compiler) regularly, which in turn extends ECJ (Eclipse Java Compiler)
-      "1.3",
-      "1.4",
-      "1.5", "5", "5.0",
-      "1.6", "6", "6.0",
-      "1.7", "7", "7.0",
-      "1.8", "8", "8.0",
-      "1.9", "9", "9.0",
-      "10", "10.0",
-      "11", "11.0",
-      "12", "12.0",
-      "13", "13.0",
-      "14", "14.0",
-      "15", "15.0",
-      "16", "16.0",
-      "17", "17.0"
-    );
-
-    /**
-     * Checks if the given complianceLevel value is valid.
+     * Checks if the given Java complianceLevel value is valid. Permitted versions are 1.3 to 1.9 and numbers &ge; 5,
+     * optionally with a trailing ".0" as permitted by ECJ and therefore also by AJC.
+     * <p>
+     * <b>Please note:</b> There is no upper bound check, i.e. if you specify a compliance level greater than the
+     * maximum one supported by AJC, this method will return true anyway, but later you will of course get a compiler
+     * error.
      *
-     * @param complianceLevel A complianceLevel
-     * @return {@code true} if the supplied complianceLevel is valid, implying that it is defined within the
-     * {@code ACCEPTED_COMPLIANCE_LEVEL_VALUES} List.
-     * @see #ACCEPTED_COMPLIANCE_LEVEL_VALUES
+     * @param complianceLevel Java compliance level
+     * @return {@code true} if the supplied complianceLevel is valid
      */
     public static boolean isValidComplianceLevel( String complianceLevel )
     {
-        return ACCEPTED_COMPLIANCE_LEVEL_VALUES.contains(complianceLevel);
+        if (complianceLevel == null)
+            return false;
+        // Java 1.3 to 1.9
+        if (complianceLevel.matches("1[.][3-9]"))
+            return true;
+        // Java >= 5
+        if (complianceLevel.matches("[0-9]+"))
+            return Integer.parseInt(complianceLevel) >= 5;
+        // Java >= 5 with trailing ".0"
+        if (complianceLevel.matches("[0-9]+[.]0"))
+            return Integer.parseInt(complianceLevel.substring(0, complianceLevel.indexOf('.'))) >= 5;
+        return false;
     }
 
     /**
