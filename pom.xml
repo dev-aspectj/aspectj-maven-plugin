@@ -270,10 +270,17 @@
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>3.1.2</version>
           <dependencies>
+            <!-- TODO: remove dependency as soon as Checkstyle Plugin depending on v4 is available -->
+            <dependency>
+              <groupId>org.apache.maven.shared</groupId>
+              <artifactId>maven-shared-resources</artifactId>
+              <!-- TODO: Switch to version 4, as soon as it is available on Maven Central -->
+              <version>5-SNAPSHOT</version>
+            </dependency>
             <dependency>
               <groupId>com.puppycrawl.tools</groupId>
               <artifactId>checkstyle</artifactId>
-              <version>8.41.1</version>
+              <version>9.0.1</version>
             </dependency>
           </dependencies>
         </plugin>
