@@ -21,7 +21,7 @@
   </description>
   <inceptionYear>2018</inceptionYear>
   <properties>
-    <aspectjVersion>1.9.8.M1</aspectjVersion>
+    <aspectjVersion>1.9.8.RC1</aspectjVersion>
 
     <!-- Minimum Maven version required to build this plugin -->
     <mavenBuildVersion>3.1.1</mavenBuildVersion>
@@ -315,6 +315,12 @@
                   <maxJdkVersion>${mojo.java.target}</maxJdkVersion>
                   <excludes>
                     <exclude>com.sun:tools</exclude>
+                    <!--
+                      AspectJ 1.9.8.M1 was the last one to use older Eclipse Core dependencies limited to Java 8 byte
+                      code. As of 1.9.8.RC1 with full Java 17 support, ECJ and JDT Core depend on libraries containing
+                      Java 11 class files, though. This is the new Eclipse standard.
+                    -->
+                    <exclude>org.aspectj:aspectjtools</exclude>
                   </excludes>
                 </enforceBytecodeVersion>
                 <requireMavenVersion>
