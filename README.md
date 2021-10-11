@@ -46,9 +46,15 @@ version has the following improvements compared to MojoHaus:
     have to, because if you do not specify `complianceLevel`, it will counter-intuitively revert to the AspectJ default
     of 1.4, even though you also specified source and target.
   * Since AspectJ 1.9.8.M1, the `--release N` switch works correctly and is supported by a new parameter `release` in
-    this plugin. For that purpose, version 1.13 of this plugin depends on AspectJ 1.9.8.M1, while MojoHaus 1.12.0
+    this plugin. For that purpose, version 1.13 of this plugin depends on AspectJ 1.9.8.M1, while MojoHaus 1.14.0
     depends on AspectJ 1.9.7, which does not have `--release N` support yet. Furthermore, if `release` is used, it
     automatically takes precedence over all of `complianceLevel`, `source`, `target`.
+  * This plugin supports Java 17 for `complianceLevel`, `source` and `target` since version 1.13, while MojoHaus 1.14.0
+    only allows version 16 as a maximum. Since 1.13.1, it even depends on a Java-17-enabled AspectJ version (1.9.8.RC1
+    or higher) by default.
+  * Since plugin version 1.13.1, there is no upper bounds check for Java versions anymore, i.e. you no longer need to
+    upgrade the plugin in order to use a more recent Java compiler source or target version. Simply upgrading AspectJ
+    Tools in the plugin dependency configuration will be enough, as long as you do not need any new plugin features. 
   * You can use Java preview features using the `enablePreview` option, which maps to the `--enable-preview` compiler
     option at your own risk. The documentation explains the consequences and limitations, because many Java users are
     unaware of them. I chose to rather add a separate option and document it well than to force users to use the new
@@ -63,17 +69,10 @@ version has the following improvements compared to MojoHaus:
     [multi-module example](https://dev-aspectj.github.io/aspectj-maven-plugin/multimodule/multimodule_strategy.html)
     and some improved configuration parameter descriptions for the
     [`compile`](https://dev-aspectj.github.io/aspectj-maven-plugin/compile-mojo.html) and
-  * [`test-compile`](https://dev-aspectj.github.io/aspectj-maven-plugin/test-compile-mojo.html) goals. The same
+    [`test-compile`](https://dev-aspectj.github.io/aspectj-maven-plugin/test-compile-mojo.html) goals. The same
     help texts for all Maven goals of course are also available from the command line, e.g. via
     `mvn dev.aspectj:aspectj-maven-plugin:help -Ddetail=true -Dgoal=compile`. This is of course true for all Maven
     plugins, I am just mentioning it for your convenience.
-  * This plugin is prepared to recognise Java 17 for `complianceLevel`, `source` and `target`, while MojoHaus 1.12.0
-    supports a maximum version of 16. In combination with using a development version of AspectJ in your build, you can 
-    already compile Java 17 code and create Java 17 class files. As soon as Java 17 is final and the Eclipse Java 
-    compiler fully supports it, I am also going to release a new final AspectJ version, which then of course you can
-    also use with this plugin by simply upgrading the AspectJ dependency. A plugin update will not be necessary.
-    See [here](https://github.com/eclipse/org.aspectj/issues/79#issuecomment-888284841) for an example Maven POM using a
-    Java-17-enabled AspectJ snapshot version. 
 
 ## History
 

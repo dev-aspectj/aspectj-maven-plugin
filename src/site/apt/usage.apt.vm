@@ -49,11 +49,18 @@ Usage
 </project>
 +------------------------------------------
 
-* Upgrading AspectJ
+* Upgrading or downgrading AspectJ
 
-  The frequency of releases of this plugin is lower than of AspectJ. 
-  If you want to use a different version of AspectJ than ${aspectjVersion}, you also need to upgrade the
-  aspectjtools within the plugin.
+  This plugin's release frequency is lower than AspectJ's. Therefore, if for example
+
+  * you wish to upgrade to a more recent AspectJ version, or
+
+  * you need to run your build on JDK 8+ instead of JDK 11+ and wish to downgrade to AspectJ 1.9.8.M1, 1.9.7 or older,
+
+  []
+
+  you need to adjust the <<<aspectjtools>>> dependency within the plugin and ideally also the <<<aspectjrt>>> used by
+  the compiled module in sync with it.
 
 +------------------------------------------
 <project>
@@ -61,7 +68,7 @@ Usage
   <properties>
     <aspectj.version>1.7.n</aspectj.version> <!-- specify your version -->
   </properties>
-  
+
   <dependencies>
     ...
     <dependency>

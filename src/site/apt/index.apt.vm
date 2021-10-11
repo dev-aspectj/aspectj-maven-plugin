@@ -4,9 +4,9 @@
  ------
  ------
 
-Mojo's AspectJ Maven Plugin
+AspectJ Maven Plugin
 
-  This plugin  weaves AspectJ aspects into your classes using the AspectJ compiler ("ajc").
+  This plugin weaves AspectJ aspects into your classes using the AspectJ compiler ("ajc").
   Typically, aspects are used in one of two ways within your Maven reactors:
 
   * As part of a <Single Project>, implying aspects and code are defined within the same Maven project.
@@ -24,3 +24,9 @@ Mojo's AspectJ Maven Plugin
   The AspectJ Maven Plugin delegates most of its work to the AspectJ dependencies included within
   the plugin. (Refer to {{https://www.eclipse.org/aspectj/}} for descriptions and documentation about
   AspectJ itself).
+
+  <<Please note:>> Before version 1.13.1, this plugin by default depended on an AspectJ Compiler (AJC) version which was
+  able to run on Java 8. Since 1.13.1 however, it depends on AspectJ 1.9.8.RC1 or higher, where AJC requires Java 11+.
+  This requirement is inherited by the Eclipse Java Compiler (ECJ) which AJC is a fork of.
+  If you wish to use an older AspectJ version (e.g. 1.9.8.M1, 1.9.7 or lower), please follow the description in section
+  "Upgrading or downgrading AspectJ" on the "Usage" page. Then you can run the build on JDK 8 again.
