@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2018 - 2021 MojoHaus</copyright>
     <item>
-      <title>File: 15,
-             Errors: 826,
+      <title>File: 16,
+             Errors: 851,
              Warnings: 15,
              Infos: 4
       </title>
@@ -144,6 +144,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://www.mojohaus.org/aspectj-maven-plugin/aspectj-maven-plugin/checkstyle.html#org.codehaus.mojo.aspectj.HelpMojo.java">org/codehaus/mojo/aspectj/HelpMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://www.mojohaus.org/aspectj-maven-plugin/aspectj-maven-plugin/checkstyle.html#org.codehaus.mojo.aspectj.CompilationFailedException.java">org/codehaus/mojo/aspectj/CompilationFailedException.java</a>
                 </td>
                 <td>
@@ -223,7 +237,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  11
+                  35
                 </td>
               </tr>
                           <tr>
