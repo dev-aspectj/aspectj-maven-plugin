@@ -274,8 +274,7 @@
             <dependency>
               <groupId>org.apache.maven.shared</groupId>
               <artifactId>maven-shared-resources</artifactId>
-              <!-- TODO: Switch to version 4, as soon as it is available on Maven Central -->
-              <version>5-SNAPSHOT</version>
+              <version>4</version>
             </dependency>
             <dependency>
               <groupId>com.puppycrawl.tools</groupId>
