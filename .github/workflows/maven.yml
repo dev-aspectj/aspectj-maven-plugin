@@ -61,8 +61,7 @@ jobs:
             dist: adopt-openj9
           - version: 14
             dist: adopt-openj9
-            # TODO: Upgrade to 17 when available on https://developer.ibm.com/languages/java/semeru-runtimes/downloads/
-          - version: 16
+          - version: 17
             dist: adopt-openj9
       fail-fast: false
 
