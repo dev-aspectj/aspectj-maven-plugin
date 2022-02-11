@@ -1,4 +1,7 @@
-<project>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>dev.aspectj.aspectj-maven.test-projects</groupId>
   <version>1.0-SNAPSHOT</version>
@@ -13,39 +16,38 @@
     </dependency>
   </dependencies>
 
-   <build>
-     <plugins>
-       <plugin>
-         <groupId>dev.aspectj</groupId>
-         <artifactId>aspectj-maven-plugin</artifactId>
-         <executions>
-           <execution>
-             <goals>
-               <goal>compile</goal>
-               <goal>test-compile</goal>
-             </goals>
-           </execution>
-         </executions>
-       </plugin>
-     </plugins>
-   </build>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>dev.aspectj</groupId>
+        <artifactId>aspectj-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+              <goal>test-compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
-    <repositories>
-        <repository>
-            <id>Maven Snapshots</id>
-            <url>http://snapshots.maven.codehaus.org/maven2/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
+  <repositories>
+    <repository>
+      <id>Maven Snapshots</id>
+      <url>http://snapshots.maven.codehaus.org/maven2/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+  </repositories>
 
   <modules>
     <module>my-app</module>
   </modules>
-
 
 </project>
