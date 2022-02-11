@@ -1,5 +1,7 @@
 @startuml
 
+!pragma layout smetana
+
 skinparam component {
   BackgroundColor<<Using Aspects>> #EEEEFF
   BorderColor<<Using Aspects>> black
