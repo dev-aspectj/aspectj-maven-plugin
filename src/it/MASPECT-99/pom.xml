@@ -6,6 +6,11 @@
   <version>0.0.1-SNAPSHOT</version>
   <description>Verifies that the absence of code and aspect do not crash the plugin.</description>
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.aspectj</groupId>

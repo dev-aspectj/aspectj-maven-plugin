@@ -4,8 +4,15 @@
   <groupId>dev.aspectj.aspectj-maven.it</groupId>
   <artifactId>MASPECTJ-110</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-    <description>Verifies that nonexistent directories are not added to compile or testCompile source
-        roots. Also verifies that directories are not added twice.</description>
+  <description>
+    Verifies that nonexistent directories are not added to compile or testCompile source
+    roots. Also verifies that directories are not added twice.
+  </description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
 
   <dependencies>
     <dependency>
