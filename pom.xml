@@ -583,7 +583,7 @@
             -->
             <groupId>org.sonatype.plugins</groupId>
             <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>1.6.8</version>
+            <version>1.6.10</version>
             <extensions>true</extensions>
             <configuration>
               <serverId>ossrh</serverId>
@@ -593,7 +593,7 @@
             </configuration>
             <dependencies>
               <!--
-                Plugin version 1.6.8 does not work on JDK 16+ without special MAVEN_OPTS opening certain modules,
+                Plugin version 1.6.10 does not work on JDK 16+ without special MAVEN_OPTS opening certain modules,
                 because the XStream version used needs it. One workaround is to use a more recent XStream version.
                 Attention: Do *not* upgrade to e.g. 1.4.18, because it causes exceptions during deployment.
                 TODO: remove plugin dependency after OSSRH-66257, NEXUS-26993 are fixed.
