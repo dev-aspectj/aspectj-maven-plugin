@@ -34,7 +34,7 @@ Weaving already compiled classes
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
+        <groupId>${project.groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
         <configuration>
           <weaveDirectories>

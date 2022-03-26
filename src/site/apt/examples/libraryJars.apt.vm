@@ -5,12 +5,12 @@
  ------
 
 Applying already compiled aspect JARs
-  
+
   In order to apply already compiled aspects to your own sources you need do setup all the JAR
   files you would like to weave in the plugin configuration as shown below.
 
   <<Note:>> The artifacts you reference must exist as dependencies in your project.
-  
+
 +------------------------------------------+
 <project>
   ...
@@ -39,7 +39,7 @@ Applying already compiled aspect JARs
   <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
+        <groupId>${project.groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
         <version>${project.version}</version>
         <configuration>

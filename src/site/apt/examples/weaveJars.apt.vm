@@ -11,7 +11,7 @@ Weaving already compiled JAR artifacts
   files you would like to weave in the plugin configuration as shown below.
 
   <<Note:>> The artifacts you reference must exist as dependencies in the project.
-  
+
 +------------------------------------------+
 <project>
   ...
@@ -40,7 +40,7 @@ Weaving already compiled JAR artifacts
   <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
+        <groupId>${project.groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
         <version>${project.version}</version>
         <configuration>
