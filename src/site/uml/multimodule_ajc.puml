@@ -2,6 +2,7 @@
 
 !pragma layout smetana
 
+skin rose
 skinparam component {
   BackgroundColor<<Using Aspects>> #EEEEFF
   BorderColor<<Using Aspects>> black
