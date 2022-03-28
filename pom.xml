@@ -30,6 +30,9 @@
     <!-- Minimum Maven version required to run this plugin (not enforced at the moment, see 'prerequisites' section) -->
     <mavenRuntimeVersion>3.0.5</mavenRuntimeVersion>
 
+    <!-- Reproducible builds, https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
+    <project.build.outputTimestamp>1</project.build.outputTimestamp>
+
     <junitVersion>4.13.2</junitVersion>
     <doxiaVersion>1.11.1</doxiaVersion>
     <doxiaSitetoolsVersion>1.11.1</doxiaSitetoolsVersion>
@@ -285,6 +288,17 @@
             </dependency>
           </dependencies>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.3.1</version>
+          <configuration>
+            <!-- Amend mojo-parent default config, avoiding errors concerning modules vs. unnamed module packages -->
+            <source>8</source>
+            <!-- Reproducible builds, https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
+            <notimestamp>true</notimestamp>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -427,10 +441,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <!-- Amend mojo-parent default config, avoiding errors concerning modules vs. unnamed module packages -->
-          <source>8</source>
-        </configuration>
       </plugin>
     </plugins>
   </reporting>
