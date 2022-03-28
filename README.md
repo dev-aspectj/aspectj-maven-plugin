@@ -16,28 +16,27 @@ Typically, aspects are used in one of two ways within your Maven reactors:
 
 ## Documentation
 
-Plugin documentation for all AspectJ Maven goals and usage examples can be found here:
+Plugin documentation for all AspectJ Maven goals and usage examples can be found
+[here](https://dev-aspectj.github.io/aspectj-maven-plugin/).
 
-https://dev-aspectj.github.io/aspectj-maven-plugin/
+## Why is there a fork of the MojoHaus plugin?
 
-## Differences to Mojo's AspectJ Maven Plugin by MojoHaus
+The Mojohaus project was inactive for ~3.5 years: no releases, no bugs fixed, to pull requests merged, no reaction to
+Nick Wong's fork (see [History](#history)) or my request to make him and/or me Mojohaus committers. Therefore, I
+launched this fork, published the first few releases on Maven Central and asked Mojohaus to retire their version.
+Suddenly, someone replied and refused to retire their plugin, claiming it was never dead, and work on the plugin should
+continue under the Mojohaus umbrella. I agreed under the condition that all of Nick's and my own changes would be merged
+into the upstream version, so as not to lose any features or fixes. Some minor stuff was merged, but the review
+processes were tedious and some features important to me were refused altogether. So I decided to continue maintaining
+the AspectJ.dev version, which ever since has been more up to date with AspectJ and JDK versions and also more
+feature-rich.
 
-At the time of writing this, the MojoHaus team is preparing a new release 1.14.0, the first one in ~3.5 years. They
-reactivated the original project, accepting some old pull requests which were long ago contained in a fork (see
-[History](#history)). This would have been good news before I started maintaining the project. Now the situation is,
-that they refused to contribute to the AspectJ.dev fork. When I tried talking about merging back my changes into their
-project instead, my requests for a phone conference or online chat were refused. I wanted to make sure that no changes
-or new features would get lost, so I started creating some pull requests and issues. Some trivial ones were accepted,
-some (to me) more important ones refused. In the end, I closed them, deciding to keep maintaining this project instead,
-because I did not want to lose any prior work by Nick Wong or myself. Please by all means feel free to use the MojoHaus
-version, if you feel better with it. Just don't get tripped up by their versioning, continuing with 1.14 instead of 1.13
-like me, after Nick had released 1.12.1 and 1.12.6 before already, and I had released 1.13.M2 and 1.13.M3. At first, a
-MojoHaus team agreed with me that it was a good idea to continue with 1.13, but now I see that someone created a 1.14.0.
+After a short initial burst of activity and release 1.14.0 in order to catch up with a subset of the changes made to
+this fork, nothing else has happened at MojoHaus, other than merging Dependabot changes and closing stale tickets.
 
-### Feature comparison
+### Feature comparison MojoHaus vs. AspectJ.dev
 
-As far as I know, the MojoHaus plugin does not have any features that this one here does not have. If there are any, it
-would be my own oversight not to have noticed, but I do not think that I missed anything important. The AspectJ.dev
+As far as I know, the MojoHaus plugin does not have any features that this one here does not have. The AspectJ.dev
 version has the following improvements compared to MojoHaus:
 
   * It is unnecessary to always specify `complianceLevel` in addition to `source` and `target`, because in this plugin
@@ -49,9 +48,8 @@ version has the following improvements compared to MojoHaus:
     this plugin. For that purpose, version 1.13 of this plugin depends on AspectJ 1.9.8.M1, while MojoHaus 1.14.0
     depends on AspectJ 1.9.7, which does not have `--release N` support yet. Furthermore, if `release` is used, it
     automatically takes precedence over all of `complianceLevel`, `source`, `target`.
-  * This plugin supports Java 17 for `complianceLevel`, `source` and `target` since version 1.13, while MojoHaus 1.14.0
-    only allows version 16 as a maximum. Since 1.13.1, it even depends on a Java-17-enabled AspectJ version (1.9.8.RC1
-    or higher) by default.
+  * This plugin supports Java 18+ for `complianceLevel`, `source` and `target`, while MojoHaus 1.14.0 only allows
+    version 16 as a maximum.
   * Since plugin version 1.13.1, there is no upper bounds check for Java versions anymore, i.e. you no longer need to
     upgrade the plugin in order to use a more recent Java compiler source or target version. Simply upgrading AspectJ
     Tools in the plugin dependency configuration will be enough, as long as you do not need any new plugin features. 
@@ -76,7 +74,7 @@ version has the following improvements compared to MojoHaus:
     and some improved configuration parameter descriptions for the
     [`compile`](https://dev-aspectj.github.io/aspectj-maven-plugin/compile-mojo.html) and
     [`test-compile`](https://dev-aspectj.github.io/aspectj-maven-plugin/test-compile-mojo.html) goals. The same
-    help texts for all Maven goals of course are also available from the command line, e.g. via
+    help texts for all Maven goals are also available from the command line, e.g. via
     `mvn dev.aspectj:aspectj-maven-plugin:help -Ddetail=true -Dgoal=compile`. This is of course true for all Maven
     plugins, I am just mentioning it for your convenience.
 
@@ -90,7 +88,6 @@ published it under group ID `com.nickwongdev`. He did this until early 2020 and 
 support. Then he announced he would no longer be available to maintain the plugin and
 [recommended forking it again](https://github.com/mojohaus/aspectj-maven-plugin/pull/45#issuecomment-803142741).
 
-Presently, [**Alexander Kriegisch (kriegaex)**](https://github.com/kriegaex) has taken responsibility and upgraded the
-plugin to support Java 14-17 and AspectJ version 1.9.7, which he co-developed in collaboration with maintainer Andy
-Clement. Future plugin releases will have the group ID `dev.aspectj`, hoping to give the plugin a permanent home,
-whoever might maintain it in the future.
+Presently, [**Alexander Kriegisch (kriegaex)**](https://github.com/kriegaex), who is also an AspectJ committer, has
+taken responsibility for the AspectJ.dev plugin. Future plugin releases will have the group ID `dev.aspectj`, hoping
+to give the plugin a permanent home, whoever might maintain it in the future.
