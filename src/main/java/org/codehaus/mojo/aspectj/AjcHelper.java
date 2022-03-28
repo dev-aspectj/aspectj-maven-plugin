@@ -256,14 +256,13 @@ public class AjcHelper
         File argFile = new File( outputDir, fileName );
         argFile.getParentFile().mkdirs();
         argFile.createNewFile();
-        BufferedWriter writer = new BufferedWriter( new FileWriter( argFile ) );
-        for ( String argument : arguments )
-        {
-            writer.write( argument );
-            writer.newLine();
+        try (BufferedWriter writer = new BufferedWriter( new FileWriter( argFile ) )) {
+            for (String argument : arguments) {
+                writer.write(argument);
+                writer.newLine();
+            }
+            writer.flush();
         }
-        writer.flush();
-        writer.close();
     }
 
     /**

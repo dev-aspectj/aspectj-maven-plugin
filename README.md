@@ -64,6 +64,12 @@ version has the following improvements compared to MojoHaus:
     compiler option. Robert Scholte [suggested a better way](https://github.com/mojohaus/aspectj-maven-plugin/pull/100#discussion_r646632402)
     to implement JMS support in AspectJ Maven, similar to how Maven Compiler does it, but I am not confident I can
     implement it correctly. He did not volunteer to do it either, so for now this new option is better than nothing.
+  * Since 1.13.2, both the plugin builds themselves (including sources and javadocs) and the artifacts produced by the
+    plugin are [reproducible](https://reproducible-builds.org/), see also the
+    [Maven mini guide](https://maven.apache.org/guides/mini/guide-reproducible-builds.html). For more information, read
+    the descriptions for options `argumentFileDirectory` and `argumentFileName`. Mojohaus version 1.14.0 does not
+    produce reproducible AspectJ artifacts, only the plugin itself has a partially reproducible build (JAR only, not
+    javadoc).
   * The documentation for this plugin is somewhat better than the MojoHaus version, if you look at the
     [Maven site](https://dev-aspectj.github.io/aspectj-maven-plugin/), e.g. the additional UML diagram for the
     [multi-module example](https://dev-aspectj.github.io/aspectj-maven-plugin/multimodule/multimodule_strategy.html)

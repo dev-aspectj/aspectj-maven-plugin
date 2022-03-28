@@ -36,7 +36,7 @@ import org.codehaus.plexus.util.FileUtils;
 /**
  * Baseclass for AjcMojo testcases. Sets up the testproject, and cleans
  * up afterwards.
- * 
+ *
  * @author <a href="mailto:kaare.nilsen@gmail.com">Kaare Nilsen</a>
  */
 public abstract class CompilerMojoTestBase
@@ -50,14 +50,14 @@ public abstract class CompilerMojoTestBase
     String basedir = "";
 
     /**
-     * 
+     *
      */
     protected void setUp()
         throws Exception
     {
         // prepare plexus environment
         super.setUp();
-        
+
         ajcMojo.project = project;
         String temp = new File( "." ).getAbsolutePath();
         basedir = temp.substring( 0, temp.length() - 2 ) + "/src/test/projects/" + getProjectName() + "/";
@@ -69,8 +69,9 @@ public abstract class CompilerMojoTestBase
         project.addCompileSourceRoot( project.getBuild().getSourceDirectory() );
         project.addTestCompileSourceRoot( project.getBuild().getTestSourceDirectory() );
         ajcMojo.basedir = new File( basedir );
-        
+
         setVariableValueToObject( ajcMojo, "outputDirectory", new File( project.getBuild().getOutputDirectory() ) );
+        setVariableValueToObject( ajcMojo, "argumentFileDirectory", new File( project.getBuild().getOutputDirectory() ) );
         setVariableValueToObject( ajcMojo, "generatedSourcesDirectory", new File( project.getBuild().getDirectory() + "/generated-sources/annotations" ) );
 
         ArtifactHandler artifactHandler = new MockArtifactHandler();

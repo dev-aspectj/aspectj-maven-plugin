@@ -55,7 +55,7 @@ public class AjcCompilerMojoTest
     {
             ajcMojo.aspectDirectory = "src/main/aspect";
             final String[] includes = new String[]{"org/codehaus/mojo/aspectj/OldStyleAspect.aj"};
-            ajcMojo.setArgumentFileName("builddef.lst");
+            ajcMojo.argumentFileName = "builddef.lst";
             FileUtils.fileDelete(project.getBuild().getDirectory() + ajcMojo.argumentFileName);
 
             ajcMojo.includes= new String[]{"org/codehaus/mojo/aspectj/OldStyleAspect.aj"};
@@ -68,12 +68,7 @@ public class AjcCompilerMojoTest
                 ajcMojo.includes = includes;
                 ajcMojo.execute();
             }
-            catch ( CompilationFailedException cfe )
-            {
-                // we're only testing modifications, don't care if it won't compile
-            }
-            catch ( UnsupportedClassVersionError ucve )
-            {
+            catch ( CompilationFailedException | UnsupportedClassVersionError cfe ) {
                 // we're only testing modifications, don't care if it won't compile
             }
 
