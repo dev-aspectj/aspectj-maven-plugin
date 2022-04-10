@@ -558,7 +558,7 @@
                 https://github.com/eclipse-openj9/openj9/issues/14654#issuecomment-1094091202
                 https://www.eclipse.org/openj9/docs/xjit/#exclude
               -->
-              <mavenOpts>-Xjit:exclude={*CharsetDecoder.decode*}</mavenOpts>
+              <mavenOpts>-Xjit:exclude={*/CharsetDecoder*} -Xjit:exclude={*/ISO_8859_1*}</mavenOpts>
             </configuration>
           </plugin>
         </plugins>
