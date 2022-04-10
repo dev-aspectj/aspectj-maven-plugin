@@ -39,28 +39,29 @@ jobs:
 
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macOS-latest ]
+#        os: [ ubuntu-latest, windows-latest, macOS-latest ]
+        os: [ windows-latest ]
         # TODO: Replace matrix 11, 14, 17 by 11, 17, (17+n) after 18 is out, i.e. keep LTS + latest JDK
         java:
           # Hotspot VM, the "default" VM (14 unavailable for Temurin, use older adopt-hotspot)
-          - version: 11
-            dist: temurin
-          - version: 14
-            dist: adopt-hotspot
-          - version: 17
-            dist: temurin
+#          - version: 11
+#            dist: temurin
+#          - version: 14
+#            dist: adopt-hotspot
+#          - version: 17
+#            dist: temurin
           # Zulu VM, based on Hotspot
-          - version: 11
-            dist: zulu
-          - version: 14
-            dist: zulu
-          - version: 17
-            dist: zulu
+#          - version: 11
+#            dist: zulu
+#          - version: 14
+#            dist: zulu
+#          - version: 17
+#            dist: zulu
           # OpenJ9, an alternate JVM implementation.
-          - version: 11
-            dist: adopt-openj9
-          - version: 14
-            dist: adopt-openj9
+#          - version: 11
+#            dist: adopt-openj9
+#          - version: 14
+#            dist: adopt-openj9
           - version: 17
             dist: adopt-openj9
       fail-fast: false
