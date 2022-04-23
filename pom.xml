@@ -39,7 +39,6 @@
     <mojo.java.target>1.8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 1.8 minimum -->
     <!-- work around until it is correctly fixed at top parent -->
     <scmpublish.content>${project.build.directory}/staging/aspectj-maven-plugin</scmpublish.content>
-    <openj9.mavenOpts/>
   </properties>
 
   <prerequisites>
@@ -514,17 +513,6 @@
       </build>
     </profile>
     <profile>
-      <id>openj9</id>
-        <properties>
-          <!--
-            https://github.com/eclipse-openj9/openj9/issues/14654#issuecomment-1094091202
-            https://www.eclipse.org/openj9/docs/xjit/#exclude
-            TODO: remove profile after OpenJ9 bugfix release
-          -->
-          <openj9.mavenOpts>-Xjit:exclude={*/ISO_8859_1*}</openj9.mavenOpts>
-        </properties>
-    </profile>
-    <profile>
       <id>integration-test</id>
       <activation>
         <!--
@@ -566,8 +554,6 @@
               <settingsFile>src/it/settings.xml</settingsFile>
               <!-- Do not deactivate! At least 14 integration tests assert on debug output. -->
               <debug>true</debug>
-              <!-- TODO: remove 'mavenOpts' after OpenJ9 bugfix release -->
-              <mavenOpts>${openj9.mavenOpts}</mavenOpts>
             </configuration>
           </plugin>
         </plugins>
