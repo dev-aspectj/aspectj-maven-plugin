@@ -19,6 +19,61 @@ Typically, aspects are used in one of two ways within your Maven reactors:
 Plugin documentation for all AspectJ Maven goals and usage examples can be found
 [here](https://dev-aspectj.github.io/aspectj-maven-plugin/).
 
+### How to use the AspectJ and Java versions of your own choice
+
+One of the nicest features of this plugin is that there is no need to upgrade the plugin version, if you just want to
+use a new AspectJ version or even a completely new Java language version. The plugin will simply pass on whatever
+version you set for `<source>`, `<target>` or `<complianceLevel>` to the AspectJ compiler. The latest supported version
+is not hard-coded.
+
+As described in the plugin documentation under [Upgrading or downgrading AspectJ](https://dev-aspectj.github.io/aspectj-maven-plugin/usage.html#Upgrading_or_downgrading_AspectJ), you simply need to set your desired AspectJ tools version - ideally in sync
+with the AspectJ runtime you use as a module dependency - as a plugin dependency:
+
+```xml
+<project>
+  ...
+  <properties>
+    <!-- Your favourite AspectJ version -->
+    <aspectj.version>1.9.20</aspectj.version>
+  </properties>
+
+  <dependencies>
+    ...
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <!-- AspectJ runtime version, in sync with compiler -->
+      <version>${aspectj.version}</version>
+    </dependency>
+    ...
+  </dependencies>
+  ...
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>aspectj-maven-plugin</artifactId>
+        <version>1.13.1</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjtools</artifactId>
+            <!-- AspectJ compiler version, in sync with runtime -->
+            <version>${aspectj.version}</version>
+          </dependency>
+        <dependencies>
+        <configuration>
+          <!-- Your favourite Java source/target version -->
+          <complianceLevel>20</complianceLevel>
+        </configuration>
+      </plugin>
+      ...
+    </plugins>
+  <build>
+  ...
+</project>
+```
+
 ## Why is there a fork of the MojoHaus plugin?
 
 The Mojohaus project was inactive for ~3.5 years: no releases, no bugs fixed, to pull requests merged, no reaction to
@@ -48,7 +103,7 @@ version has the following improvements compared to MojoHaus:
     this plugin. For that purpose, version 1.13 of this plugin depends on AspectJ 1.9.8.M1, while MojoHaus 1.14.0
     depends on AspectJ 1.9.7, which does not have `--release N` support yet. Furthermore, if `release` is used, it
     automatically takes precedence over all of `complianceLevel`, `source`, `target`.
-  * This plugin supports Java 18+ for `complianceLevel`, `source` and `target`, while MojoHaus 1.14.0 only allows
+  * This plugin supports Java 20+ for `complianceLevel`, `source` and `target`, while MojoHaus 1.14.0 only allows
     version 16 as a maximum.
   * Since plugin version 1.13.1, there is no upper bounds check for Java versions anymore, i.e. you no longer need to
     upgrade the plugin in order to use a more recent Java compiler source or target version. Simply upgrading AspectJ

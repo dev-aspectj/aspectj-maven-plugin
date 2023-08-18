@@ -66,7 +66,8 @@ Usage
 <project>
   ...
   <properties>
-    <aspectj.version>1.9.n</aspectj.version> <!-- specify your version -->
+    <!-- Your favourite AspectJ version -->
+    <aspectj.version>1.9.20</aspectj.version>
   </properties>
 
   <dependencies>
@@ -74,6 +75,7 @@ Usage
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
+      <!-- AspectJ runtime version, in sync with compiler -->
       <version>${aspectj.version}</version>
     </dependency>
     ...
@@ -89,9 +91,14 @@ Usage
           <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjtools</artifactId>
+            <!-- AspectJ compiler version, in sync with runtime -->
             <version>${aspectj.version}</version>
           </dependency>
         <dependencies>
+        <configuration>
+          <!-- Your favourite Java source/target version -->
+          <complianceLevel>20</complianceLevel>
+        </configuration>
       </plugin>
       ...
     </plugins>
