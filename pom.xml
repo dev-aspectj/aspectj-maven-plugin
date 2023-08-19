@@ -426,7 +426,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.6.4</version>
         <configuration>
           <!-- see: https://github.com/apache/maven-plugin-tools/pull/11 -->
           <mojoDependencies>dev.aspectj:aspectj-maven-plugin</mojoDependencies>
