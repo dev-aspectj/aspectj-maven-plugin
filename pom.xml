@@ -40,6 +40,10 @@
     <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
     <!-- Override mojo-parent:67 -->
     <checkstyle.version>10.12.2</checkstyle.version>
+    <!-- Override mojo-parent:67 -->
+    <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
+    <!-- Override mojo-parent:67 -->
+    <l10n-maven-plugin.version>1.0.0</l10n-maven-plugin.version>
     <mojo.java.target>1.8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 1.8 minimum -->
     <!-- work around until it is correctly fixed at top parent -->
     <scmpublish.content>${project.build.directory}/staging/aspectj-maven-plugin</scmpublish.content>
@@ -283,7 +287,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>${maven-javadoc-plugin.version}</version>
           <configuration>
             <!-- Amend mojo-parent default config, avoiding errors concerning modules vs. unnamed module packages -->
             <source>8</source>
@@ -433,17 +437,13 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>l10n-maven-plugin</artifactId>
-        <version>1.0-alpha-2</version>
+        <version>${l10n-maven-plugin.version}</version>
         <configuration>
           <locales>
             <locale>nl</locale>
             <locale>sv</locale>
           </locales>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
       </plugin>
     </plugins>
   </reporting>
