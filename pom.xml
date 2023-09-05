@@ -36,6 +36,10 @@
     <junitVersion>4.13.2</junitVersion>
     <doxiaVersion>1.12.0</doxiaVersion>
     <doxiaSitetoolsVersion>1.11.1</doxiaSitetoolsVersion>
+    <!-- Override mojo-parent:67 -->
+    <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
+    <!-- Override mojo-parent:67 -->
+    <checkstyle.version>10.12.2</checkstyle.version>
     <mojo.java.target>1.8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 1.8 minimum -->
     <!-- work around until it is correctly fixed at top parent -->
     <scmpublish.content>${project.build.directory}/staging/aspectj-maven-plugin</scmpublish.content>
@@ -276,24 +280,6 @@
 
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>3.3.0</version>
-          <dependencies>
-            <!-- TODO: remove dependency as soon as Checkstyle Plugin depending on v4 is available -->
-            <dependency>
-              <groupId>org.apache.maven.shared</groupId>
-              <artifactId>maven-shared-resources</artifactId>
-              <version>4</version>
-            </dependency>
-            <dependency>
-              <groupId>com.puppycrawl.tools</groupId>
-              <artifactId>checkstyle</artifactId>
-              <version>10.12.2</version>
-            </dependency>
-          </dependencies>
-        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
