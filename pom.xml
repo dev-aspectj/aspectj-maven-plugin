@@ -273,6 +273,7 @@
     </dependencies>
 
   <build>
+
     <pluginManagement>
       <plugins>
         <plugin>
@@ -310,7 +311,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.9.0</version>
+        <!--
+          Explicitly use version 3.6.4 from mojo-parent 67, because more recent versions fail to generate
+          target/site/plugin-info.html with plugin goals overview. See POM section 'reporting'.
+          For now, do NOT upgrade when Dependabot suggests it. TODO: Find out how to fix this.
+        -->
+        <version>${maven-plugin-plugin.version}</version>
         <configuration>
           <!-- see: https://github.com/apache/maven-plugin-tools/pull/11 -->
           <mojoDependencies>
@@ -419,6 +425,7 @@
         </dependencies>
       </plugin>
     </plugins>
+
   </build>
 
   <reporting>
@@ -426,6 +433,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
+        <!--
+          Explicitly use version 3.6.4 from mojo-parent 67, because more recent versions fail to generate
+          target/site/plugin-info.html with plugin goals overview.
+          TODO: Find out how to fix this.
+        -->
+        <version>${maven-plugin-plugin.version}</version>
         <configuration>
           <!-- see: https://github.com/apache/maven-plugin-tools/pull/11 -->
           <mojoDependencies>dev.aspectj:aspectj-maven-plugin</mojoDependencies>
