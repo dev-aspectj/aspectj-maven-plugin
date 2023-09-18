@@ -41,7 +41,7 @@
     <!-- Override mojo-parent:67 -->
     <checkstyle.version>10.12.2</checkstyle.version>
     <!-- Override mojo-parent:67 -->
-    <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
+    <maven-javadoc-plugin.version>3.6.0</maven-javadoc-plugin.version>
     <!-- Override mojo-parent:67 -->
     <l10n-maven-plugin.version>1.0.0</l10n-maven-plugin.version>
     <mojo.java.target>1.8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 1.8 minimum -->
