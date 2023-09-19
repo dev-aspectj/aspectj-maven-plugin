@@ -61,7 +61,7 @@ with the AspectJ runtime you use as a module dependency - as a plugin dependency
             <!-- AspectJ compiler version, in sync with runtime -->
             <version>${aspectj.version}</version>
           </dependency>
-        <dependencies>
+        </dependencies>
         <configuration>
           <!-- Your favourite Java source/target version -->
           <complianceLevel>20</complianceLevel>
