@@ -26,6 +26,7 @@ package org.codehaus.mojo.aspectj;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.artifact.handler.ArtifactHandler;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -877,6 +878,31 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
                     return true;
                 }
 
+            }
+        }
+        return false;
+    }
+
+    protected boolean hasClassPathClassesChanged(File outDir, boolean isTestCompile)
+        throws MojoExecutionException
+    {
+        List<String> classpathDirectories;
+        try {
+            classpathDirectories = isTestCompile
+                ? project.getTestClasspathElements()
+                : project.getCompileClasspathElements();
+        }
+        catch (DependencyResolutionRequiredException e) {
+            throw new MojoExecutionException("Cannot determine compile classpath elements", e);
+        }
+        if (classpathDirectories != null) {
+            Set<String> weaveSources = AjcHelper.getClassFilesAndJars(classpathDirectories.toArray(new String[0]), outDir);
+            long lastBuild = new File(outDir, argumentFileName).lastModified();
+            for (String source : weaveSources) {
+                File sourceFile = new File(source);
+                long sourceModified = sourceFile.lastModified();
+                if (sourceModified >= lastBuild)
+                    return true;
             }
         }
         return false;

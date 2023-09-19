@@ -240,6 +240,40 @@ public class AjcHelper
     }
 
     /**
+     * Based on a set of JARs and directories, returns a set of all JARs and class files
+     *
+     * @param dirsAndJars JARs and base directories to be scanned
+     * @param outDir
+     * @return a set of all JARs and class files found in the <i>dirsAndJars</i>
+     * @throws MojoExecutionException if any IOExceptions occur
+     */
+    public static Set<String> getClassFilesAndJars(String[] dirsAndJars, File outDir)
+        throws MojoExecutionException
+    {
+        Set<String> result = new HashSet<>();
+        for (int i = 0; i < dirsAndJars.length; i++) {
+            String currentDir = dirsAndJars[i];
+            if (FileUtils.fileExists(currentDir)) {
+                if (outDir.equals(new File(currentDir)))
+                    continue;
+                if (new File(currentDir).isDirectory()) {
+                    try {
+                        result.addAll(FileUtils.getFileNames(new File(currentDir), "**/*.class", DEFAULT_EXCLUDES, true));
+                    }
+                    catch (IOException e) {
+                        throw new MojoExecutionException("IO Error resolving directories", e);
+                    }
+                }
+                else {
+                    if (currentDir.toLowerCase().endsWith(".jar"))
+                        result.add(currentDir);
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
      * Creates a file that can be used as input to the ajc compiler using the -argdfile flag.
      * Each line in these files should contain one option or filename.
      * Comments, as in Java, start with // and extend to the end of the line.

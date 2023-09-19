@@ -177,4 +177,9 @@ public class AjcTestCompileMojo
         String skipTestCompile = System.getProperty(MAVEN_TEST_SKIP);
         return Boolean.parseBoolean(skipTestCompile);
     }
+
+    @Override
+    protected boolean isBuildNeeded() throws MojoExecutionException {
+        return super.isBuildNeeded() || hasClassPathClassesChanged(getArgumentFileDirectory(), true);
+    }
 }
