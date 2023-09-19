@@ -207,6 +207,17 @@ public class AjcReportMojo
     @Parameter( readonly = true, required = true, defaultValue = "${plugin.artifacts}" )
     private List<Artifact> pluginArtifacts;
 
+    @Override
+    public void execute() throws MojoExecutionException {
+        //super.execute();
+        try {
+            executeReport(Locale.getDefault());
+        }
+        catch (MavenReportException e) {
+            throw new MojoExecutionException(e);
+        }
+    }
+
     /**
      * Executes this ajdoc-report generation.
      */
@@ -422,7 +433,7 @@ public class AjcReportMojo
 
     /**
      * Set source compliance level
-     * 
+     *
      * @param complianceLevel compliance level
      */
     public void setComplianceLevel( String complianceLevel )

@@ -44,6 +44,8 @@
     <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
     <!-- Override mojo-parent:67 -->
     <l10n-maven-plugin.version>1.0.0</l10n-maven-plugin.version>
+    <!-- Override mojo-parent:67 -->
+    <maven-plugin-plugin.version>3.9.0</maven-plugin-plugin.version>
     <mojo.java.target>1.8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 1.8 minimum -->
     <!-- work around until it is correctly fixed at top parent -->
     <scmpublish.content>${project.build.directory}/staging/aspectj-maven-plugin</scmpublish.content>
@@ -159,6 +161,24 @@
         <artifactId>commons-beanutils</artifactId>
         <version>1.9.4</version>
       </dependency>
+      <!--
+        Get rid of transitive plexus-container-default dependency in maven-plugin-testing-harness:3.3.0, because
+        it causes warnings about that deprecated component when running AJ Maven Plugin:
+
+        org.apache.maven.plugin-testing:maven-plugin-testing-harness:jar:3.3.0:test
+        +- commons-io:commons-io:jar:2.2:compile
+        \- org.codehaus.plexus:plexus-archiver:jar:2.2:test
+           +- org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1:test
+           |  \- classworlds:classworlds:jar:1.1-alpha-2:test
+           \- org.codehaus.plexus:plexus-io:jar:2.0.4:test
+      -->
+<!--
+      <dependency>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-archiver</artifactId>
+        <version>4.8.0</version>
+      </dependency>
+-->
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
@@ -206,7 +226,12 @@
         <dependency>
             <groupId>org.apache.maven.reporting</groupId>
             <artifactId>maven-reporting-api</artifactId>
-            <version>3.1.0</version>
+            <version>4.0.0-M7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.reporting</groupId>
+            <artifactId>maven-reporting-impl</artifactId>
+            <version>4.0.0-M9</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -233,22 +258,38 @@
             <version>${mavenAPIVersion}</version>
             <scope>test</scope>
         </dependency>
+
         <!-- Needed by goal 'aspectj-report' -->
+        <!--
+          TODO: IT 'CreateReport' fails for 2.0.0-M7, but this version yields warning to users of AJ Maven:
+                "Plugin depends on plexus-container-default, which is EOL"
+        -->
         <dependency>
             <groupId>org.apache.maven.doxia</groupId>
             <artifactId>doxia-sink-api</artifactId>
             <version>${doxiaVersion}</version>
         </dependency>
+        <!-- Needed by goal 'aspectj-report' -->
+        <!--
+          TODO: IT 'CreateReport' fails for 2.0.0-M7, but this version yields warning to users of AJ Maven:
+                "Plugin depends on plexus-container-default, which is EOL"
+        -->
         <dependency>
             <groupId>org.apache.maven.doxia</groupId>
             <artifactId>doxia-site-renderer</artifactId>
             <version>${doxiaSitetoolsVersion}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.maven.reporting</groupId>
-            <artifactId>maven-reporting-impl</artifactId>
-            <version>3.1.0</version>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-integration-tools</artifactId>
+            <version>${doxiaSitetoolsVersion}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-site-model</artifactId>
+            <version>${doxiaSitetoolsVersion}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjtools</artifactId>
@@ -272,10 +313,14 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--
+          Get rid of transitive plexus-container-default dependency in maven-plugin-testing-harness:3.3.0, because
+          it causes warnings about that deprecated component when running AJ Maven Plugin
+        -->
         <dependency>
             <groupId>org.apache.maven.plugin-testing</groupId>
             <artifactId>maven-plugin-testing-harness</artifactId>
-            <version>3.3.0</version>
+            <version>4.0.0-alpha-1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
