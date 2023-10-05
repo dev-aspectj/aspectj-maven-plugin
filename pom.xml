@@ -35,7 +35,7 @@
 
     <junitVersion>4.13.2</junitVersion>
     <doxiaVersion>2.0.0-M7</doxiaVersion>
-    <doxiaSitetoolsVersion>2.0.0-M11</doxiaSitetoolsVersion>
+    <doxiaSitetoolsVersion>2.0.0-M12</doxiaSitetoolsVersion>
     <!-- Override mojo-parent:67 -->
     <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
     <!-- Override mojo-parent:67 -->
