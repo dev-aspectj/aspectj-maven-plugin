@@ -121,13 +121,6 @@ public class AjcReportMojo
     private String ajdtBuildDefFile;
 
     /**
-     * Doxia Site Renderer.
-     *
-     */
-    @Component
-    private Renderer siteRenderer;
-
-    /**
      * Shows only package, protected, and public classes and members.
      *
      */
@@ -361,14 +354,6 @@ public class AjcReportMojo
         // Only execute reports for java projects
         ArtifactHandler artifactHandler = this.project.getArtifact().getArtifactHandler();
         return "java".equals( artifactHandler.getLanguage() );
-    }
-
-    /**
-     * Get the site renderer.
-     */
-    protected Renderer getSiteRenderer()
-    {
-        return siteRenderer;
     }
 
     /**
