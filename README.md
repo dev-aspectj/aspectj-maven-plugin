@@ -51,7 +51,7 @@ with the AspectJ runtime you use as a module dependency - as a plugin dependency
   <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
+        <groupId>dev.aspectj</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
         <version>1.13.1</version>
         <dependencies>
