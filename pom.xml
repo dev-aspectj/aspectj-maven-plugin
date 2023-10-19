@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.codehaus.mojo</groupId>
     <artifactId>mojo-parent</artifactId>
-    <version>67</version>
+    <version>77</version>
   </parent>
 
   <groupId>dev.aspectj</groupId>
@@ -34,19 +34,11 @@
     <project.build.outputTimestamp>1</project.build.outputTimestamp>
 
     <junitVersion>4.13.2</junitVersion>
-    <doxiaVersion>2.0.0-M7</doxiaVersion>
-    <doxiaSitetoolsVersion>2.0.0-M11</doxiaSitetoolsVersion>
-    <!-- Override mojo-parent:67 -->
-    <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
-    <!-- Override mojo-parent:67 -->
+    <doxiaVersion>2.0.0-M8</doxiaVersion>
+    <doxiaSitetoolsVersion>2.0.0-M13</doxiaSitetoolsVersion>
+    <!-- Override mojo-parent:77 - requires Java 11+ -->
     <checkstyle.version>10.12.2</checkstyle.version>
-    <!-- Override mojo-parent:67 -->
-    <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
-    <!-- Override mojo-parent:67 -->
-    <l10n-maven-plugin.version>1.0.0</l10n-maven-plugin.version>
-    <!-- Override mojo-parent:67 -->
-    <maven-plugin-plugin.version>3.9.0</maven-plugin-plugin.version>
-    <mojo.java.target>1.8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 1.8 minimum -->
+    <mojo.java.target>8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 8 minimum -->
     <!-- work around until it is correctly fixed at top parent -->
     <scmpublish.content>${project.build.directory}/staging/aspectj-maven-plugin</scmpublish.content>
   </properties>
@@ -195,6 +187,11 @@
             <artifactId>plexus-utils</artifactId>
             <version>4.0.0</version>
         </dependency>
+        <!--
+            Do not remove, even though reported as unused by dependency:analyze.
+            Do not use scope 'provided', either.
+            Otherwise, there will be a runtime error like: "No implementation for SiteTool was bound."
+        -->
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-xml</artifactId>
@@ -206,17 +203,6 @@
             <version>${mavenAPIVersion}</version>
             <scope>provided</scope>
         </dependency>
-        <!--
-            org.apache.maven:maven-core:jar:3.8.2 defines test scope for plexus-cipher.
-            Weirdly enough, this breaks test execution because a plexus-cipher class cannot be found.
-            Defining a compile dependency fixes the problem.
-            TODO: remove after https://issues.apache.org/jira/browse/MNG-7219 is fixed.
-        -->
-        <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-cipher</artifactId>
-            <version>2.0</version>
-        </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-model</artifactId>
@@ -226,12 +212,12 @@
         <dependency>
             <groupId>org.apache.maven.reporting</groupId>
             <artifactId>maven-reporting-api</artifactId>
-            <version>4.0.0-M7</version>
+            <version>4.0.0-M8</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.reporting</groupId>
             <artifactId>maven-reporting-impl</artifactId>
-            <version>4.0.0-M9</version>
+            <version>4.0.0-M11</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -248,6 +234,7 @@
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-annotations</artifactId>
+            <version>${maven-plugin-plugin.version}</version>
             <scope>provided</scope><!-- annotations are needed only to build the plugin -->
         </dependency>
         <!-- Other -->
@@ -342,24 +329,8 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-        <!--
-          Explicitly use version 3.6.4 from mojo-parent 67, because more recent versions fail to generate
-          target/site/plugin-info.html with plugin goals overview. See POM section 'reporting'.
-          For now, do NOT upgrade when Dependabot suggests it. TODO: Find out how to fix this.
-        -->
-        <version>${maven-plugin-plugin.version}</version>
-        <configuration>
-          <!-- see: https://github.com/apache/maven-plugin-tools/pull/11 -->
-          <mojoDependencies>
-            <!-- Use sub elements instead of comma separated string for Maven < 3.3.9 compatibility -->
-            <mojoDependency>dev.aspectj:aspectj-maven-plugin</mojoDependency>
-          </mojoDependencies>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -465,20 +436,6 @@
 
   <reporting>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-        <!--
-          Explicitly use version 3.6.4 from mojo-parent 67, because more recent versions fail to generate
-          target/site/plugin-info.html with plugin goals overview.
-          TODO: Find out how to fix this.
-        -->
-        <version>${maven-plugin-plugin.version}</version>
-        <configuration>
-          <!-- see: https://github.com/apache/maven-plugin-tools/pull/11 -->
-          <mojoDependencies>dev.aspectj:aspectj-maven-plugin</mojoDependencies>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>l10n-maven-plugin</artifactId>
