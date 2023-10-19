@@ -26,13 +26,10 @@ package org.codehaus.mojo.aspectj;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.handler.ArtifactHandler;
-import org.apache.maven.doxia.siterenderer.Renderer;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
-import org.apache.maven.project.MavenProject;
 import org.apache.maven.reporting.AbstractMavenReport;
 import org.apache.maven.reporting.MavenReportException;
 import org.aspectj.tools.ajdoc.Main;
@@ -72,13 +69,6 @@ public class AjcReportMojo
     private String testAspectDirectory = "src/test/aspect";
 
     /**
-     * The maven project.
-     *
-     */
-    @Parameter( readonly = true, required = true, defaultValue = "${project}" )
-    private MavenProject project;
-
-    /**
      * The basedir of the project.
      *
      */
@@ -86,11 +76,18 @@ public class AjcReportMojo
     private File basedir;
 
     /**
-     * The output directory for the report.
-     *
+     * The output directory for the report. Note that this parameter is only evaluated if the goal is run directly from
+     * the command line. If the goal is run indirectly as part of a site generation, the output directory configured in
+     * the Maven Site Plugin is used instead.
      */
+    // We do need @Parameter due to the overridden 'defaultValue'. This is why, while re-using the super class field, we
+    // define a setter to place an annotation on. The javadoc is copied from the super class field, though.
+    //
+    // Note: In contrast to the super class property, this one is not read-only!
     @Parameter( required = true, defaultValue = "${project.reporting.outputDirectory}/aspectj-report" )
-    private File outputDirectory;
+    public void setOutputDirectory(File outputDirectory) {
+        this.outputDirectory = outputDirectory;
+    }
 
     /**
      * The build directory (normally "${basedir}/target").
@@ -101,14 +98,14 @@ public class AjcReportMojo
 
     /**
      * List of ant-style patterns used to specify the aspects that should be included when compiling. When none
-     * specified all .java and .aj files in the project source directories, or directories spesified by the ajdtDefFile
+     * specified all .java and .aj files in the project source directories, or directories specified by the ajdtDefFile
      * property are included.
      */
     private String[] includes;
 
     /**
      * List of ant-style patterns used to specify the aspects that should be excluded when compiling. When none
-     * specified all .java and .aj files in the project source directories, or directories spesified by the ajdtDefFile
+     * specified all .java and .aj files in the project source directories, or directories specified by the ajdtDefFile
      * property are included.
      */
     private String[] excludes;
@@ -200,16 +197,6 @@ public class AjcReportMojo
     @Parameter( readonly = true, required = true, defaultValue = "${plugin.artifacts}" )
     private List<Artifact> pluginArtifacts;
 
-    @Override
-    public void execute() throws MojoExecutionException {
-        //super.execute();
-        try {
-            executeReport(Locale.getDefault());
-        }
-        catch (MavenReportException e) {
-            throw new MojoExecutionException(e);
-        }
-    }
 
     /**
      * Executes this ajdoc-report generation.
@@ -298,14 +285,6 @@ public class AjcReportMojo
     }
 
     /**
-     * get report output directory.
-     */
-    protected String getOutputDirectory()
-    {
-        return outputDirectory.getAbsolutePath();
-    }
-
-    /**
      * @return list of classpath directories
      */
     protected List<String> getClasspathDirectories()
@@ -354,14 +333,6 @@ public class AjcReportMojo
         // Only execute reports for java projects
         ArtifactHandler artifactHandler = this.project.getArtifact().getArtifactHandler();
         return "java".equals( artifactHandler.getLanguage() );
-    }
-
-    /**
-     * Get the maven project.
-     */
-    protected MavenProject getProject()
-    {
-        return project;
     }
 
     public void setOverview( String overview )
