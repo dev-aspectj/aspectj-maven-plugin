@@ -1,4 +1,4 @@
-indexFile = new File(basedir, "target/site/aspectj-report/index.html")
+indexFile = new File(basedir, "target/aspectj-report/index.html")
 assert indexFile.exists()
-clazzFile = new File(basedir, "target/site/aspectj-report/Clazz.html")
+clazzFile = new File(basedir, "target/aspectj-report/Clazz.html")
 assert clazzFile.getText().contains("Advised&nbsp;by:")
