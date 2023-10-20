@@ -78,6 +78,17 @@
   </distributionManagement>
   <developers>
     <developer>
+      <id>kriegaex</id>
+      <name>Alexander Kriegisch</name>
+      <email>kriegaex@aspectj.dev</email>
+      <organization>Scrum-Master.de - Agile Project Management</organization>
+      <organizationUrl>https://scrum-master.de</organizationUrl>
+      <roles>
+        <role>Maintainer</role>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
       <id>kaare</id>
       <name>Kaare Nilsen</name>
       <email>kaare.nilsen@gmail.com</email>
