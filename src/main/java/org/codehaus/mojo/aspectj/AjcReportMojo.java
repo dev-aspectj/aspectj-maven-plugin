@@ -55,6 +55,18 @@ public class AjcReportMojo
     extends AbstractMavenReport
 {
     /**
+     * The report subdirectory. This will be appended to either the {@code outputDirectory} configured for this plugin,
+     * if the mojo is called directly, or to the identically named {@code outputDirectory} configured for Maven Site
+     * Plugin. I.e., without any custom configuration, reports will end up in
+     * {@code $&#123;project.build.directory&#125;/aspectj-report} for direct mojo calls and
+     * {@code $&#123;project.reporting.outputDirectory&#125;/aspectj-report} for Maven Site calls.
+     *
+     * @since 1.14
+     */
+    @Parameter( defaultValue = "aspectj-report", required = true )
+    private String reportDirectory = "aspectj-report";
+
+    /**
      * The source directory for the aspects
      *
      */
@@ -76,15 +88,19 @@ public class AjcReportMojo
     private File basedir;
 
     /**
-     * The output directory for the report. Note that this parameter is only evaluated if the goal is run directly from
-     * the command line. If the goal is run indirectly as part of a site generation, the output directory configured in
-     * the Maven Site Plugin is used instead.
+     * The output base directory for the report. Note that this parameter is only evaluated if the goal is run directly
+     * from the command line. If the goal is run indirectly as part of a site generation, the output base directory
+     * configured in the Maven Site Plugin is used instead, e.g.
+     * {@code <outputDirectory>$&#123;project.build.directory&#125;/custom-site</outputDirectory>}.
+     * To either base directory, a file separator "/" + the value of {@code reportDirectory} is added to determine the
+     * actual target directory.
      */
     // We do need @Parameter due to the overridden 'defaultValue'. This is why, while re-using the super class field, we
-    // define a setter to place an annotation on. The javadoc is copied from the super class field, though.
+    // define a setter to place an annotation on. The javadoc was copied from the super class field, then improved and
+    // amended by an example.
     //
     // Note: In contrast to the super class property, this one is not read-only!
-    @Parameter( required = true, defaultValue = "${project.reporting.outputDirectory}/aspectj-report" )
+    @Parameter( required = true, defaultValue = "${project.build.directory}" )
     public void setOutputDirectory(File outputDirectory) {
         this.outputDirectory = outputDirectory;
     }
@@ -236,7 +252,7 @@ public class AjcReportMojo
 
         // add target dir argument
         arguments.add( "-d" );
-        arguments.add( StringUtils.replace( getOutputDirectory(), "//", "/" ) );
+        arguments.add( StringUtils.replace( getOutputDirectory() + "/" + reportDirectory, "//", "/" ));
 
         arguments.addAll( includes );
 
