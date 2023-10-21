@@ -27,6 +27,6 @@ AspectJ Maven Plugin
 
   <<Please note:>> Before version 1.13.1, this plugin by default depended on an AspectJ Compiler (AJC) version which was
   able to run on Java 8. Since 1.13.1 however, it depends on AspectJ 1.9.8.RC1 or higher, where AJC requires Java 11+.
-  This requirement is inherited by the Eclipse Java Compiler (ECJ) which AJC is a fork of.
+  This requirement is inherited from the Eclipse Java Compiler (ECJ) which AJC is a fork of.
   If you wish to use an older AspectJ version (e.g. 1.9.8.M1, 1.9.7 or lower), please follow the description in section
   "Upgrading or downgrading AspectJ" on the "Usage" page. Then you can run the build on JDK 8 again.
