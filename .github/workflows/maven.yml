@@ -40,29 +40,12 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest, macOS-latest ]
-        # TODO: Replace matrix 11, 14, 17 by 11, 17, (17+n) after 18 is out, i.e. keep LTS + latest JDK
-        java:
-          # Hotspot VM, the "default" VM (14 unavailable for Temurin, use older adopt-hotspot)
-          - version: 11
-            dist: temurin
-          - version: 14
-            dist: adopt-hotspot
-          - version: 17
-            dist: temurin
-          # Zulu VM, based on Hotspot
-          - version: 11
-            dist: zulu
-          - version: 14
-            dist: zulu
-          - version: 17
-            dist: zulu
-          # OpenJ9, an alternate JVM implementation.
-          - version: 11
-            dist: adopt-openj9
-          - version: 14
-            dist: adopt-openj9
-          - version: 17
-            dist: adopt-openj9
+        javaVersion: [ 11, 17, 21 ]
+        javaDist: [ temurin, zulu, adopt-openj9 ]
+        exclude:
+          # TODO: Include, as soon as OpenJ9 JDK 21 is released
+          - javaVersion: 21
+            javaDist: adopt-openj9
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -82,16 +65,17 @@ jobs:
           path: |
             ~/.m2/repository
             !~/.m2/repository/dev/aspectj/aspectj-maven-plugin
-          key: maven-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
+          key: maven-${{ matrix.os }}-java-${{ matrix.javaVersion }}-${{ matrix.javaDist }}-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
-            maven-${{ matrix.os }}-java${{ matrix.java }}-
+            maven-${{ matrix.os }}-java-${{ matrix.javaVersion }}-${{ matrix.javaDist }}-
+            maven-${{ matrix.os }}-java-${{ matrix.javaVersion }}-
             maven-${{ matrix.os }}-
 
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: ${{ matrix.java.version }}
-          distribution: ${{ matrix.java.dist }}
+          java-version: ${{ matrix.javaVersion }}
+          distribution: ${{ matrix.javaDist }}
 
       - name: Build with Maven
         run: mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify site
