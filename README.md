@@ -74,6 +74,18 @@ with the AspectJ runtime you use as a module dependency - as a plugin dependency
 </project>
 ```
 
+### FAQ: Why does the plugin not run on my JDK version?
+
+The plugin as such only needs JDK 8. Therefore, if you can build on JDK 8 or need a more recent JDK version only depends
+on the `aspectjtools` plugin dependency, i.e. on the AspectJ Compiler (AJC) version. See the previous paragraph for how
+to configure that in Maven. In a nutshell, since AJC 1.9.8 needs JDK 11, AJC 1.9.21 needs JDK 17. This is due to the
+upstream Eclipse Java Compiler (ECJ) which AJC depends on, not due to AspectJ or AspectJ Maven themselves.
+
+By the way, only AJC has those JDK version requirements. The AspectJ runtime and load time weaver still only need JDK 8,
+and even the latest AJC can compile to target Java 8. Please refer to the [AspectJ Java version
+compatibility](https://github.com/eclipse-aspectj/aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md)
+matrix for more details.
+
 ## Why is there a fork of the MojoHaus plugin?
 
 The Mojohaus project was inactive for ~3.5 years: no releases, no bugs fixed, to pull requests merged, no reaction to
