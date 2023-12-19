@@ -88,24 +88,6 @@ public class AjcReportMojo
     private File basedir;
 
     /**
-     * The output base directory for the report. Note that this parameter is only evaluated if the goal is run directly
-     * from the command line. If the goal is run indirectly as part of a site generation, the output base directory
-     * configured in the Maven Site Plugin is used instead, e.g.
-     * {@code <outputDirectory>$&#123;project.build.directory&#125;/custom-site</outputDirectory>}.
-     * To either base directory, a file separator "/" + the value of {@code reportDirectory} is added to determine the
-     * actual target directory.
-     */
-    // We do need @Parameter due to the overridden 'defaultValue'. This is why, while re-using the super class field, we
-    // define a setter to place an annotation on. The javadoc was copied from the super class field, then improved and
-    // amended by an example.
-    //
-    // Note: In contrast to the super class property, this one is not read-only!
-    @Parameter( required = true, defaultValue = "${project.build.directory}" )
-    public void setOutputDirectory(File outputDirectory) {
-        this.outputDirectory = outputDirectory;
-    }
-
-    /**
      * The build directory (normally "${basedir}/target").
      *
      */

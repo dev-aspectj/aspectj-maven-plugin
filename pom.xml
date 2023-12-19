@@ -28,6 +28,7 @@
   <inceptionYear>2018</inceptionYear>
 
   <properties>
+    <!-- When upgrading to 1.9.21+, the plugin no longer runs on JDK 11, because AJC does not because ECJ does not -->
     <aspectjVersion>1.9.20.1</aspectjVersion>
 
     <!-- Minimum Maven version required to build this plugin -->
@@ -42,7 +43,7 @@
 
     <junitVersion>4.13.2</junitVersion>
     <doxiaVersion>2.0.0-M8</doxiaVersion>
-    <doxiaSitetoolsVersion>2.0.0-M13</doxiaSitetoolsVersion>
+    <doxiaSitetoolsVersion>2.0.0-M16</doxiaSitetoolsVersion>
     <!-- Override mojo-parent:77 - requires Java 11+ -->
     <checkstyle.version>10.12.2</checkstyle.version>
     <mojo.java.target>8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 8 minimum -->
@@ -207,12 +208,12 @@
         <dependency>
             <groupId>org.apache.maven.reporting</groupId>
             <artifactId>maven-reporting-api</artifactId>
-            <version>4.0.0-M8</version>
+            <version>4.0.0-M9</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.reporting</groupId>
             <artifactId>maven-reporting-impl</artifactId>
-            <version>4.0.0-M11</version>
+            <version>4.0.0-M13</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
