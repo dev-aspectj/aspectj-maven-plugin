@@ -337,7 +337,7 @@
                     <!--
                       AspectJ 1.9.8.M1 was the last one to use older Eclipse Core dependencies limited to Java 8 byte
                       code. As of 1.9.8.RC1 with full Java 17 support, ECJ and JDT Core depend on libraries containing
-                      Java 11 class files, though. This is the new Eclipse standard.
+                      Java 11 class files, though. Since 1.9.21.M1, there are Java 17 class files in JDT Core.
                     -->
                     <exclude>org.aspectj:aspectjtools</exclude>
                   </excludes>
