@@ -67,7 +67,7 @@ Usage
   ...
   <properties>
     <!-- Your favourite AspectJ version -->
-    <aspectj.version>1.9.20</aspectj.version>
+    <aspectj.version>1.9.21</aspectj.version>
   </properties>
 
   <dependencies>
@@ -97,7 +97,7 @@ Usage
         </dependencies>
         <configuration>
           <!-- Your favourite Java source/target version -->
-          <complianceLevel>20</complianceLevel>
+          <complianceLevel>21</complianceLevel>
         </configuration>
       </plugin>
       ...
