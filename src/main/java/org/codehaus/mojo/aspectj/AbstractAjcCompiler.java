@@ -892,8 +892,11 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
                 ? project.getTestClasspathElements()
                 : project.getCompileClasspathElements();
         }
-        catch (DependencyResolutionRequiredException e) {
-            throw new MojoExecutionException("Cannot determine compile classpath elements", e);
+        catch (DependencyResolutionRequiredException dependencyResolutionRequiredException) {
+            throw new MojoExecutionException(
+                "Cannot determine " + (isTestCompile ? "test" : "build") + " classpath elements",
+                dependencyResolutionRequiredException
+            );
         }
         if (classpathDirectories != null) {
             Set<String> weaveSources = AjcHelper.getClassFilesAndJars(classpathDirectories.toArray(new String[0]), outDir);
