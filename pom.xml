@@ -313,6 +313,48 @@
             <notimestamp>true</notimestamp>
           </configuration>
         </plugin>
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.12.1</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.asciidoctor</groupId>
+              <artifactId>asciidoctor-maven-plugin</artifactId>
+              <version>2.2.5</version>
+            </dependency>
+            <dependency>
+              <groupId>org.asciidoctor</groupId>
+              <artifactId>asciidoctorj-diagram</artifactId>
+              <version>2.2.14</version>
+            </dependency>
+            <dependency>
+              <groupId>org.asciidoctor</groupId>
+              <artifactId>asciidoctorj-diagram-plantuml</artifactId>
+              <version>1.2023.12</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <generateReports>true</generateReports>
+            <generateSitemap>true</generateSitemap>
+            <relativizeDecorationLinks>false</relativizeDecorationLinks>
+            <locales>en</locales>
+            <inputEncoding>UTF-8</inputEncoding>
+            <outputEncoding>UTF-8</outputEncoding>
+            <asciidoc>
+              <!-- Optional site-wide AsciiDoc attributes -->
+              <attributes>
+                <imagesoutdir>${project.build.directory}/site/images</imagesoutdir>
+                <icons>font</icons>
+                <!-- Add required rouge styles in '/css/site.css' -->
+                <source-highlighter>rouge</source-highlighter>
+                <toclevels>2</toclevels>
+              </attributes>
+              <requires>
+                <require>asciidoctor-diagram</require>
+              </requires>
+            </asciidoc>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -365,55 +407,6 @@
             <exclude>**/AbstractAjcMojoTest.java</exclude>
           </excludes>
         </configuration>
-      </plugin>
-
-      <!--
-         Provides PlantUML integration into site deployments.
-
-         NOTE: You need a local Graphviz installation (https://graphviz.org/download/), and it must be on the path of
-         the user running the build. Otherwise, UML diagrams like src/site/uml/multimodule_ajc.puml will not be
-         generated correctly. Instead, without any error message, a dummy image
-         target/site/images/plantuml/multimodule_ajc.png containing an error message will be generated and become part
-         of the Maven site.
-      -->
-      <!--
-        TODO: Because of https://github.com/Huluvu424242/plantuml-maven-plugin/issues/27, the new plugin fork does not
-          work on JDK 8. Alexander Kriegisch fixed this in https://github.com/Huluvu424242/plantuml-maven-plugin/pull/31
-          and published a forked plugin with group ID 'dev.aspectj'. As soon as this is merged and a new upstream
-          release is available, switch back to group ID 'com.github.funthomas424242'.
-        TODO: Because of https://github.com/Huluvu424242/plantuml-maven-plugin/issues/28, the plugin does not fail the
-          build if Graphviz is not installed or not on the path. The plugin simply generates dummy PNG files, which go
-          unnoticed unless somebody visually checks them.
-      -->
-      <plugin>
-        <groupId>dev.aspectj</groupId>
-        <artifactId>plantuml-maven-plugin</artifactId>
-        <version>1.5.2.J8</version>
-        <configuration>
-          <sourceFiles>
-            <directory>${basedir}</directory>
-            <includes>
-              <include>src/site/**/*.puml</include>
-            </includes>
-          </sourceFiles>
-          <outputDirectory>${project.build.directory}/site/images/plantuml</outputDirectory>
-        </configuration>
-        <executions>
-          <execution>
-            <id>generate-plantuml-diagrams</id>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <phase>pre-site</phase>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>net.sourceforge.plantuml</groupId>
-            <artifactId>plantuml</artifactId>
-            <version>1.2022.5</version>
-          </dependency>
-        </dependencies>
       </plugin>
     </plugins>
 
