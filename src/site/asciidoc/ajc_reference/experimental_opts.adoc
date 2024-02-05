@@ -1,19 +1,18 @@
- ------
- AJC Experimental Options
- ------
- ------
- ------
+# AJC experimental options
+:imagesdir: ../images
 
-AspectJ Compiler reference: non-standard options
+## AspectJ Compiler reference: non-standard options
 
-  Mojo's AspectJ Maven Plugin delegates the majority of its arguments to the AspectJ Compiler ("ajc"), which is part
-  of the AspectJ binary distribution. For convenience, the help text and option reference of the AJC's nonstandard
-  options is reproduced below verbatim. Relevant options found in the listing below are mirrored in the
-  options of its goals, as defined in the {{{../plugin-info.html}Plugin Documentation}} page.
+AspectJ Maven Plugin delegates the majority of its arguments to the AspectJ Compiler `ajc`, which is part of the
+AspectJ binary distribution. For convenience, the help text for AJC's non-standard options is reproduced below verbatim.
 
-+------------------------------------------
+Relevant options found in the listing below are mirrored in the corresponding plugin goal options, see
+link:../plugin-info.html[Plugin Documentation].
 
-AspectJ Compiler - Eclipse Compiler b15e5c75653358 (24Mar2023) - Java20
+For a reference of standard AJC options, please refer to xref:standard_opts.adoc[AJC standard options].
+
+----
+AspectJ Compiler - Eclipse Compiler 23b713ce21cc8c (01Dec2023) - Java21
 
  AspectJ-specific non-standard options:
     -XnoInline            dont inline advice
@@ -30,5 +29,4 @@ AspectJ Compiler - Eclipse Compiler b15e5c75653358 (24Mar2023) - Java20
     -Xjoinpoints:         supply a comma separated list of new joinpoints
                           that can be identified by pointcuts. Values are:
                           arrayconstruction, synchronization
-
-+------------------------------------------
+----

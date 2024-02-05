@@ -1,41 +1,37 @@
- ------
- Using aspect libraries
- ------
- ------
- ------
+# Using aspect libraries
+:imagesdir: ../images
 
-Applying already compiled aspect JARs
+## Applying already compiled aspect JARs
 
-  In order to apply already compiled aspects to your own sources you need do setup all the JAR
-  files you would like to weave in the plugin configuration as shown below.
+In order to apply already compiled aspects to your own sources, you need do set up all the aspect JARs wish to use for
+weaving in the plugin configuration as shown below.
 
-  <<Note:>> The artifacts you reference must exist as dependencies in your project.
+**Note:** The artifacts you reference must exist as regular dependencies in your project.
 
-+------------------------------------------+
+[source,xml]
+----
 <project>
-  ...
+  <!-- ... -->
   <dependencies>
-    ...
+    <!-- ... -->
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
       <version>${aspectjVersion}</version>
     </dependency>
-
     <dependency>
       <groupId>org.agroup</groupId>
       <artifactId>to-weave</artifactId>
       <version>1.0</version>
     </dependency>
-
     <dependency>
       <groupId>org.anothergroup</groupId>
       <artifactId>gen</artifactId>
       <version>1.0</version>
     </dependency>
-    ...
+    <!-- ... -->
   </dependencies>
-  ...
+  <!-- ... -->
   <build>
     <plugins>
       <plugin>
@@ -62,9 +58,9 @@ Applying already compiled aspect JARs
           </execution>
         </executions>
       </plugin>
-      ...
+      <!-- ... -->
     </plugins>
   <build>
-  ...
+  <!-- ... -->
 </project>
-+------------------------------------------+
+----

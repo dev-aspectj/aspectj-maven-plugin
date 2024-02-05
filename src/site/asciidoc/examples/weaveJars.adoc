@@ -1,22 +1,19 @@
- ------
- Weaving JARs
- ------
- ------
- ------
+# Weaving JARs
+:imagesdir: ../images
 
-Weaving already compiled JAR artifacts
+## Weaving already compiled JAR artifacts
 
-  AspectJ gives a possibility to weave already compiled classes in a JAR file.
-  In order to do this with Mojo's AspectJ Maven Plugin you need do setup all the JAR
-  files you would like to weave in the plugin configuration as shown below.
+AspectJ can weave aspects into already compiled classes in a JAR file. In order to do this with AspectJ Maven Plugin,
+you need do configure all the JAR files you want to weave in the plugin configuration as shown below.
 
-  <<Note:>> The artifacts you reference must exist as dependencies in the project.
+**Note:** The artifacts you reference must exist as regular dependencies in the project.
 
-+------------------------------------------+
+[source,xml]
+----
 <project>
-  ...
+  <!-- ... -->
   <dependencies>
-    ...
+    <!-- ... -->
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
@@ -34,9 +31,9 @@ Weaving already compiled JAR artifacts
       <artifactId>gen</artifactId>
       <version>1.0</version>
     </dependency>
-    ...
+    <!-- ... -->
   </dependencies>
-  ...
+  <!-- ... -->
   <build>
     <plugins>
       <plugin>
@@ -63,9 +60,9 @@ Weaving already compiled JAR artifacts
           </execution>
         </executions>
       </plugin>
-      ...
+      <!-- ... -->
     </plugins>
   <build>
-  ...
+  <!-- ... -->
 </project>
-+------------------------------------------+
+----
