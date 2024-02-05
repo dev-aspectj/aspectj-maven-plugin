@@ -1,4 +1,4 @@
-### Maven ###
+# Maven
 target/
 
 # Eclipse
@@ -12,3 +12,6 @@ target/
 
 # AspectJ
 test.lst
+
+# Asciidoctor Maven Plugin - TODO: remove when plugin is fixed
+/src/site/asciidoc/.asciidoctor/
