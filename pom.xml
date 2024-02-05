@@ -327,11 +327,6 @@
               <artifactId>asciidoctorj-diagram</artifactId>
               <version>2.2.14</version>
             </dependency>
-            <dependency>
-              <groupId>org.asciidoctor</groupId>
-              <artifactId>asciidoctorj-diagram-plantuml</artifactId>
-              <version>1.2023.12</version>
-            </dependency>
           </dependencies>
           <configuration>
             <generateReports>true</generateReports>
