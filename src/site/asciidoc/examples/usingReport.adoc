@@ -1,34 +1,30 @@
- ------
- Configuring Report
- ------
- ------
- ------
+# Configuring report
+:imagesdir: ../images
 
-Configuring AspectJ report
+## Configuring AspectJ report
 
+Example of `ajdoc` report creation, i.e. javadoc-like API documentation enhanced by aspect information.
 
-  Example of ajdoc report creation.
+**Note:** Since this report is using `tools.jar` on JDK 8 as a system scoped dependency and the corresponding JDK tool
+classes for javadoc generation on JDK 9+, you need to make sure that your `JAVA_HOME` environment variable points to the
+correct JDK before using this feature. You can just try your default setup, but if classes or libraries are not found,
+you probably need to adjust your configuration correspondingly.
 
-  <<Note:>> Since this report is using <<<tools.jar>>> as a system scoped dependency
-  you will need to make sure that your JAVA_HOME environment variable
-  are set to a JDK, before you could use this report.
-  Also we discovered that it does not work with JDK 1.5.0, and you would
-  need to upgrade your VM if this is the one you currently are using.
-
-+------------------------------------------+
+[source,xml]
+----
 <project>
-  ...
+  <!-- ... -->
   <dependencies>
-    ...
+    <!-- ... -->
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
       <version>${aspectjVersion}</version>
       <scope>compile</scope>
     </dependency>
-    ...
+    <!-- ... -->
   </dependencies>
-  ...
+  <!-- ... -->
   <reporting>
     <plugins>
       <plugin>
@@ -38,7 +34,7 @@ Configuring AspectJ report
         <configuration>
           <verbose>true</verbose>
           <privateScope>true</privateScope>
-          <complianceLevel>1.5</complianceLevel>
+          <complianceLevel>8</complianceLevel>
           <ajdtBuildDefFile>build.ajproperties</ajdtBuildDefFile>
         </configuration>
         <reportSets>
@@ -51,5 +47,6 @@ Configuring AspectJ report
       </plugin>
     </plugins>
   </reporting>
-  ...
+  <!-- ... -->
 </project>
+----

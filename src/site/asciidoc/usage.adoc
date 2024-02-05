@@ -1,32 +1,30 @@
- ------
- Usage
- ------
- ------
- ------
+# Usage
+:imagesdir: images
 
-Usage
+## Basic usage
 
-  This plugin weaves AspectJ aspects into your classes using the AspectJ compiler ("ajc").
-  There are typically two ways to package and use aspects in your Maven reactors; either as a standalone
-  project where aspects and code are defined within the same Maven project - or as part of a multi-module
-  Maven reactor where one/some project(s) contains aspects and other projects within the Maven reactor
-  contain code using the aspects ("woven by the aspects").
+This plugin weaves AspectJ aspects into your classes using the AspectJ compiler `ajc`.
 
-  Below follows a standard single-project usage example.
+There are typically two ways to package and use aspects in your Maven reactors: either as a stand-alone project where
+aspects and code are defined within the same Maven project or as part of a multi-module Maven reactor where one or more
+modules contain aspects and other modules within the Maven reactor contain code affected ("woven") by those aspects.
 
-+------------------------------------------
+Below follows a standard single-project usage example.
+
+[source,xml]
+----
 <project>
-  ...
+  <!-- ... -->
   <dependencies>
-    ...
+    <!-- ... -->
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
       <version>${aspectjVersion}</version>
     </dependency>
-    ...
+    <!-- ... -->
   </dependencies>
-  ...
+  <!-- ... -->
   <build>
     <plugins>
       <plugin>
@@ -42,27 +40,26 @@ Usage
           </execution>
         </executions>
       </plugin>
-      ...
+      <!-- ... -->
     </plugins>
   <build>
-  ...
+  <!-- ... -->
 </project>
-+------------------------------------------
+----
 
-* Upgrading or downgrading AspectJ
+## Upgrading or downgrading AspectJ
 
-  This plugin's release frequency is lower than AspectJ's. Therefore, if for example
+This plugin's release frequency is lower than AspectJ's. Therefore, if for example
 
   * you wish to upgrade to a more recent AspectJ version, or
+  * you need to run your build on JDK 8 or 11 instead of JDK 17 and wish to downgrade to an AspectJ compiler running on
+    that platform,
 
-  * you need to run your build on JDK 8+ instead of JDK 11+ and wish to downgrade to AspectJ 1.9.8.M1, 1.9.7 or older,
+you need to adjust the `aspectjtools` compiler dependency within the plugin and ideally also the `aspectjrt` runtime
+used by the compiled module in sync with it.
 
-  []
-
-  you need to adjust the <<<aspectjtools>>> dependency within the plugin and ideally also the <<<aspectjrt>>> used by
-  the compiled module in sync with it.
-
-+------------------------------------------
+[source,xml]
+----
 <project>
   ...
   <properties>
@@ -71,16 +68,16 @@ Usage
   </properties>
 
   <dependencies>
-    ...
+    <!-- ... -->
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
       <!-- AspectJ runtime version, in sync with compiler -->
       <version>${aspectj.version}</version>
     </dependency>
-    ...
+    <!-- ... -->
   </dependencies>
-  ...
+  <!-- ... -->
   <build>
     <plugins>
       <plugin>
@@ -103,6 +100,6 @@ Usage
       ...
     </plugins>
   <build>
-  ...
+  <!-- ... -->
 </project>
-+------------------------------------------
+----
