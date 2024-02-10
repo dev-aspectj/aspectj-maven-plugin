@@ -1,18 +1,36 @@
-<project xmlns="http://maven.apache.org/DECORATION/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+<project xmlns="http://maven.apache.org/DECORATION/1.8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
+
+  <publishDate format="yyyy-MM-dd" position="right"/>
+  <version position="right"/>
+
+  <edit>${project.scm.url}</edit>
+
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>${maven-fluido-skin.version}</version>
+  </skin>
   <custom>
     <fluidoSkin>
       <gitHub>
         <projectId>dev-aspectj/${project.artifactId}</projectId>
+        <ribbonOrientation>right</ribbonOrientation>
+        <ribbonColor>gray</ribbonColor>
       </gitHub>
     </fluidoSkin>
   </custom>
 
   <body>
     <links>
+      <item name="Maven" href="https://maven.apache.org/"/>
       <item name="AspectJ" href="https://www.eclipse.org/aspectj/"/>
       <item name="AJC Documentation" href="https://www.eclipse.org/aspectj/doc/released/devguide/ajc-ref.html"/>
     </links>
+    <breadcrumbs>
+      <item name="${this.name}" href="./index.html"/>
+    </breadcrumbs>
+    <menu ref="reports" inherit="bottom"/>
     <menu name="Overview">
       <item name="Introduction" href="./index.html"/>
       <item name="Usage" href="./usage.html"/>
@@ -25,7 +43,7 @@
       <item name="Weaving classes in jars" href="./examples/weaveJars.html"/>
       <item name="Weaving classes in directories" href="./examples/weaveDirectories.html"/>
       <item name="Using aspect libraries" href="./examples/libraryJars.html"/>
-      <item name="Configuring Report" href="./examples/usingReport.html"/>
+      <item name="Configuring report" href="./examples/usingReport.html"/>
     </menu>
     <menu name="Examples: Multi-module AspectJ use">
       <item name="Multi-module use of AspectJ" href="./multimodule/multimodule_strategy.html"/>
@@ -35,4 +53,5 @@
       <item name="AJC experimental options" href="./ajc_reference/experimental_opts.html"/>
     </menu>
   </body>
+
 </project>
