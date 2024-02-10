@@ -36,8 +36,11 @@
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
 
-    <!-- When upgrading to 1.9.21+, the plugin no longer runs on JDK 11, because AJC does not because ECJ does not -->
-    <aspectjVersion>1.9.20.1</aspectjVersion>
+    <!--
+      AJC 1.9.7 is the Last version that runs on Java 8. 1.9.8+ needs Java 11, 1.9.21+ Java 17 during build time,
+      due to AJC's upstream dependency on ECJ (JDT Core). During runtime, the latest AspectJ still only needs Java 8.
+    -->
+    <aspectjVersion>1.9.7</aspectjVersion>
 
     <!-- Minimum Maven version required to build this plugin -->
     <mavenBuildVersion>3.1.1</mavenBuildVersion>
@@ -343,6 +346,12 @@
               <artifactId>asciidoctor-maven-plugin</artifactId>
               <version>2.2.6</version>
             </dependency>
+            <!--
+              ATTENTION! This pulls in Java 11 class files for PlantUML conversion. I.e., the site should be generated
+              on Java 11+ before publishing to ensure that the PlantUML diagram is OK.
+              TODO: Upgrade and remove comment after fix for
+                    https://github.com/asciidoctor/asciidoctor-diagram/issues/457.
+            -->
             <dependency>
               <groupId>org.asciidoctor</groupId>
               <artifactId>asciidoctorj-diagram</artifactId>
