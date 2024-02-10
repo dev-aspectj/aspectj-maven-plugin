@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-<modelVersion>4.0.0</modelVersion>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
+  <!-- Keep around to uncomment and quickly look up some information from the former parent -->
+  <!--
   <parent>
     <groupId>org.codehaus.mojo</groupId>
     <artifactId>mojo-parent</artifactId>
     <version>77</version>
   </parent>
+  -->
 
   <groupId>dev.aspectj</groupId>
   <artifactId>aspectj-maven-plugin</artifactId>
@@ -28,6 +31,11 @@
   <inceptionYear>2018</inceptionYear>
 
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+
     <!-- When upgrading to 1.9.21+, the plugin no longer runs on JDK 11, because AJC does not because ECJ does not -->
     <aspectjVersion>1.9.20.1</aspectjVersion>
 
@@ -47,6 +55,8 @@
     <!-- Override mojo-parent:77 - requires Java 11+ -->
     <checkstyle.version>10.12.2</checkstyle.version>
     <mojo.java.target>8</mojo.java.target> <!-- aspectJ > 1.8.13 is JDK 8 minimum -->
+    <maven-plugin-plugin.version>3.9.0</maven-plugin-plugin.version>
+    <maven-fluido-skin.version>1.11.1</maven-fluido-skin.version>
     <!-- work around until it is correctly fixed at top parent -->
     <scmpublish.content>${project.build.directory}/staging/aspectj-maven-plugin</scmpublish.content>
   </properties>
@@ -170,6 +180,12 @@
         <artifactId>junit</artifactId>
         <version>${junitVersion}</version>
         <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.plugin-tools</groupId>
+        <artifactId>maven-plugin-annotations</artifactId>
+        <!--must be same version of m-plugin-p -->
+        <version>${maven-plugin-plugin.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -303,7 +319,13 @@
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.11.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.6.0</version>
           <configuration>
             <!-- Amend mojo-parent default config, avoiding errors concerning modules vs. unnamed module packages -->
             <source>8</source>
@@ -312,6 +334,7 @@
           </configuration>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
           <version>3.12.1</version>
           <dependencies>
@@ -348,6 +371,24 @@
             </asciidoc>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>${maven-plugin-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>help-mojo</id>
+              <goals>
+                <goal>helpmojo</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-plugin-report-plugin</artifactId>
+          <version>${maven-plugin-plugin.version}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -355,6 +396,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.3.0</version>
         <executions>
           <execution>
             <id>enforce-bytecode-version</id>
@@ -391,7 +433,9 @@
         </dependencies>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.1.2</version>
         <configuration>
           <skip>false</skip>
           <excludes>
@@ -407,6 +451,11 @@
 
   <reporting>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.5.0</version>
+      </plugin>
     </plugins>
   </reporting>
 
