@@ -103,13 +103,21 @@
       </roles>
     </developer>
     <developer>
+      <name>Nicholas Wong</name>
+      <email>nickwongdev@gmail.com</email>
+      <timezone>America/LosAngeles</timezone>
+      <roles>
+        <role>Java Developer (alumnus)</role>
+      </roles>
+    </developer>
+    <developer>
       <id>kaare</id>
       <name>Kaare Nilsen</name>
       <email>kaare.nilsen@gmail.com</email>
       <organization>Arktekk</organization>
       <organizationUrl>http://arktekk.no</organizationUrl>
       <roles>
-        <role>Java Developer</role>
+        <role>Java Developer (alumnus)</role>
       </roles>
       <timezone>+1</timezone>
     </developer>
@@ -118,14 +126,19 @@
       <email>lj@jguru.se</email>
       <organization>jGuru Europe AB</organization>
       <roles>
-        <role>Java Developer</role>
+        <role>Java Developer (alumnus)</role>
       </roles>
       <timezone>+1</timezone>
     </developer>
     <developer>
-      <id>kriegaex</id>
-      <name>Alexander Kriegisch</name>
-      <email>kriegaex@aspectj.dev</email>
+      <name>David J. M. Karlsen</name>
+      <email>david@davidkarlsen.com</email>
+      <organization>davidkarlsen.com</organization>
+      <organizationUrl>http://www.davidkarlsen.com</organizationUrl>
+      <roles>
+        <role>Java Developer (alumnus)</role>
+      </roles>
+      <timezone>+1</timezone>
     </developer>
   </developers>
 
@@ -133,16 +146,6 @@
     <contributor>
       <name>Thor Age Eldby</name>
       <email>tel@objectnet.no</email>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>+1</timezone>
-    </contributor>
-    <contributor>
-      <name>David J. M. Karlsen</name>
-      <email>david@davidkarlsen.com</email>
-      <organization>davidkarlsen.com</organization>
-      <organizationUrl>http://www.davidkarlsen.com</organizationUrl>
       <roles>
         <role>Java Developer</role>
       </roles>
@@ -157,11 +160,6 @@
       <name>Krzysztof Debski</name>
       <email>kdebski85@gmail.com</email>
       <timezone>+1</timezone>
-    </contributor>
-    <contributor>
-      <name>Nicholas Wong</name>
-      <email>nickwongdev@gmail.com</email>
-      <timezone>America/LosAngeles</timezone>
     </contributor>
   </contributors>
 
