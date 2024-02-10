@@ -127,9 +127,7 @@ jobs:
           - os: ubuntu-latest
             javaVersion: 11
             javaDist: temurin
-          # TODO: Include, as soon as OpenJ9 JDK 21 is released
-          - javaVersion: 21
-            javaDist: adopt-openj9
+          # Save some cloud computing resources
           - os: windows-latest
             javaDist: zulu
           - os: windows-latest
