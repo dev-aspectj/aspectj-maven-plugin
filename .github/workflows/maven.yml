@@ -40,7 +40,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest, macOS-latest ]
-        javaVersion: [ 11, 17, 21 ]
+        javaVersion: [ 8, 11, 17, 21 ]
         javaDist: [ temurin, zulu, adopt-openj9 ]
         exclude:
           # TODO: Include, as soon as OpenJ9 JDK 21 is released
