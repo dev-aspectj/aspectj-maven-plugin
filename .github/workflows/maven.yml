@@ -35,16 +35,108 @@ on:
       - '!gh-pages'
 
 jobs:
-  build:
 
+  build:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        javaVersion: [ 11 ]
+        javaDist: [ temurin ]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+
+      - name: Set Git options
+        # Check out as-is, commit Unix-style line endings
+        run: git config --global core.autocrlf input
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up cache for ~./m2/repository
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.m2/repository
+            !~/.m2/repository/dev/aspectj/aspectj-maven-plugin
+          key: maven-${{ matrix.os }}-java-${{ matrix.javaVersion }}-${{ matrix.javaDist }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-${{ matrix.os }}-java-${{ matrix.javaVersion }}-${{ matrix.javaDist }}-
+            maven-${{ matrix.os }}-java-${{ matrix.javaVersion }}-
+            maven-${{ matrix.os }}-
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.javaVersion }}
+          distribution: ${{ matrix.javaDist }}
+
+      - name: Build with Maven
+        run: mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify
+
+  site:
+    needs: build
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        javaVersion: [ 11 ]
+        javaDist: [ temurin ]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+
+      - name: Set Git options
+        # Check out as-is, commit Unix-style line endings
+        run: git config --global core.autocrlf input
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up cache for ~./m2/repository
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.m2/repository
+            !~/.m2/repository/dev/aspectj/aspectj-maven-plugin
+          key: maven-${{ matrix.os }}-java-${{ matrix.javaVersion }}-${{ matrix.javaDist }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-${{ matrix.os }}-java-${{ matrix.javaVersion }}-${{ matrix.javaDist }}-
+            maven-${{ matrix.os }}-java-${{ matrix.javaVersion }}-
+            maven-${{ matrix.os }}-
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.javaVersion }}
+          distribution: ${{ matrix.javaDist }}
+
+      - name: Build with Maven
+        run: mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" site
+
+  build-all:
+    needs: build
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest, macOS-latest ]
         javaVersion: [ 8, 11, 17, 21 ]
         javaDist: [ temurin, zulu, adopt-openj9 ]
         exclude:
+          # We built that already in 'build'
+          - os: ubuntu-latest
+            javaVersion: 11
+            javaDist: temurin
           # TODO: Include, as soon as OpenJ9 JDK 21 is released
           - javaVersion: 21
+            javaDist: adopt-openj9
+          - os: windows-latest
+            javaDist: zulu
+          - os: windows-latest
+            javaDist: adopt-openj9
+          - os: macOS-latest
+            javaDist: zulu
+          - os: macOS-latest
             javaDist: adopt-openj9
       fail-fast: false
 
@@ -78,4 +170,4 @@ jobs:
           distribution: ${{ matrix.javaDist }}
 
       - name: Build with Maven
-        run: mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify site
+        run: mvn --show-version --errors --batch-mode "-Dinvoker.streamLogsOnFailures=true" clean verify
