@@ -42,7 +42,7 @@ Below follows a standard single-project usage example.
       </plugin>
       <!-- ... -->
     </plugins>
-  <build>
+  </build>
   <!-- ... -->
 </project>
 ----
@@ -99,7 +99,7 @@ used by the compiled module in sync with it.
       </plugin>
       ...
     </plugins>
-  <build>
+  </build>
   <!-- ... -->
 </project>
 ----

@@ -60,7 +60,7 @@ weaving in the plugin configuration as shown below.
       </plugin>
       <!-- ... -->
     </plugins>
-  <build>
+  </build>
   <!-- ... -->
 </project>
 ----

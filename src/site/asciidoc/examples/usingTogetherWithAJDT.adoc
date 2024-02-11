@@ -40,7 +40,7 @@ overrides the configured project source folders. Any include or exclude elements
       </plugin>
       <!-- ... -->
     </plugins>
-  <build>
+  </build>
   <!-- ... -->
 </project>
 ----

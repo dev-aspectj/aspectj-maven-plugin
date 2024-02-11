@@ -48,7 +48,7 @@ To have different weaving configurations for the main and test classes, you can 
       </plugin>
       <!-- ... -->
     </plugins>
-  <build>
+  </build>
   <!-- ... -->
 </project>
 ----

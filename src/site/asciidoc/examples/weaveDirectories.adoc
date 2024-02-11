@@ -54,7 +54,7 @@ specify the folder(s) with the compiled classes via `weaveDirectories` and execu
       </plugin>
       <!-- ... -->
     </plugins>
-  <build>
+  </build>
   <!-- ... -->
 </project>
 ----

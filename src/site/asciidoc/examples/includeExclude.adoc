@@ -57,7 +57,7 @@ just add an empty `sources` tag, i.e. `<sources/>` (Maven 3 style) or `<sources>
       </plugin>
       <!-- ... -->
     </plugins>
-  <build>
+  </build>
   <!-- ... -->
 </project>
 ----
