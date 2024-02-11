@@ -425,6 +425,113 @@
           <artifactId>maven-plugin-report-plugin</artifactId>
           <version>${maven-plugin-plugin.version}</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.5.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.3.0</version>
+          <executions>
+            <execution>
+              <id>enforce-bytecode-version</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <enforceBytecodeVersion>
+                    <maxJdkVersion>${mojo.java.target}</maxJdkVersion>
+                    <excludes>
+                      <exclude>com.sun:tools</exclude>
+                      <!--
+                        AspectJ 1.9.8.M1 was the last one to use older Eclipse Core dependencies limited to Java 8 byte
+                        code. As of 1.9.8.RC1 with full Java 17 support, ECJ and JDT Core depend on libraries containing
+                        Java 11 class files, though. Since 1.9.21.M1, there are Java 17 class files in JDT Core.
+                      -->
+                      <exclude>org.aspectj:aspectjtools</exclude>
+                    </excludes>
+                  </enforceBytecodeVersion>
+                  <requireMavenVersion>
+                    <version>${mavenBuildVersion}</version>
+                  </requireMavenVersion>
+                </rules>
+              </configuration>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>extra-enforcer-rules</artifactId>
+              <version>1.5.1</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.1.2</version>
+          <configuration>
+            <skip>false</skip>
+            <excludes>
+              <exclude>**/test-project/**/*.java</exclude>
+              <exclude>**/parent-child-test-project/**/*.java</exclude>
+              <exclude>**/AbstractAjcMojoTest.java</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <version>3.6.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <!--
+            Other than Maven Deploy, this plugin cannot just be added to the 'build/plugins' section of the parent POM
+            once and (de-)activated with a simple property like 'maven.deploy.skip' on a per-module basis. See also
+            https://issues.sonatype.org/browse/OSSRH-68966. Consequently, we do not add it to the parent but separately
+            to each module meant to be published.
+          -->
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>1.6.8</version>
+          <extensions>true</extensions>
+          <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+            <!-- Activate in order to directly release to Maven Central after successful staging -->
+            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+          </configuration>
+          <dependencies>
+            <!--
+              Plugin version 1.6.8 does not work on JDK 16+ without special MAVEN_OPTS opening certain modules,
+              because the XStream version used needs it. One workaround is to use a more recent XStream version.
+              Attention: Do *not* upgrade to e.g. 1.4.18, because it causes exceptions during deployment.
+              TODO: remove plugin dependency after OSSRH-66257, NEXUS-26993 are fixed.
+            -->
+            <dependency>
+              <groupId>com.thoughtworks.xstream</groupId>
+              <artifactId>xstream</artifactId>
+              <version>1.4.15</version>
+            </dependency>
+          </dependencies>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -432,54 +539,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.3.0</version>
-        <executions>
-          <execution>
-            <id>enforce-bytecode-version</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <enforceBytecodeVersion>
-                  <maxJdkVersion>${mojo.java.target}</maxJdkVersion>
-                  <excludes>
-                    <exclude>com.sun:tools</exclude>
-                    <!--
-                      AspectJ 1.9.8.M1 was the last one to use older Eclipse Core dependencies limited to Java 8 byte
-                      code. As of 1.9.8.RC1 with full Java 17 support, ECJ and JDT Core depend on libraries containing
-                      Java 11 class files, though. Since 1.9.21.M1, there are Java 17 class files in JDT Core.
-                    -->
-                    <exclude>org.aspectj:aspectjtools</exclude>
-                  </excludes>
-                </enforceBytecodeVersion>
-                <requireMavenVersion>
-                  <version>${mavenBuildVersion}</version>
-                </requireMavenVersion>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>extra-enforcer-rules</artifactId>
-            <version>1.5.1</version>
-          </dependency>
-        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.1.2</version>
-        <configuration>
-          <skip>false</skip>
-          <excludes>
-            <exclude>**/test-project/**/*.java</exclude>
-            <exclude>**/parent-child-test-project/**/*.java</exclude>
-            <exclude>**/AbstractAjcMojoTest.java</exclude>
-          </excludes>
-        </configuration>
       </plugin>
     </plugins>
 
@@ -494,7 +557,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.5.0</version>
       </plugin>
     </plugins>
   </reporting>
@@ -549,6 +611,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
               <systemProperties>
@@ -586,7 +649,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-invoker-plugin</artifactId>
-            <version>3.6.0</version>
             <executions>
               <execution>
                 <id>integration-test</id>
@@ -627,47 +689,10 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>3.1.0</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
           </plugin>
           <plugin>
-            <!--
-              Other than Maven Deploy, this plugin cannot just be added to the 'build/plugins' section of the parent POM
-              once and (de-)activated with a simple property like 'maven.deploy.skip' on a per-module basis. See also
-              https://issues.sonatype.org/browse/OSSRH-68966. Consequently, we do not add it to the parent but separately
-              to each module meant to be published.
-            -->
             <groupId>org.sonatype.plugins</groupId>
             <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>1.6.8</version>
-            <extensions>true</extensions>
-            <configuration>
-              <serverId>ossrh</serverId>
-              <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-              <!-- Activate in order to directly release to Maven Central after successful staging -->
-              <autoReleaseAfterClose>false</autoReleaseAfterClose>
-            </configuration>
-            <dependencies>
-              <!--
-                Plugin version 1.6.8 does not work on JDK 16+ without special MAVEN_OPTS opening certain modules,
-                because the XStream version used needs it. One workaround is to use a more recent XStream version.
-                Attention: Do *not* upgrade to e.g. 1.4.18, because it causes exceptions during deployment.
-                TODO: remove plugin dependency after OSSRH-66257, NEXUS-26993 are fixed.
-              -->
-              <dependency>
-                <groupId>com.thoughtworks.xstream</groupId>
-                <artifactId>xstream</artifactId>
-                <version>1.4.15</version>
-              </dependency>
-            </dependencies>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
