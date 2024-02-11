@@ -30,6 +30,15 @@
   </description>
   <inceptionYear>2018</inceptionYear>
 
+  <url>https://github.com/dev-aspectj/aspectj-maven-plugin</url>
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://spdx.org/licenses/MIT.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
