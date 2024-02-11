@@ -10,5 +10,5 @@ target/
 *.iml
 .idea/
 
-# AspectJ
-test.lst
+# Main branch
+src/
