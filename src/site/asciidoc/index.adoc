@@ -17,22 +17,25 @@ one of two ways within your Maven reactors:
     of this approach.
 
 AspectJ Maven Plugin delegates most of its work to the AspectJ compiler `ajc` or documentation creator `ajdoc` included
-within the plugin. Refer to link:https://www.eclipse.org/aspectj/ for information and documentation about AspectJ
-itself.
+within the plugin. Refer to the link:https://www.eclipse.org/aspectj/[AspectJ website] for information and documentation
+about AspectJ itself.
 
 ### Plugin, AspectJ and Java version compatibility
 
-Each new version of AspectJ Maven Plugin by default uses the most recent AspectJ Compiler (AJC) version available at
-the release date. The plugin itself only requires Java 8, but depending on the AJC version you use, a more recent Java
-version might be necessary to run the build. For example, AspectJ 1.9.8+ requires a Java 11 runtime, AspectJ
-1.9.21+ requires Java 17.
+AspectJ Maven Plugin itself only requires Java 8 during build time and by default depends on the relatively old AspectJ
+version 1.9.7, because it contains the last AspectJ compiler version capable of running on Java 8, even though it can
+compile up to source/target Java 16.
+
+Chances are, that you need support for more recent source/target versions, e.g. Java 17 or 21. Or maybe, you simply wish
+to use the most recent AspectJ features and bugfixes. In that case, it is easy to change the AspectJ version used by
+this plugin by simple configuration. That might, however, require you to also run the plugin on a JDK more recent than
+8. For example, AspectJ 1.9.8+ requires a Java 11 runtime, AspectJ 1.9.21+ requires Java 17.
 
 Good news: All more recent AspectJ versions can still compile to lower source/target levels, i.e. your _compiled
 programs_ still run on older Java versions, if you wish.
 
-If for some reason you also need to run your _build_ on an older Java version, you can downgrade the `aspectjtools`
-plugin dependency to an older version. Or the other way around, you can also upgrade to a newer `aspectjtools` version
-without upgrading the plugin. You have maximum flexibility, depending on your usage scenario. You only ever need to
+So if you wish to upgrade to a newer (or downgrade to a lower) AspectJ version, simply override the default
+`aspectjtools` plugin dependency. You have maximum flexibility, depending on your use case. You only ever need to
 upgrade the plugin, if you need a new feature or bugfix of the plugin itself.
 
 For more information see xref:usage.adoc#_upgrading_or_downgrading_aspectj[Upgrading or downgrading AspectJ] and
