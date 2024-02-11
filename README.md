@@ -2,17 +2,18 @@
 
 ## Overview 
 
-This plugin weaves AspectJ aspects into your classes using the AspectJ compiler `ajc`.
-Typically, aspects are used in one of two ways within your Maven reactors:
+This plugin weaves AspectJ aspects into your classes using the AspectJ compiler `ajc`. Typically, aspects are used in
+one of two ways within your Maven reactors:
 
-  * As part of a single project, implying aspects and code are defined within the same Maven module. This is the
-    simplest approach to start out with. Feel free to examine the "Examples: single-project AspectJ use" documentation
-    section to better understand single-project use.
+  * As part of a _single project_, implying aspects and code are defined within the same Maven project. This is the
+    simplest approach to start out with. Feel free to examine the [basic usage](https://dev-aspectj.github.io/aspectj-maven-plugin/usage.html#basic_usage) example to
+    better understand single-project use.
 
-  * As part of a multi-module Maven reactor, where one or more modules contain aspects and other modules within contain
-    code using those aspects ("woven by the aspects"). This is a more complex and powerful approach, best suited when
-    several Maven projects should be woven by a common set of aspects. The "Examples: multi-module AspectJ use"
-    documentation section contains a basic walk-through of this approach.
+  * As part of a _multi-module Maven reactor_ where one or more modules contain aspects and other modules within the
+    Maven reactor contain code affected ("woven") by those aspects. This is a more complex and powerful approach, best
+    suited when several Maven projects should be woven by a common set of aspects. The
+    [AspectJ in a multi-module reactor](https://dev-aspectj.github.io/aspectj-maven-plugin/multimodule/multimodule_strategy.html) example contains a basic walk-through
+    of this approach.
 
 ## Documentation
 
@@ -26,34 +27,36 @@ use a new AspectJ version or even a completely new Java language version. The pl
 version you set for `<source>`, `<target>` or `<complianceLevel>` to the AspectJ compiler. The latest supported version
 is not hard-coded.
 
-As described in the plugin documentation under [Upgrading or downgrading AspectJ](https://dev-aspectj.github.io/aspectj-maven-plugin/usage.html#Upgrading_or_downgrading_AspectJ), you simply need to set your desired AspectJ tools version - ideally in sync
-with the AspectJ runtime you use as a module dependency - as a plugin dependency:
+As described in the plugin documentation under
+[Upgrading or downgrading AspectJ](https://dev-aspectj.github.io/aspectj-maven-plugin/usage.html#upgrading_or_downgrading_aspectj),
+you simply need to set your desired AspectJ tools version - ideally in sync with the AspectJ runtime you use as a module
+dependency - as a plugin dependency:
 
 ```xml
 <project>
-  ...
+  <!-- ... -->
   <properties>
     <!-- Your favourite AspectJ version -->
     <aspectj.version>1.9.21</aspectj.version>
   </properties>
 
   <dependencies>
-    ...
+    <!-- ... -->
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
       <!-- AspectJ runtime version, in sync with compiler -->
       <version>${aspectj.version}</version>
     </dependency>
-    ...
+    <!-- ... -->
   </dependencies>
-  ...
+  <!-- ... -->
   <build>
     <plugins>
       <plugin>
-        <groupId>dev.aspectj</groupId>
+        <groupId>${project.groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
-        <version>1.13.1</version>
+        <version>${project.version}</version>
         <dependencies>
           <dependency>
             <groupId>org.aspectj</groupId>
@@ -67,10 +70,10 @@ with the AspectJ runtime you use as a module dependency - as a plugin dependency
           <complianceLevel>21</complianceLevel>
         </configuration>
       </plugin>
-      ...
+      <!-- ... -->
     </plugins>
-  <build>
-  ...
+  </build>
+  <!-- ... -->
 </project>
 ```
 
@@ -99,7 +102,7 @@ the AspectJ.dev version, which ever since has been more up to date with AspectJ 
 feature-rich.
 
 After a short initial burst of activity and release 1.14.0 in order to catch up with a subset of the changes made to
-this fork, nothing else has happened at MojoHaus, other than merging Dependabot changes and closing stale tickets.
+this fork, not much else has happened at MojoHaus, other than merging Dependabot changes and closing stale tickets.
 
 ### Feature comparison MojoHaus vs. AspectJ.dev
 
@@ -129,12 +132,13 @@ version has the following improvements compared to MojoHaus:
     compiler option. Robert Scholte [suggested a better way](https://github.com/mojohaus/aspectj-maven-plugin/pull/100#discussion_r646632402)
     to implement JMS support in AspectJ Maven, similar to how Maven Compiler does it, but I am not confident I can
     implement it correctly. He did not volunteer to do it either, so for now this new option is better than nothing.
-  * Since 1.13.2, both the plugin builds themselves (including sources and javadocs) and the artifacts produced by the
+  * Since 1.14, both the plugin builds themselves (including sources and javadocs) and the artifacts produced by the
     plugin are [reproducible](https://reproducible-builds.org/), see also the
     [Maven mini guide](https://maven.apache.org/guides/mini/guide-reproducible-builds.html). For more information, read
     the descriptions for options `argumentFileDirectory` and `argumentFileName`. Mojohaus version 1.14.0 does not
     produce reproducible AspectJ artifacts, only the plugin itself has a partially reproducible build (JAR only, not
     javadoc).
+  * Since 1.14, consider classpath dependencies in "build needed" check. Fixes mojohaus/aspectj-maven-plugin#15.
   * The documentation for this plugin is somewhat better than the MojoHaus version, if you look at the
     [Maven site](https://dev-aspectj.github.io/aspectj-maven-plugin/), e.g. the additional UML diagram for the
     [multi-module example](https://dev-aspectj.github.io/aspectj-maven-plugin/multimodule/multimodule_strategy.html)
@@ -155,6 +159,6 @@ published it under group ID `com.nickwongdev`. He did this until early 2020 and 
 support. Then he announced he would no longer be available to maintain the plugin and
 [recommended forking it again](https://github.com/mojohaus/aspectj-maven-plugin/pull/45#issuecomment-803142741).
 
-Presently, [**Alexander Kriegisch (kriegaex)**](https://github.com/kriegaex), who is also an AspectJ committer, has
-taken responsibility for the AspectJ.dev plugin. Future plugin releases will have the group ID `dev.aspectj`, hoping
-to give the plugin a permanent home, whoever might maintain it in the future.
+Presently, [**Alexander Kriegisch (kriegaex)**](https://github.com/kriegaex), who is also the AspectJ maintainer and
+project lead, has taken responsibility for the AspectJ.dev plugin. Future plugin releases will have the group ID
+`dev.aspectj`, hoping to give the plugin a permanent home, whoever might maintain it in the future.
