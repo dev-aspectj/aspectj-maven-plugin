@@ -30,7 +30,6 @@
     <breadcrumbs>
       <item name="${this.name}" href="./index.html"/>
     </breadcrumbs>
-    <menu ref="reports" inherit="bottom"/>
     <menu name="Overview">
       <item name="Introduction" href="./index.html"/>
       <item name="Usage" href="./usage.html"/>
@@ -52,6 +51,7 @@
       <item name="AJC standard options" href="./ajc_reference/standard_opts.html"/>
       <item name="AJC experimental options" href="./ajc_reference/experimental_opts.html"/>
     </menu>
+    <menu ref="reports" inherit="bottom"/>
   </body>
 
 </project>
