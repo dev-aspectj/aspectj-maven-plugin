@@ -327,13 +327,31 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.3.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.6.0</version>
           <configuration>
+            <quiet>true</quiet>
             <!-- Amend mojo-parent default config, avoiding errors concerning modules vs. unnamed module packages -->
             <source>8</source>
             <!-- Reproducible builds, https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
             <notimestamp>true</notimestamp>
+            <!--
+              Avoid non-English javadoc generation. Due to https://bugs.openjdk.org/browse/JDK-8222793 reoccurring at
+              least in JDKs 19-21 and also being broken in some older JDKs, we cannot rely on just setting the locale
+              parameter, but also need the 'user.language' and 'user.country' parameters in 'additionalJOptions' as a
+              workaround.
+            -->
+            <locale>en</locale>
+            <additionalJOptions>
+              <additionalJOption>-J-Dfile.encoding=UTF-8</additionalJOption>
+              <additionalJOption>-J-Duser.language=en</additionalJOption>
+              <additionalJOption>-J-Duser.country=US</additionalJOption>
+            </additionalJOptions>
           </configuration>
         </plugin>
         <plugin>
@@ -641,6 +659,33 @@
                 <version>1.4.15</version>
               </dependency>
             </dependencies>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>default-jar-no-fork</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+              <failOnError>false</failOnError>
+            </configuration>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
