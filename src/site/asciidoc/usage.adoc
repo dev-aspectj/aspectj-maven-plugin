@@ -61,7 +61,7 @@ used by the compiled module in sync with it.
 [source,xml]
 ----
 <project>
-  ...
+  <!-- ... -->
   <properties>
     <!-- Your favourite AspectJ version -->
     <aspectj.version>1.9.21</aspectj.version>
@@ -97,7 +97,7 @@ used by the compiled module in sync with it.
           <complianceLevel>21</complianceLevel>
         </configuration>
       </plugin>
-      ...
+      <!-- ... -->
     </plugins>
   </build>
   <!-- ... -->
