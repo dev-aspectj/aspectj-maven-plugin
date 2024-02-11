@@ -828,9 +828,24 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
     protected boolean isBuildNeeded()
             throws MojoExecutionException {
         File outDir = getArgumentFileDirectory();
-        return hasNoPreviousBuild(outDir) || hasArgumentsChanged(outDir) ||
-                hasSourcesChanged(outDir) || hasNonWeavedClassesChanged(outDir);
 
+        final boolean hasNoPreviousBuild = hasNoPreviousBuild(outDir);
+        final boolean hasArgumentsChanged = hasArgumentsChanged(outDir);
+        final boolean hasSourcesChanged = hasSourcesChanged(outDir);
+        final boolean hasNonWeavedClassesChanged = hasNonWeavedClassesChanged(outDir);
+
+        final boolean isBuildNeeded = hasNoPreviousBuild || hasArgumentsChanged ||
+          hasSourcesChanged || hasNonWeavedClassesChanged;
+
+        getLog().debug(
+          "isBuildNeeded: " + isBuildNeeded + "(" +
+            "hasNoPreviousBuild: " + hasNoPreviousBuild + ", " +
+            "hasArgumentsChanged: " + hasArgumentsChanged + ", " +
+            "hasSourcesChanged: " + hasSourcesChanged + ", " +
+            "hasNonWeavedClassesChanged: " + hasNonWeavedClassesChanged + ")"
+        );
+
+        return isBuildNeeded;
     }
 
     private boolean hasNoPreviousBuild(File outDir) {
