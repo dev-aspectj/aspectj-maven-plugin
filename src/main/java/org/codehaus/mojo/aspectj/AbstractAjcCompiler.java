@@ -142,14 +142,14 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
 
     /**
      * Allows the caller to provide additional arguments in a Map format. For example:
-     * <pre>
-     * &lt;configuration&gt;
-     *   &lt;Xset&gt;
-     *     &lt;overWeaving&gt;true&lt;/overWeaving&gt;
-     *     &lt;avoidFinal&gt;false&lt;/avoidFinal&gt;
-     *   &lt;/Xset&gt;
-     * &lt;/configuration&gt;
-     * </pre>
+     * <pre>{@code
+     * <configuration>
+     *   <Xset>
+     *     <overWeaving>true</overWeaving>
+     *     <avoidFinal>false</avoidFinal>
+     *   </Xset>
+     * </configuration>
+     * }</pre>
      *
      * @since 1.5
      */
@@ -415,7 +415,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      * <a href="https://maven.apache.org/guides/mini/guide-reproducible-builds.html">reproducible builds</a>.
      * <p>
      * A typical <i>builddef.lst</i> file might look like this:
-     * <pre><code>
+     * <pre>{@code
      * -1.8
      * -encoding
      * UTF-8
@@ -424,7 +424,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      * -d
      * /my/project/target/classes
      * /my/project/src/main/java/org/acme/ValidationAspect.java
-     * </code></pre>
+     * }</pre>
      */
     @Parameter( defaultValue = "builddef.lst" )
     protected String argumentFileName = "builddef.lst";

@@ -243,7 +243,7 @@ public class AjcHelper
      * Based on a set of JARs and directories, returns a set of all JARs and class files
      *
      * @param dirsAndJars JARs and base directories to be scanned
-     * @param outDir
+     * @param outDir build output directory
      * @return a set of all JARs and class files found in the <i>dirsAndJars</i>
      * @throws MojoExecutionException if any IOExceptions occur
      */
@@ -355,17 +355,16 @@ public class AjcHelper
 
     /**
      * Helper method to find all .java or .aj files specified by the
-     * inExcludeString. The includeString is a comma separated list over files, or
-     * directories relative to the specified basedir. Examples of correct
-     * listings
+     * inExcludeString. The includeString is a comma-separated list over files, or
+     * directories relative to the specified basedir. Examples of correct listings:
      *
-     * <pre>
-     *         src/main/java/
-     *         src/main/java
-     *         src/main/java/com/project/AClass.java
-     *         src/main/java/com/project/AnAspect.aj
-     *         src/main/java/com/project/AnAspect.java
-     * </pre>
+     * <pre>{@code
+     * src/main/java/
+     * src/main/java
+     * src/main/java/com/project/AClass.java
+     * src/main/java/com/project/AnAspect.aj
+     * src/main/java/com/project/AnAspect.java
+     * }</pre>
      *
      * @param inExcludeString in-/exclude string
      * @param basedir the baseDirectory
