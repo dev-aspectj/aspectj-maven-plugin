@@ -12,7 +12,7 @@ link:../plugin-info.html[Plugin Documentation].
 For a reference of non-standard AJC options, please refer to xref:experimental_opts.adoc[AJC experimental options].
 
 ----
-AspectJ Compiler Eclipse Compiler 23b713ce21cc8c (01Dec2023) - Java21
+AspectJ Compiler Eclipse Compiler 8398f6c1210ec3 (13Feb2024) - Java21
 
  Usage: <options> <source files | directories>
  If directories are specified, then their source contents are compiled.
@@ -25,7 +25,8 @@ AspectJ-specific options:
     -injars <jarList>   use classes in <jarList> zip files as source
                         (<jarList> uses classpath delimiter)
                         deprecated - use inpath instead.
-    -aspectpath <list>  weave aspects in .class files from <list> dirs and jars/zip into sources
+    -aspectpath <list>  weave aspects in .class files from <list> dirs and
+                        jars/zip into sources
                         (<list> uses classpath delimiter)
     -outjar <file>      put output classes in zip file <file>
     -outxml             generate META-INF/aop.xml
@@ -36,6 +37,9 @@ AspectJ-specific options:
                         (reads stdin: enter to recompile and 'q' to quit)
     -sourceroots <dirs> compile all .aj and .java files in <dirs>
                         (<dirs> uses classpath delimiter)
+    -xmlConfigured <files> configure weaving process (aspects to use, aspect
+                        scopes, weaving targets). <files> are usually one,
+                        optionally multiple .xml files)
     -crossrefs          generate .ajsym file into the output directory
     -emacssym           generate .ajesym symbol files for emacs support
     -Xlint              same as '-Xlint:warning'

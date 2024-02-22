@@ -49,7 +49,7 @@ import java.util.Set;
 /**
  * Base class for the two aspectJ compile-time weaving mojos.
  * <p>
- * For all available options see <a href="http://www.eclipse.org/aspectj/doc/released/devguide/ajc-ref.html">ajc-ref</a>
+ * For all available options see <a href="https://eclipse.dev/aspectj/doc/latest/devguide/ajc.html">ajc-ref</a>
  *
  * @author <a href="mailto:kaare.nilsen@gmail.com">Kaare Nilsen</a>
  */
@@ -400,7 +400,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      *   <dd>suppress all compiler warnings</dd>
      * </dl>
      *
-     * @see <a href="http://www.eclipse.org/aspectj/doc/released/devguide/ajc-ref.html#ajc">Eclipse AJC reference</a>
+     * @see <a href="https://eclipse.dev/aspectj/doc/latest/devguide/ajc.html">Eclipse AJC reference</a>
      */
     @Parameter
     protected String warn;

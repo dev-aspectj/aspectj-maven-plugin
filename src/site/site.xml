@@ -25,7 +25,7 @@
     <links>
       <item name="Maven" href="https://maven.apache.org/"/>
       <item name="AspectJ" href="https://www.eclipse.org/aspectj/"/>
-      <item name="AJC Documentation" href="https://www.eclipse.org/aspectj/doc/released/devguide/ajc-ref.html"/>
+      <item name="AJC Documentation" href="https://eclipse.dev/aspectj/doc/latest/devguide/ajc.html"/>
     </links>
     <breadcrumbs>
       <item name="${this.name}" href="./index.html"/>

@@ -92,7 +92,7 @@ public abstract class AbstractAjcMojo extends AbstractMojo
      * Parameter which indicates an XML file containing AspectJ weaving instructions.
      * Assigning this plugin parameter adds the <code>-xmlConfigured</code> option to ajc.
      *
-     * @see <a href="http://www.eclipse.org/aspectj/doc/next/devguide/ajc-ref.html">http://www.eclipse.org/aspectj/doc/next/devguide/ajc-ref.html</a>
+     * @see <a href="https://eclipse.dev/aspectj/doc/latest/devguide/ajc.html">ajc reference</a>
      */
     @Parameter
     protected File xmlConfigured;
