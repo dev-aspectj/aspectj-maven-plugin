@@ -36,7 +36,7 @@
         <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2024-02-11</li>
           <li id="projectVersion" class="pull-right"><span class="divider">|</span>Version: 1.14</li>
         <li class="pull-right"><span class="divider">|</span>
-<a href="https://www.eclipse.org/aspectj/doc/released/devguide/ajc-ref.html" class="externalLink" title="AJC Documentation">AJC Documentation</a></li>
+<a href="https://eclipse.dev/aspectj/doc/latest/devguide/ajc.html" class="externalLink" title="AJC Documentation">AJC Documentation</a></li>
         <li class="pull-right"><span class="divider">|</span>
 <a href="https://www.eclipse.org/aspectj/" class="externalLink" title="AspectJ">AspectJ</a></li>
         <li class="pull-right"><a href="https://maven.apache.org/" class="externalLink" title="Maven">Maven</a></li>
@@ -80,108 +80,108 @@
         </header>
         <main id="bodyColumn"  class="span10" >
 
-  
+
     <section>
 <h2><a name="aspectj:EclipseAjcMojo"></a>aspectj:EclipseAjcMojo</h2>
-      
+
 <p><b>Full name</b>:</p>
-      
+
 <p>dev.aspectj:aspectj-maven-plugin:1.14:EclipseAjcMojo</p>
-      
+
 <p><b>Description</b>:</p>
-      
+
 <div>Create eclipse configuration of aspectJ</div>
-      
+
 <p><b>Attributes</b>:</p>
-      
+
 <ul>
-        
+
 <li>Requires a Maven project to be executed.</li>
-        
+
 <li>Requires dependency resolution of artifacts in scope: <code>compile</code>.</li>
-        
+
 <li>The goal is not marked as thread-safe and thus does not support parallel builds.</li>
       </ul>
       <section>
 <h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
-        
+
 <table border="0" class="table table-striped">
-          
+
 <tr class="a">
-            
+
 <th>Name</th>
-            
+
 <th>Type</th>
-            
+
 <th>Since</th>
-            
+
 <th>Description</th>
           </tr>
-          
+
 <tr class="b">
-            
+
 <td align="left"><code><a href="#aspectLibraries">&lt;aspectLibraries&gt;</a></code></td>
-            
+
 <td><code>Module[]</code></td>
-            
+
 <td><code>-</code></td>
-            
+
 <td>Weave binary aspects from the jars. The aspects should have been output by the same version of the compiler. The modules must also be dependencies of the project. Corresponds to <code>ajc -aspectpath</code> option<br /></td>
           </tr>
-          
+
 <tr class="a">
-            
+
 <td align="left"><code><a href="#javaModules">&lt;javaModules&gt;</a></code></td>
-            
+
 <td><code>Module[]</code></td>
-            
+
 <td><code>1.13</code></td>
-            
+
 <td>Java 9+ modules to build the module path from. Corresponds to <code>ajc --module-path</code> option.<br /></td>
           </tr>
-          
+
 <tr class="b">
-            
+
 <td align="left"><code><a href="#skip">&lt;skip&gt;</a></code></td>
-            
+
 <td><code>boolean</code></td>
-            
+
 <td><code>-</code></td>
-            
+
 <td>Skip plugin execution.<br /><b>Default value is</b>: <code>false</code>.<br /><b>User property is</b>: <code>aspectj.skip</code>.<br /></td>
           </tr>
-          
+
 <tr class="a">
-            
+
 <td align="left"><code><a href="#weaveDependencies">&lt;weaveDependencies&gt;</a></code></td>
-            
+
 <td><code>Module[]</code></td>
-            
+
 <td><code>-</code></td>
-            
+
 <td>List of of modules to weave (into target directory). Corresponds to <code>ajc -inpath</code> option (or <code>-injars</code> for pre-1.2 (which is not supported)).<br /></td>
           </tr>
-          
+
 <tr class="b">
-            
+
 <td align="left"><code><a href="#weaveDirectories">&lt;weaveDirectories&gt;</a></code></td>
-            
+
 <td><code>String[]</code></td>
-            
+
 <td><code>1.4</code></td>
-            
+
 <td>List of of directories with .class files to weave (into target directory). Corresponds to <code>ajc -inpath</code> option.<br /></td>
           </tr>
-          
+
 <tr class="a">
-            
+
 <td align="left"><code><a href="#xmlConfigured">&lt;xmlConfigured&gt;</a></code></td>
-            
+
 <td><code>File</code></td>
-            
+
 <td><code>-</code></td>
-            
-<td>Parameter which indicates an XML file containing AspectJ weaving instructions. Assigning this plugin parameter adds the <code>-xmlConfigured</code> option to ajc.<br /><b>See also:</b> <a class="externalLink" href="http://www.eclipse.org/aspectj/doc/next/devguide/ajc-ref.html">http://www.eclipse.org/aspectj/doc/next/devguide/ajc-ref.html</a><br /></td>
+
+<td>Parameter which indicates an XML file containing AspectJ weaving instructions. Assigning this plugin parameter adds the <code>-xmlConfigured</code> option to ajc.<br /><b>See also:</b> <a class="externalLink" href="https://eclipse.dev/aspectj/doc/latest/devguide/ajc.html">ajc reference</a><br /></td>
           </tr>
         </table>
       </section>
@@ -189,76 +189,76 @@
 <h3><a name="Parameter_Details"></a>Parameter Details</h3>
         <section>
 <h4><a name="a.3CaspectLibraries.3E"></a><b><a name="aspectLibraries">&lt;aspectLibraries&gt;</a></b></h4>
-        
+
 <div>Weave binary aspects from the jars. The aspects should have been output by the same version of the compiler. The modules must also be dependencies of the project. Corresponds to <code>ajc -aspectpath</code> option</div>
-        
+
 <ul>
-          
+
 <li><b>Type</b>: <code>org.codehaus.mojo.aspectj.Module[]</code></li>
-          
+
 <li><b>Required</b>: <code>No</code></li>
         </ul><hr /></section><section>
 <h4><a name="a.3CjavaModules.3E"></a><b><a name="javaModules">&lt;javaModules&gt;</a></b></h4>
-        
+
 <div>Java 9+ modules to build the module path from. Corresponds to <code>ajc --module-path</code> option.</div>
-        
+
 <ul>
-          
+
 <li><b>Type</b>: <code>org.codehaus.mojo.aspectj.Module[]</code></li>
-          
+
 <li><b>Since</b>: <code>1.13</code></li>
-          
+
 <li><b>Required</b>: <code>No</code></li>
         </ul><hr /></section><section>
 <h4><a name="a.3Cskip.3E"></a><b><a name="skip">&lt;skip&gt;</a></b></h4>
-        
+
 <div>Skip plugin execution.</div>
-        
+
 <ul>
-          
+
 <li><b>Type</b>: <code>boolean</code></li>
-          
+
 <li><b>Required</b>: <code>No</code></li>
-          
+
 <li><b>User Property</b>: <code>aspectj.skip</code></li>
-          
+
 <li><b>Default</b>: <code>false</code></li>
         </ul><hr /></section><section>
 <h4><a name="a.3CweaveDependencies.3E"></a><b><a name="weaveDependencies">&lt;weaveDependencies&gt;</a></b></h4>
-        
+
 <div>List of of modules to weave (into target directory). Corresponds to <code>ajc -inpath</code> option (or <code>-injars</code> for pre-1.2 (which is not supported)).</div>
-        
+
 <ul>
-          
+
 <li><b>Type</b>: <code>org.codehaus.mojo.aspectj.Module[]</code></li>
-          
+
 <li><b>Required</b>: <code>No</code></li>
         </ul><hr /></section><section>
 <h4><a name="a.3CweaveDirectories.3E"></a><b><a name="weaveDirectories">&lt;weaveDirectories&gt;</a></b></h4>
-        
+
 <div>List of of directories with .class files to weave (into target directory). Corresponds to <code>ajc -inpath</code> option.</div>
-        
+
 <ul>
-          
+
 <li><b>Type</b>: <code>java.lang.String[]</code></li>
-          
+
 <li><b>Since</b>: <code>1.4</code></li>
-          
+
 <li><b>Required</b>: <code>No</code></li>
         </ul><hr /></section><section>
 <h4><a name="a.3CxmlConfigured.3E"></a><b><a name="xmlConfigured">&lt;xmlConfigured&gt;</a></b></h4>
-        
-<div>Parameter which indicates an XML file containing AspectJ weaving instructions. Assigning this plugin parameter adds the <code>-xmlConfigured</code> option to ajc.<br /><b>See also:</b> <a class="externalLink" href="http://www.eclipse.org/aspectj/doc/next/devguide/ajc-ref.html">http://www.eclipse.org/aspectj/doc/next/devguide/ajc-ref.html</a></div>
-        
+
+<div>Parameter which indicates an XML file containing AspectJ weaving instructions. Assigning this plugin parameter adds the <code>-xmlConfigured</code> option to ajc.<br /><b>See also:</b> <a class="externalLink" href="https://eclipse.dev/aspectj/doc/latest/devguide/ajc.html">ajc reference</a></div>
+
 <ul>
-          
+
 <li><b>Type</b>: <code>java.io.File</code></li>
-          
+
 <li><b>Required</b>: <code>No</code></li>
         </ul>
       </section></section>
     </section>
-  
+
 
         </main>
       </div>

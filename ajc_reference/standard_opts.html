@@ -37,7 +37,7 @@
         <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2024-02-11</li>
           <li id="projectVersion" class="pull-right"><span class="divider">|</span>Version: 1.14</li>
         <li class="pull-right"><span class="divider">|</span>
-<a href="https://www.eclipse.org/aspectj/doc/released/devguide/ajc-ref.html" class="externalLink" title="AJC Documentation">AJC Documentation</a></li>
+<a href="https://eclipse.dev/aspectj/doc/latest/devguide/ajc.html" class="externalLink" title="AJC Documentation">AJC Documentation</a></li>
         <li class="pull-right"><span class="divider">|</span>
 <a href="https://www.eclipse.org/aspectj/" class="externalLink" title="AspectJ">AspectJ</a></li>
         <li class="pull-right"><a href="https://maven.apache.org/" class="externalLink" title="Maven">Maven</a></li>
@@ -97,7 +97,7 @@ AspectJ binary distribution. For convenience, the help text for AJC&#8217;s stan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>AspectJ Compiler Eclipse Compiler 23b713ce21cc8c (01Dec2023) - Java21
+<pre>AspectJ Compiler Eclipse Compiler 8398f6c1210ec3 (13Feb2024) - Java21
 
  Usage: &lt;options&gt; &lt;source files | directories&gt;
  If directories are specified, then their source contents are compiled.
@@ -110,7 +110,8 @@ AspectJ-specific options:
     -injars &lt;jarList&gt;   use classes in &lt;jarList&gt; zip files as source
                         (&lt;jarList&gt; uses classpath delimiter)
                         deprecated - use inpath instead.
-    -aspectpath &lt;list&gt;  weave aspects in .class files from &lt;list&gt; dirs and jars/zip into sources
+    -aspectpath &lt;list&gt;  weave aspects in .class files from &lt;list&gt; dirs and
+                        jars/zip into sources
                         (&lt;list&gt; uses classpath delimiter)
     -outjar &lt;file&gt;      put output classes in zip file &lt;file&gt;
     -outxml             generate META-INF/aop.xml
@@ -121,6 +122,9 @@ AspectJ-specific options:
                         (reads stdin: enter to recompile and 'q' to quit)
     -sourceroots &lt;dirs&gt; compile all .aj and .java files in &lt;dirs&gt;
                         (&lt;dirs&gt; uses classpath delimiter)
+    -xmlConfigured &lt;files&gt; configure weaving process (aspects to use, aspect
+                        scopes, weaving targets). &lt;files&gt; are usually one,
+                        optionally multiple .xml files)
     -crossrefs          generate .ajsym file into the output directory
     -emacssym           generate .ajesym symbol files for emacs support
     -Xlint              same as '-Xlint:warning'
