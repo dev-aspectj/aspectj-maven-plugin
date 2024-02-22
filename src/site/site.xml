@@ -1,7 +1,8 @@
 <project xmlns="http://maven.apache.org/DECORATION/1.8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
 
-  <publishDate format="yyyy-MM-dd" position="right"/>
+  <!-- Suppress date via 'position="none"' -->
+  <publishDate format="yyyy-MM-dd" position="none"/>
   <version position="right"/>
 
   <edit>${project.scm.url}</edit>
@@ -13,6 +14,8 @@
   </skin>
   <custom>
     <fluidoSkin>
+      <!-- Suppress both visible generation date and timestamp meta tag -->
+      <skipGenerationDate>true</skipGenerationDate>
       <gitHub>
         <projectId>dev-aspectj/${project.artifactId}</projectId>
         <ribbonOrientation>right</ribbonOrientation>
@@ -57,6 +60,9 @@
     </menu>
     -->
     <menu ref="reports"/>
+
+    <!-- Suppress copyright notice with current year by deactivating footer -->
+    <footer/>
   </body>
 
 </project>

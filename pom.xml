@@ -400,6 +400,9 @@
                 <!-- Add required rouge styles in '/css/site.css' -->
                 <source-highlighter>rouge</source-highlighter>
                 <toclevels>2</toclevels>
+                <!-- Suppress timestamp meta tag -->
+                <docdate/>
+                <docdatetime/>
               </attributes>
               <requires>
                 <require>asciidoctor-diagram</require>
