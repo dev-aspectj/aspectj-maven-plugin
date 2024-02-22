@@ -379,16 +379,10 @@
               <artifactId>asciidoctor-maven-plugin</artifactId>
               <version>2.2.6</version>
             </dependency>
-            <!--
-              ATTENTION! This pulls in Java 11 class files for PlantUML conversion. I.e., the site should be generated
-              on Java 11+ before publishing to ensure that the PlantUML diagram is OK.
-              TODO: Upgrade and remove comment after fix for
-                    https://github.com/asciidoctor/asciidoctor-diagram/issues/457.
-            -->
             <dependency>
               <groupId>org.asciidoctor</groupId>
               <artifactId>asciidoctorj-diagram</artifactId>
-              <version>2.2.14</version>
+              <version>2.3.0</version>
             </dependency>
           </dependencies>
           <configuration>
