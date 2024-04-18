@@ -54,7 +54,7 @@ dependency - as a plugin dependency:
   <build>
     <plugins>
       <plugin>
-        <groupId>${project.groupId}</groupId>
+        <groupId>dev.aspectj</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
         <version>${project.version}</version>
         <dependencies>
