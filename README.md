@@ -37,7 +37,7 @@ dependency - as a plugin dependency:
   <!-- ... -->
   <properties>
     <!-- Your favourite AspectJ version -->
-    <aspectj.version>1.9.21</aspectj.version>
+    <aspectj.version>1.9.22</aspectj.version>
   </properties>
 
   <dependencies>
@@ -54,9 +54,9 @@ dependency - as a plugin dependency:
   <build>
     <plugins>
       <plugin>
-        <groupId>${project.groupId}</groupId>
+        <groupId>dev.aspectj</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
-        <version>${project.version}</version>
+        <version>1.14</version>
         <dependencies>
           <dependency>
             <groupId>org.aspectj</groupId>
