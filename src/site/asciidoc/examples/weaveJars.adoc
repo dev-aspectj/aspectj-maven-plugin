@@ -8,7 +8,7 @@ you need do configure all the JAR files you want to weave in the plugin configur
 
 **Note:** The artifacts you reference must exist as regular dependencies in the project.
 
-[source,xml]
+[source,xml,subs="attributes,verbatim"]
 ----
 <project>
   <!-- ... -->
@@ -17,7 +17,7 @@ you need do configure all the JAR files you want to weave in the plugin configur
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>${aspectjVersion}</version>
+      <version>{aspectjVersion}</version>
     </dependency>
 
      <dependency>
@@ -37,9 +37,9 @@ you need do configure all the JAR files you want to weave in the plugin configur
   <build>
     <plugins>
       <plugin>
-        <groupId>${project.groupId}</groupId>
+        <groupId>{project-groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
-        <version>${project.version}</version>
+        <version>{project-version}</version>
         <configuration>
           <weaveDependencies>
             <weaveDependency>

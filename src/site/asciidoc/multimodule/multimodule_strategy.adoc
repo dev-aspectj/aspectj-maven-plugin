@@ -178,7 +178,7 @@ Now that our tiny validation API is complete, it is time to implement its corres
 that the `validation-aspect` module assigns its POM parent to `rootParentPOM`, since we want to use the AspectJ
 dependencies managed in the parent. The POM bits of the `validation-aspect` project are shown below:
 
-[source,xml]
+[source,xml,subs="attributes,verbatim"]
 ----
 <!-- +========================================= -->
 <!-- | Define the Parent POM                    -->
@@ -210,9 +210,9 @@ dependencies managed in the parent. The POM bits of the `validation-aspect` proj
 <build>
   <plugins>
     <plugin>
-      <groupId>${project.groupId}</groupId>
+      <groupId>{project-groupId}</groupId>
       <artifactId>aspectj-maven-plugin</artifactId>
-      <version>${project.version}</version>
+      <version>{project-version}</version>
       <configuration>
         <complianceLevel>8</complianceLevel>
       </configuration>
@@ -344,7 +344,7 @@ The last piece of the AspectJ plugin puzzle is the inclusion of our validation a
 which is performed within the `aspectParentPOM` module. The `aspectParentPOM` must therefore include a dependency on the
 `validation-aspect` project, and use the `rootParentPOM` as a parent.
 
-[source,xml]
+[source,xml,subs="attributes,verbatim"]
 ----
 <!-- +========================================= -->
 <!-- | Define the Parent POM                    -->
@@ -386,9 +386,9 @@ which is performed within the `aspectParentPOM` module. The `aspectParentPOM` mu
 <build>
   <plugins>
     <plugin>
-      <groupId>${project.groupId}</groupId>
+      <groupId>{project-groupId}</groupId>
       <artifactId>aspectj-maven-plugin</artifactId>
-      <version>${project.version}</version>
+      <version>{project-version}</version>
       <configuration>
         <complianceLevel>8</complianceLevel>
         <aspectDirectory>src/main/aspect</aspectDirectory>
