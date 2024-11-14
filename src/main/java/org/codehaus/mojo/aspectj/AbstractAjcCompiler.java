@@ -806,7 +806,8 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      */
     public void setComplianceLevel(String complianceLevel) {
         if (AjcHelper.isValidComplianceLevel(complianceLevel)) {
-            ajcOptions.add("-" + complianceLevel);
+            ajcOptions.add("-source");
+            ajcOptions.add(complianceLevel);
         }
     }
 
