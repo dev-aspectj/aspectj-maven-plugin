@@ -571,7 +571,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
         if (aspectSourcePathDir.exists() && aspectSourcePathDir.isDirectory()
                 && !project.getCompileSourceRoots().contains(aspectSourcePath)) {
             getLog().debug("Adding existing aspectSourcePathDir [" + aspectSourcePath + "] to compileSourceRoots.");
-            project.getCompileSourceRoots().add(aspectSourcePath);
+            project.addCompileSourceRoot(aspectSourcePath);
         } else {
             getLog().debug("Not adding non-existent or already added aspectSourcePathDir [" + aspectSourcePath
                     + "] to compileSourceRoots.");
@@ -581,7 +581,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
                 && !project.getTestCompileSourceRoots().contains(testAspectSourcePath)) {
             getLog().debug(
                     "Adding existing testAspectSourcePathDir [" + testAspectSourcePath + "] to testCompileSourceRoots.");
-            project.getTestCompileSourceRoots().add(testAspectSourcePath);
+            project.addTestCompileSourceRoot(testAspectSourcePath);
         } else {
             getLog().debug("Not adding non-existent or already added testAspectSourcePathDir [" + testAspectSourcePath
                     + "] to testCompileSourceRoots.");
