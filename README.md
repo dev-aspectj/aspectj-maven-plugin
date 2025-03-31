@@ -139,6 +139,7 @@ version has the following improvements compared to MojoHaus:
     produce reproducible AspectJ artifacts, only the plugin itself has a partially reproducible build (JAR only, not
     javadoc).
   * Since 1.14, consider classpath dependencies in "build needed" check. Fixes mojohaus/aspectj-maven-plugin#15.
+  * Since 1.14.1, the plugin is compatible with Maven 4 while Mojohaus version 1.15.0 is not.
   * The documentation for this plugin is somewhat better than the MojoHaus version, if you look at the
     [Maven site](https://dev-aspectj.github.io/aspectj-maven-plugin/), e.g. the additional UML diagram for the
     [multi-module example](https://dev-aspectj.github.io/aspectj-maven-plugin/multimodule/multimodule_strategy.html)
