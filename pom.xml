@@ -14,7 +14,7 @@
 
   <groupId>dev.aspectj</groupId>
   <artifactId>aspectj-maven-plugin</artifactId>
-  <version>1.15-SNAPSHOT</version>
+  <version>1.14.1</version>
   <packaging>maven-plugin</packaging>
 
   <organization>
