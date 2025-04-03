@@ -403,6 +403,10 @@
                 <!-- Suppress timestamp meta tag -->
                 <docdate/>
                 <docdatetime/>
+
+                <!-- project specific -->
+                <project-version>${project.version}</project-version>
+                <project-groupId>${project.groupId}</project-groupId>
               </attributes>
               <requires>
                 <require>asciidoctor-diagram</require>

@@ -11,7 +11,7 @@ modules contain aspects and other modules within the Maven reactor contain code 
 
 Below follows a standard single-project usage example.
 
-[source,xml]
+[source,xml,subs="attributes,verbatim"]
 ----
 <project>
   <!-- ... -->
@@ -20,7 +20,7 @@ Below follows a standard single-project usage example.
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>${aspectjVersion}</version>
+      <version>{aspectjVersion}</version>
     </dependency>
     <!-- ... -->
   </dependencies>
@@ -28,9 +28,9 @@ Below follows a standard single-project usage example.
   <build>
     <plugins>
       <plugin>
-        <groupId>${project.groupId}</groupId>
+        <groupId>{project-groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
-        <version>${project.version}</version>
+        <version>{project-version}</version>
         <executions>
           <execution>
             <goals>
@@ -58,7 +58,7 @@ This plugin's release frequency is lower than AspectJ's. Therefore, if for examp
 you need to adjust the `aspectjtools` compiler dependency within the plugin and ideally also the `aspectjrt` runtime
 used by the compiled module in sync with it.
 
-[source,xml]
+[source,xml,subs="attributes,verbatim"]
 ----
 <project>
   <!-- ... -->
@@ -81,9 +81,9 @@ used by the compiled module in sync with it.
   <build>
     <plugins>
       <plugin>
-        <groupId>${project.groupId}</groupId>
+        <groupId>{project-groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
-        <version>${project.version}</version>
+        <version>{project-version}</version>
         <dependencies>
           <dependency>
             <groupId>org.aspectj</groupId>

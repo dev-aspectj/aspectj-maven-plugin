@@ -11,7 +11,7 @@ specify the folder(s) with the compiled classes via `weaveDirectories` and execu
     default phases `compile` and `test-compile`,
   * or you select later phases for AspectJ Maven Plugin, i.e. `process-classes` and `process-test-classes` or later.
 
-[source,xml]
+[source,xml,subs="attributes,verbatim"]
 ----
 <project>
   <!-- ... -->
@@ -35,7 +35,7 @@ specify the folder(s) with the compiled classes via `weaveDirectories` and execu
         </executions>
       </plugin>
       <plugin>
-        <groupId>${project.groupId}</groupId>
+        <groupId>{project-groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
         <configuration>
           <weaveDirectories>

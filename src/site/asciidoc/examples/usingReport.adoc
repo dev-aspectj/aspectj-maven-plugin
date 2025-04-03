@@ -10,7 +10,7 @@ classes for javadoc generation on JDK 9+, you need to make sure that your `JAVA_
 correct JDK before using this feature. You can just try your default setup, but if classes or libraries are not found,
 you probably need to adjust your configuration correspondingly.
 
-[source,xml]
+[source,xml,subs="attributes,verbatim"]
 ----
 <project>
   <!-- ... -->
@@ -19,7 +19,7 @@ you probably need to adjust your configuration correspondingly.
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>${aspectjVersion}</version>
+      <version>{aspectjVersion}</version>
       <scope>compile</scope>
     </dependency>
     <!-- ... -->
@@ -28,9 +28,9 @@ you probably need to adjust your configuration correspondingly.
   <reporting>
     <plugins>
       <plugin>
-        <groupId>${project.groupId}</groupId>
+        <groupId>{project-groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
-        <version>${project.version}</version>
+        <version>{project-version}</version>
         <configuration>
           <verbose>true</verbose>
           <privateScope>true</privateScope>

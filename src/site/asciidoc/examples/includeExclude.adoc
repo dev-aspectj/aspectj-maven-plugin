@@ -13,7 +13,7 @@ implementation, an advanced implementation covering most needs regarding source 
 If you do not wish to use any source directory at all, e.g. in a plugin execution only doing binary weaving, you can
 just add an empty `sources` tag, i.e. `<sources/>` (Maven 3 style) or `<sources><source/></sources>` (Maven 2 style).
 
-[source,xml]
+[source,xml,subs="attributes,verbatim"]
 ----
 <project>
   <!-- ... -->
@@ -22,7 +22,7 @@ just add an empty `sources` tag, i.e. `<sources/>` (Maven 3 style) or `<sources>
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>${aspectjVersion}</version>
+      <version>{aspectjVersion}</version>
     </dependency>
     <!-- ... -->
   </dependencies>
@@ -30,9 +30,9 @@ just add an empty `sources` tag, i.e. `<sources/>` (Maven 3 style) or `<sources>
   <build>
     <plugins>
       <plugin>
-        <groupId>${project.groupId}</groupId>
+        <groupId>{project-groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
-        <version>${project.version}</version>
+        <version>{project-version}</version>
         <configuration>
           <sources>
             <source>
@@ -67,7 +67,7 @@ just add an empty `sources` tag, i.e. `<sources/>` (Maven 3 style) or `<sources>
 AspectJ Maven Plugin will by default add all `.java` and `.aj` files in the project source directories. Below, you find
 an example of how to add include/exclude filtering on top of that.
 
-[source,xml]
+[source,xml,subs="attributes,verbatim"]
 ----
 <project>
   <!-- ... -->
@@ -76,7 +76,7 @@ an example of how to add include/exclude filtering on top of that.
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>${aspectjVersion}</version>
+      <version>{aspectjVersion}</version>
     </dependency>
     <!-- ... -->
   </dependencies>
@@ -84,9 +84,9 @@ an example of how to add include/exclude filtering on top of that.
   <build>
     <plugins>
       <plugin>
-        <groupId>${project.groupId}</groupId>
+        <groupId>{project-groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
-        <version>${project.version}</version>
+        <version>{project-version}</version>
         <configuration>
           <includes>
             <include>**/TransationAspect.java</include>
