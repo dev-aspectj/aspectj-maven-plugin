@@ -127,6 +127,9 @@ jobs:
           - os: ubuntu-latest
             javaVersion: 11
             javaDist: temurin
+          # JDK 8 no longer available for MacOS
+          - os: macOS-latest
+            javaVersion: 8
           # Save some cloud computing resources
           - os: windows-latest
             javaDist: zulu
