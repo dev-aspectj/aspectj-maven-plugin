@@ -101,17 +101,6 @@
     <url>https://github.com/dev-aspectj/aspectj-maven-plugin</url>
   </scm>
 
-  <distributionManagement>
-      <snapshotRepository>
-          <id>ossrh-s01</id>
-          <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-      </snapshotRepository>
-      <repository>
-          <id>ossrh-s01</id>
-          <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</url>
-      </repository>
-  </distributionManagement>
-
   <developers>
     <developer>
       <id>kriegaex</id>
@@ -505,41 +494,21 @@
             </execution>
           </executions>
         </plugin>
+        <!-- https://central.sonatype.org/publish/publish-portal-maven/ -->
         <plugin>
-          <!--
-            Other than Maven Deploy, this plugin cannot just be added to the 'build/plugins' section of the parent POM
-            once and (de-)activated with a simple property like 'maven.deploy.skip' on a per-module basis. See also
-            https://issues.sonatype.org/browse/OSSRH-68966. Consequently, we do not add it to the parent but separately
-            to each module meant to be published.
-          -->
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>1.6.8</version>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>0.7.0</version>
           <extensions>true</extensions>
-          <configuration>
-            <serverId>ossrh-s01</serverId>
-            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-            <!-- Activate in order to directly release to Maven Central after successful staging -->
-            <autoReleaseAfterClose>false</autoReleaseAfterClose>
-          </configuration>
-          <dependencies>
-            <!--
-              Plugin version 1.6.8 does not work on JDK 16+ without special MAVEN_OPTS opening certain modules,
-              because the XStream version used needs it. One workaround is to use a more recent XStream version.
-              Attention: Do *not* upgrade to e.g. 1.4.18, because it causes exceptions during deployment.
-              TODO: remove plugin dependency after OSSRH-66257, NEXUS-26993 are fixed.
-            -->
-            <dependency>
-              <groupId>com.thoughtworks.xstream</groupId>
-              <artifactId>xstream</artifactId>
-              <version>1.4.15</version>
-            </dependency>
-          </dependencies>
         </plugin>
       </plugins>
     </pluginManagement>
 
     <plugins>
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -654,10 +623,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-          </plugin>
-          <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
