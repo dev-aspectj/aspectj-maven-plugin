@@ -120,7 +120,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest, macOS-latest ]
-        javaVersion: [ 8, 11, 17, 21 ]
+        javaVersion: [ 8, 11, 17, 21, 24 ]
         javaDist: [ temurin, zulu, adopt-openj9 ]
         exclude:
           # We built that already in 'build'
@@ -130,6 +130,9 @@ jobs:
           # JDK 8 no longer available for MacOS
           - os: macOS-latest
             javaVersion: 8
+          # JDK 24 not available yet for Adopt OpenJ9
+          - javaDist: adopt-openj9
+            javaVersion: 24
           # Save some cloud computing resources
           - os: windows-latest
             javaDist: zulu
