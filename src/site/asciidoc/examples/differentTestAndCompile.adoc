@@ -5,7 +5,7 @@
 
 To have different weaving configurations for the main and test classes, you can configure the plugin as shown below.
 
-[source,xml]
+[source,xml,subs="attributes,verbatim"]
 ----
 <project>
   <!-- ... -->
@@ -14,7 +14,7 @@ To have different weaving configurations for the main and test classes, you can 
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>${aspectjVersion}</version>
+      <version>{aspectjVersion}</version>
     </dependency>
     <!-- ... -->
   </dependencies>
@@ -22,9 +22,9 @@ To have different weaving configurations for the main and test classes, you can 
   <build>
     <plugins>
       <plugin>
-        <groupId>${project.groupId}</groupId>
+        <groupId>{project-groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
-        <version>${project.version}</version>
+        <version>{project-version}</version>
         <executions>
           <execution>
             <id>compile</id>

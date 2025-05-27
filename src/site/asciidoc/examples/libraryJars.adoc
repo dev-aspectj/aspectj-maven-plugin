@@ -8,7 +8,7 @@ weaving in the plugin configuration as shown below.
 
 **Note:** The artifacts you reference must exist as regular dependencies in your project.
 
-[source,xml]
+[source,xml,subs="attributes,verbatim"]
 ----
 <project>
   <!-- ... -->
@@ -17,7 +17,7 @@ weaving in the plugin configuration as shown below.
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>${aspectjVersion}</version>
+      <version>{aspectjVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.agroup</groupId>
@@ -35,9 +35,9 @@ weaving in the plugin configuration as shown below.
   <build>
     <plugins>
       <plugin>
-        <groupId>${project.groupId}</groupId>
+        <groupId>{project-groupId}</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
-        <version>${project.version}</version>
+        <version>{project-version}</version>
         <configuration>
           <aspectLibraries>
             <aspectLibrary>
