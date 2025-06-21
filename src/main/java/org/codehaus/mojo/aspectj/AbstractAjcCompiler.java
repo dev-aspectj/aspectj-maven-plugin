@@ -494,7 +494,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
     /**
      * Holds all files found using the includes, excludes parameters.
      */
-    protected Set<String> resolvedIncludes;
+    protected Set<String> resolvedIncludes = new HashSet<>();
 
     /**
      * Abstract method used by child classes to specify the correct output directory for compiled classes.
