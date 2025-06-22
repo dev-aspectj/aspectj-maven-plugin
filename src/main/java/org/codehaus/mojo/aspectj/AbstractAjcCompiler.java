@@ -483,7 +483,7 @@ public abstract class AbstractAjcCompiler extends AbstractAjcMojo {
      * @see this#resolvedIncludes
      */
     @Parameter( defaultValue = "true" )
-    protected boolean containsResolvedIncludes;
+    protected boolean containsResolvedIncludes = true;
 
 
     /**
